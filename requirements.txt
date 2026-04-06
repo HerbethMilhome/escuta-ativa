@@ -1,0 +1,9 @@
+PyAudioWPatch>=0.2.12
+numpy>=1.24.0
+faster-whisper>=1.0.0
+anthropic>=0.40.0
+python-dotenv>=1.0.0
+rich>=13.0.0
+scipy>=1.11.0
+# anthropic é opcional - só necessário se usar --provider claude
+# ollama não precisa de lib python - usa HTTP direto
