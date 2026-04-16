@@ -1,142 +1,187 @@
 """
-Interview Assistant - Ouve a saída de áudio do sistema e gera respostas para entrevistas.
+Interview Assistant GUI - Ouve a saida de audio do sistema e gera respostas para entrevistas.
+Interface grafica invisivel ao compartilhar tela (screen share, OBS, screenshots).
 
 Uso:
-    python main.py                          # Ollama (gratuito, padrão)
+    python main.py                          # Ollama (gratuito, padrao)
     python main.py --provider claude        # API da Anthropic
     python main.py --provider ollama --ollama-model mistral
-    python main.py --context "Sou dev Python com 5 anos de experiência"
+    python main.py --context "Sou dev Python com 5 anos de experiencia"
+
+Para a versao CLI original: python main_cli.py
 """
 
 import argparse
+import logging
 import os
 import sys
+import threading
 
 from dotenv import load_dotenv
-from rich.console import Console
-from rich.panel import Panel
-from rich.markdown import Markdown
 
 load_dotenv()
 
-console = Console()
+# Log para arquivo quando rodando sem terminal (pythonw / .pyw)
+LOG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assistant.log")
+logging.basicConfig(
+    filename=LOG_FILE,
+    level=logging.INFO,
+    format="%(asctime)s %(message)s",
+    datefmt="%H:%M:%S",
+)
+log = logging.getLogger("assistant")
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Interview Assistant - IA para ajudar em entrevistas")
+def parse_args():
+    parser = argparse.ArgumentParser(description="Interview Assistant GUI")
     parser.add_argument("--provider", type=str, default="ollama", choices=["ollama", "claude"],
                         help="Provedor de IA: 'ollama' (gratuito/local) ou 'claude' (API Anthropic)")
     parser.add_argument("--ollama-model", type=str, default="llama3.2",
                         help="Modelo do Ollama (default: llama3.2)")
-    parser.add_argument("--context", type=str, default="",
-                        help="Contexto sobre você (ex: 'Dev Python, 5 anos, Django e AWS')")
+    parser.add_argument("--context", type=str, default=None,
+                        help="Contexto sobre voce (ex: 'Dev Python, 5 anos, Django e AWS')")
     parser.add_argument("--language", type=str, default="pt",
-                        help="Idioma do áudio (pt, en, es, etc)")
+                        help="Idioma do audio (pt, en, es, etc)")
     parser.add_argument("--model", type=str, default="tiny",
                         help="Modelo Whisper (tiny, base, small, medium, large-v3)")
-    parser.add_argument("--silence", type=float, default=1.2,
-                        help="Segundos de silêncio para considerar fim da fala (default: 1.2)")
-    parser.add_argument("--threshold", type=float, default=0.01,
-                        help="Limite de volume para detectar fala (default: 0.01)")
-    args = parser.parse_args()
+    parser.add_argument("--silence", type=float, default=0.6,
+                        help="Segundos de silencio para considerar fim da fala (default: 0.6)")
+    parser.add_argument("--threshold", type=float, default=0.5,
+                        help="Limite de probabilidade Silero VAD para detectar fala (0..1, default: 0.5)")
+    return parser.parse_args()
+
+
+def load_context(args_context):
+    """Carrega contexto: argumento CLI > arquivo context.txt > string vazia."""
+    if args_context is not None:
+        return args_context
+    context_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "context.txt")
+    if os.path.exists(context_file):
+        with open(context_file, "r", encoding="utf-8") as f:
+            text = f.read().strip()
+        if text:
+            log.info(f"Contexto carregado de context.txt ({len(text)} chars)")
+            return text
+    return ""
+
+
+def main():
+    args = parse_args()
+    args.context = load_context(args.context)
 
     # Validar API key se usar Claude
     api_key = os.getenv("ANTHROPIC_API_KEY")
     if args.provider == "claude" and not api_key:
-        console.print("[red bold]Erro: ANTHROPIC_API_KEY não encontrada.[/]")
-        console.print("Crie um arquivo .env com: ANTHROPIC_API_KEY=sk-ant-sua-chave")
+        log.error("ANTHROPIC_API_KEY nao encontrada.")
+        log.error("Crie um arquivo .env com: ANTHROPIC_API_KEY=sk-ant-sua-chave")
         sys.exit(1)
 
-    # Header
-    provider_label = "Ollama (local)" if args.provider == "ollama" else "Claude API"
-    console.print(Panel.fit(
-        f"[bold cyan]Interview Assistant[/]\n"
-        f"Ouve o áudio do sistema e gera respostas para entrevistas\n"
-        f"[dim]Provedor: {provider_label}[/]",
-        border_style="cyan"
-    ))
+    import webview
+    from gui_frontend import get_html
+    from gui_api import GuiApi
+    from screen_hide import hide_from_capture
 
-    # Inicializar componentes
-    console.print("\n[yellow]Inicializando...[/]")
-
-    console.print("[dim]Audio:[/]")
-    from audio_capture import AudioCapture
-    capture = AudioCapture(
-        silence_threshold=args.threshold,
-        silence_duration=args.silence,
+    window = webview.create_window(
+        "Interview Assistant",
+        html=get_html(),
+        width=700,
+        height=800,
+        resizable=True,
+        text_select=True,
+        on_top=True,
     )
 
-    console.print("[dim]Transcrição:[/]")
-    from transcriber import Transcriber
-    transcriber = Transcriber(model_size=args.model, language=args.language)
+    def on_shown():
+        """Chamado quando a janela e exibida - aplica screen capture exclusion."""
+        try:
+            # Qt backend: window.native e um QMainWindow
+            native = window.native
+            if hasattr(native, 'Handle'):
+                # winforms backend
+                hwnd = native.Handle
+            elif hasattr(native, 'winId'):
+                # Qt backend
+                hwnd = int(native.winId())
+            else:
+                log.warning("Backend nao suportado para screen hide.")
+                return
+            hide_from_capture(hwnd)
+        except Exception as e:
+            log.warning(f"Nao foi possivel ocultar da captura: {e}")
 
-    console.print(f"[dim]Assistente IA ({provider_label}):[/]")
-    from assistant import create_assistant
-    try:
-        assistant_ai = create_assistant(
-            provider=args.provider,
-            context=args.context,
-            api_key=api_key,
-            ollama_model=args.ollama_model,
-        )
-    except RuntimeError as e:
-        console.print(f"[red bold]Erro: {e}[/]")
-        sys.exit(1)
-    console.print("  Pronto.\n")
-
-    if args.context:
-        console.print(f"[dim]Contexto: {args.context}[/]\n")
-
-    console.print(Panel(
-        "[green bold]Ouvindo áudio do sistema...[/]\n"
-        "[dim]Fale ou reproduza uma pergunta de entrevista.\n"
-        "Pressione Ctrl+C para sair.[/]",
-        border_style="green"
-    ))
-
-    question_count = 0
-
-    def on_audio_ready(audio_data, sample_rate):
-        nonlocal question_count
-
-        console.print("\n[yellow]Transcrevendo...[/]")
-        text = transcriber.transcribe(audio_data, sample_rate)
-
-        if not text or len(text.strip()) < 5:
-            console.print("[dim]  (áudio muito curto ou sem fala detectada)[/]")
-            return
-
-        question_count += 1
-        console.print(Panel(
-            f"[bold white]{text}[/]",
-            title=f"[cyan]Pergunta #{question_count}[/]",
-            border_style="blue"
-        ))
-
-        # Streaming: mostra a resposta token por token
-        console.print("[green bold]Resposta Sugerida:[/]")
-        console.print("─" * 60)
-
-        def on_token(token):
-            console.print(token, end="", highlight=False)
+    def init_thread():
+        """Thread de inicializacao - carrega componentes e inicia captura de audio."""
+        gui = GuiApi(window)
 
         try:
-            answer = assistant_ai.answer(text, on_token=on_token)
+            gui.set_status("initializing", "Carregando audio...")
+            from audio_capture import AudioCapture
+            capture = AudioCapture(
+                silence_threshold=args.threshold,
+                silence_duration=args.silence,
+            )
+
+            gui.set_status("initializing", "Carregando Whisper...")
+            from transcriber import Transcriber
+            transcriber = Transcriber(model_size=args.model, language=args.language)
+
+            provider_label = "Ollama (local)" if args.provider == "ollama" else "Claude API"
+            gui.set_status("initializing", f"Carregando {provider_label}...")
+            from assistant import create_assistant
+            assistant_ai = create_assistant(
+                provider=args.provider,
+                context=args.context,
+                api_key=api_key,
+                ollama_model=args.ollama_model,
+            )
+
         except Exception as e:
-            console.print(f"\n[red]Erro ao gerar resposta: {e}[/]")
+            gui.set_status("error", f"Erro: {e}")
+            log.error(f"Erro ao inicializar: {e}")
             return
 
-        console.print()  # newline after streaming
-        console.print("─" * 60)
-        console.print("[dim]Ouvindo...[/]")
+        gui.set_status("listening", "Ouvindo...")
 
-    try:
-        capture.capture_until_silence(on_audio_ready)
-    except KeyboardInterrupt:
-        console.print("\n[yellow]Encerrando...[/]")
-        capture.stop()
-        console.print(f"[cyan]Total de perguntas respondidas: {question_count}[/]")
-        console.print("[green]Boa sorte na entrevista![/]")
+        def on_audio_ready(audio_data, sample_rate):
+            gui.set_status("transcribing", "Transcrevendo...")
+
+            text = transcriber.transcribe(audio_data, sample_rate)
+
+            if not text or len(text.strip()) < 5:
+                gui.set_status("listening", "Ouvindo...")
+                return
+
+            gui.add_question(text)
+            gui.set_status("answering", "Respondendo...")
+            gui.start_answer()
+
+            def on_token(token):
+                gui.append_token(token)
+
+            try:
+                assistant_ai.answer(text, on_token=on_token)
+            except Exception as e:
+                gui.append_token(f"\n\n**Erro:** {e}")
+                log.error(f"Erro ao gerar resposta: {e}")
+
+            gui.finish_answer()
+            gui.set_status("listening", "Ouvindo...")
+
+        try:
+            capture.capture_until_silence(on_audio_ready)
+        except Exception as e:
+            gui.set_status("error", f"Erro captura: {e}")
+            log.error(f"Erro na captura de audio: {e}")
+
+    def on_loaded():
+        """Chamado quando o DOM esta pronto."""
+        t = threading.Thread(target=init_thread, daemon=True)
+        t.start()
+
+    window.events.shown += on_shown
+    window.events.loaded += on_loaded
+
+    webview.start(gui="qt")
 
 
 if __name__ == "__main__":

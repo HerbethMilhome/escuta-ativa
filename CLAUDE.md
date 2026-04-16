@@ -31,17 +31,17 @@ python main.py --provider claude
 | `--ollama-model` | `llama3.2` | Ollama model name |
 | `--context` | — | User profile text for personalized responses |
 | `--language` | `pt` | Audio language for Whisper |
-| `--model` | `base` | Whisper model size: `tiny/base/small/medium/large-v3` |
-| `--silence` | `1.2` | Seconds of silence to trigger transcription |
-| `--threshold` | `0.01` | Audio RMS level threshold for speech detection |
+| `--model` | `tiny` | Whisper model size: `tiny/base/small/medium/large-v3` |
+| `--silence` | `0.6` | Seconds of silence to trigger transcription |
+| `--threshold` | `0.5` | Silero VAD speech probability threshold (0..1) |
 
 ## Architecture
 
-**Flow**: WASAPI audio → silence detection → Whisper transcription → AI (Ollama or Claude) → streamed Rich terminal output
+**Flow**: WASAPI audio → Silero VAD silence detection → Whisper transcription → AI (Ollama or Claude) → streamed Rich terminal output
 
 Four modules with clear responsibilities:
 
-- **[audio_capture.py](audio_capture.py)** — `AudioCapture` class. Captures system loopback audio via PyAudioWPatch/WASAPI, detects speech/silence boundaries, invokes `on_audio_ready` callback with audio chunks.
+- **[audio_capture.py](audio_capture.py)** — `AudioCapture` class. Captures system loopback audio via PyAudioWPatch/WASAPI, uses Silero VAD (neural) to detect speech/silence boundaries, invokes `on_audio_ready` callback with audio chunks.
 - **[transcriber.py](transcriber.py)** — `Transcriber` class. Runs Whisper locally to convert audio chunks to text. No cloud API involved.
 - **[assistant.py](assistant.py)** — Factory + two implementations. `create_assistant()` returns either `ClaudeAssistant` (Anthropic API, streaming) or `OllamaAssistant` (local HTTP, streaming). Both maintain the last 10 messages of conversation history and support a `user_context` string for personalization.
 - **[main.py](main.py)** — Orchestrator. Parses CLI args, wires components together, runs the event loop, handles Rich UI output and graceful shutdown.

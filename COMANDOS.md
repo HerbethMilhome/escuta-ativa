@@ -4,6 +4,7 @@
 ```bash
 cd C:\Projetos\entrevista
 venv\Scripts\activate
+venv\Scripts\python main.py
 ```
 
 ## Rodar com Ollama (gratuito)

@@ -3,14 +3,21 @@
 import pyaudiowpatch as pyaudio
 import numpy as np
 from scipy.io.wavfile import write as wav_write
+from scipy.signal import resample_poly
 import io
 import threading
 import time
 import wave
 
+import torch
+from silero_vad import load_silero_vad
+
+VAD_SAMPLE_RATE = 16000
+VAD_WINDOW_SIZE = 512  # samples @ 16kHz
+
 
 class AudioCapture:
-    def __init__(self, silence_threshold=0.01, silence_duration=2.0, min_audio_duration=1.5):
+    def __init__(self, silence_threshold=0.5, silence_duration=0.6, min_audio_duration=1.5):
         self.silence_threshold = silence_threshold
         self.silence_duration = silence_duration
         self.min_audio_duration = min_audio_duration
@@ -20,6 +27,9 @@ class AudioCapture:
         self._running = False
         self._pa = pyaudio.PyAudio()
         self._setup_loopback()
+        print("  Carregando Silero VAD...")
+        self._vad_model = load_silero_vad()
+        self._vad_model.eval()
 
     def _setup_loopback(self):
         """Encontra o dispositivo de loopback WASAPI."""
@@ -55,6 +65,33 @@ class AudioCapture:
         print(f"  Sample rate: {self.sample_rate} Hz")
         print(f"  Loopback: {self.device_info.get('isLoopbackDevice', False)}")
 
+    def _detect_speech(self, audio_float):
+        """Retorna a probabilidade máxima de fala em um chunk, via Silero VAD.
+
+        Reamostra para 16kHz e avalia em janelas de 512 samples.
+        """
+        if self.sample_rate != VAD_SAMPLE_RATE:
+            # resample_poly precisa de inteiros para up/down
+            audio_16k = resample_poly(audio_float, VAD_SAMPLE_RATE, self.sample_rate)
+            audio_16k = audio_16k.astype(np.float32)
+        else:
+            audio_16k = audio_float.astype(np.float32)
+
+        max_prob = 0.0
+        n_windows = len(audio_16k) // VAD_WINDOW_SIZE
+        if n_windows == 0:
+            return 0.0
+
+        with torch.no_grad():
+            for i in range(n_windows):
+                start = i * VAD_WINDOW_SIZE
+                window = audio_16k[start:start + VAD_WINDOW_SIZE]
+                tensor = torch.from_numpy(window)
+                prob = self._vad_model(tensor, VAD_SAMPLE_RATE).item()
+                if prob > max_prob:
+                    max_prob = prob
+        return max_prob
+
     def capture_until_silence(self, on_audio_ready):
         """Captura áudio continuamente e envia chunks quando detecta silêncio após fala."""
         self._running = True
@@ -86,9 +123,9 @@ class AudioCapture:
                     audio_int16 = audio_int16[::self.channels]
                 audio_float = audio_int16.astype(np.float32) / 32768.0
 
-                rms = np.sqrt(np.mean(audio_float ** 2))
+                speech_prob = self._detect_speech(audio_float)
 
-                if rms > self.silence_threshold:
+                if speech_prob > self.silence_threshold:
                     has_speech = True
                     silence_start = None
                     buffer.append(audio_float)

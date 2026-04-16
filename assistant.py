@@ -8,13 +8,16 @@ import sys
 SYSTEM_PROMPT = """Você é um assistente de entrevistas de emprego. Gere respostas como uma pessoa mais reservada e direta responderia numa entrevista.
 
 Regras:
-- Respostas CURTAS: máximo 2-3 frases por resposta
-- Fale como uma pessoa real, tímida mas competente - sem enrolação
+- Se for pergunta COMPORTAMENTAL ou PESSOAL: resposta CURTA (2-3 frases), fale como pessoa real, sem enrolação
+- Se for pergunta TÉCNICA com lógica/código (ex: inverter árvore binária, algoritmos, SQL, design patterns):
+  - Primeiro explique brevemente a abordagem (1-2 frases)
+  - Depois mostre o código completo em um bloco de código com a linguagem (```java, ```python, etc)
+  - Se relevante, mencione complexidade (Big O) em 1 frase
 - Vá direto ao ponto, sem introduções ou conclusões elaboradas
-- NÃO use bullet points, listas ou formatação - fale como se estivesse conversando
 - NÃO use palavras rebuscadas ou corporativas demais
 - Se a transcrição não parecer uma pergunta de entrevista, responda apenas "⏭"
-- Responda no mesmo idioma da pergunta"""
+- Responda no mesmo idioma da pergunta
+- Para código, use Java por padrão a menos que outra linguagem seja especificada"""
 
 
 class ClaudeAssistant:
@@ -41,7 +44,7 @@ class ClaudeAssistant:
         full_answer = ""
         with self.client.messages.stream(
             model="claude-sonnet-4-20250514",
-            max_tokens=1024,
+            max_tokens=4096,
             system=system,
             messages=self.history,
         ) as stream:
