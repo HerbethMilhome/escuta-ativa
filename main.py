@@ -12,10 +12,22 @@ Para a versao CLI original: python main_cli.py
 """
 
 import argparse
+import importlib
 import logging
 import os
 import sys
 import threading
+
+# Python 3.8+ no Windows ignora PATH para DLLs de extensoes — registra antes de qualquer import CUDA
+for _pkg in ("nvidia.cudnn", "nvidia.cublas", "nvidia.cuda_runtime"):
+    try:
+        _mod = importlib.import_module(_pkg)
+        if _mod.__file__:
+            _bin = os.path.join(os.path.dirname(_mod.__file__), "bin")
+            if os.path.isdir(_bin):
+                os.add_dll_directory(_bin)
+    except Exception:
+        pass
 
 from dotenv import load_dotenv
 
@@ -38,6 +50,8 @@ def parse_args():
                         help="Provedor de IA: 'ollama' (gratuito/local) ou 'claude' (API Anthropic)")
     parser.add_argument("--ollama-model", type=str, default="llama3.2",
                         help="Modelo do Ollama (default: llama3.2)")
+    parser.add_argument("--vision-model", type=str, default="qwen2.5vl:7b",
+                        help="Modelo Ollama de visao para o botao Print (default: qwen2.5vl:7b)")
     parser.add_argument("--context", type=str, default=None,
                         help="Contexto sobre voce (ex: 'Dev Python, 5 anos, Django e AWS')")
     parser.add_argument("--language", type=str, default="pt",
@@ -81,6 +95,66 @@ def main():
     from gui_api import GuiApi
     from screen_hide import hide_from_capture
 
+    # Estado compartilhado entre init_thread e JsApi
+    state = {"capture": None, "gui": None, "assistant": None}
+
+    def _capture_screenshot_bytes():
+        import mss
+        import io
+        from PIL import Image
+        with mss.mss() as sct:
+            monitor = sct.monitors[0]  # tela inteira (todos os monitores)
+            shot = sct.grab(monitor)
+            img = Image.frombytes("RGB", shot.size, shot.bgra, "raw", "BGRX")
+            buf = io.BytesIO()
+            img.save(buf, format="PNG", optimize=True)
+            return buf.getvalue()
+
+    def _process_screenshot():
+        gui = state["gui"]
+        ai = state["assistant"]
+        if gui is None or ai is None:
+            return
+        try:
+            gui.set_status("transcribing", "Capturando tela...")
+            img_bytes = _capture_screenshot_bytes()
+            gui.add_question("[Print da tela]")
+            gui.set_status("answering", "Analisando imagem...")
+            gui.start_answer()
+
+            def on_token(token):
+                gui.append_token(token)
+
+            ai.answer_image(img_bytes, on_token=on_token)
+            gui.finish_answer()
+            cap = state["capture"]
+            if cap and not cap.is_paused():
+                gui.set_status("listening", "Ouvindo...")
+            else:
+                gui.set_status("initializing", "Pausado")
+        except Exception as e:
+            gui.append_token(f"\n\n**Erro:** {e}")
+            log.error(f"Erro screenshot: {e}")
+            gui.finish_answer()
+
+    class JsApi:
+        def toggle_listening(self):
+            cap = state["capture"]
+            gui = state["gui"]
+            if cap is None:
+                return False
+            paused = cap.toggle()
+            if gui is not None:
+                if paused:
+                    gui.set_status("initializing", "Pausado")
+                else:
+                    gui.set_status("listening", "Ouvindo...")
+            return paused
+
+        def take_screenshot(self):
+            threading.Thread(target=_process_screenshot, daemon=True).start()
+            return True
+
     window = webview.create_window(
         "Interview Assistant",
         html=get_html(),
@@ -89,6 +163,7 @@ def main():
         resizable=True,
         text_select=True,
         on_top=True,
+        js_api=JsApi(),
     )
 
     def on_shown():
@@ -112,6 +187,7 @@ def main():
     def init_thread():
         """Thread de inicializacao - carrega componentes e inicia captura de audio."""
         gui = GuiApi(window)
+        state["gui"] = gui
 
         try:
             gui.set_status("initializing", "Carregando audio...")
@@ -120,6 +196,7 @@ def main():
                 silence_threshold=args.threshold,
                 silence_duration=args.silence,
             )
+            state["capture"] = capture
 
             gui.set_status("initializing", "Carregando Whisper...")
             from transcriber import Transcriber
@@ -133,7 +210,9 @@ def main():
                 context=args.context,
                 api_key=api_key,
                 ollama_model=args.ollama_model,
+                vision_model=args.vision_model,
             )
+            state["assistant"] = assistant_ai
 
         except Exception as e:
             gui.set_status("error", f"Erro: {e}")

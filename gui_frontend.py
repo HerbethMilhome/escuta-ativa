@@ -71,6 +71,39 @@ def get_html():
 
   #status-text { color: #8b949e; }
 
+  #toggle-btn {
+    -webkit-app-region: no-drag;
+    background: #21262d;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 12px;
+  }
+  #toggle-btn:hover { background: #30363d; }
+  #toggle-btn.paused { background: #f85149; border-color: #f85149; }
+  #toggle-btn.paused:hover { background: #da3633; }
+
+  #print-btn {
+    -webkit-app-region: no-drag;
+    background: #1f6feb;
+    color: #ffffff;
+    border: 1px solid #1f6feb;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 8px;
+  }
+  #print-btn:hover { background: #388bfd; }
+  #print-btn:disabled { opacity: 0.5; cursor: wait; }
+
   #chat {
     flex: 1;
     overflow-y: auto;
@@ -205,6 +238,8 @@ def get_html():
   <div id="status">
     <span id="status-dot" class="initializing"></span>
     <span id="status-text">Inicializando...</span>
+    <button id="toggle-btn" onclick="toggleListening()">Pausar</button>
+    <button id="print-btn" onclick="takeScreenshot()">Print</button>
   </div>
 </div>
 
@@ -306,13 +341,47 @@ def get_html():
     return div.innerHTML;
   }
 
+  const toggleBtn = document.getElementById('toggle-btn');
+
+  function setPausedUi(paused) {
+    if (paused) {
+      toggleBtn.textContent = 'Retomar';
+      toggleBtn.classList.add('paused');
+    } else {
+      toggleBtn.textContent = 'Pausar';
+      toggleBtn.classList.remove('paused');
+    }
+  }
+
+  async function toggleListening() {
+    try {
+      const paused = await window.pywebview.api.toggle_listening();
+      setPausedUi(paused);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function takeScreenshot() {
+    const btn = document.getElementById('print-btn');
+    btn.disabled = true;
+    try {
+      await window.pywebview.api.take_screenshot();
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setTimeout(function() { btn.disabled = false; }, 1500);
+    }
+  }
+
   // API exposta para Python chamar via evaluate_js
   window.appApi = {
     setStatus: setStatus,
     addQuestion: addQuestion,
     startAnswer: startAnswer,
     appendToken: appendToken,
-    finishAnswer: finishAnswer
+    finishAnswer: finishAnswer,
+    setPausedUi: setPausedUi
   };
 </script>
 </body>

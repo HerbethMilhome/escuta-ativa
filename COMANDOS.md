@@ -5,6 +5,13 @@
 cd C:\Projetos\entrevista
 venv\Scripts\activate
 venv\Scripts\python main.py
+
+para rodar com gpu
+venv312\Scripts\activate
+python main.py --model small      janela 
+python main_cli.py --model small  cli
+
+
 ```
 
 ## Rodar com Ollama (gratuito)

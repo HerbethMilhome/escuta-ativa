@@ -25,6 +25,7 @@ class AudioCapture:
         self.channels = None
         self.device_info = None
         self._running = False
+        self._paused = False
         self._pa = pyaudio.PyAudio()
         self._setup_loopback()
         print("  Carregando Silero VAD...")
@@ -116,6 +117,22 @@ class AudioCapture:
                 except OSError:
                     continue
 
+                if self._paused:
+                    # Ao pausar, envia o que ja foi capturado (se houver fala)
+                    if has_speech and buffer:
+                        audio_data = np.concatenate(buffer)
+                        duration = len(audio_data) / self.sample_rate
+                        if duration >= self.min_audio_duration:
+                            threading.Thread(
+                                target=on_audio_ready,
+                                args=(audio_data, self.sample_rate),
+                                daemon=True
+                            ).start()
+                    buffer.clear()
+                    silence_start = None
+                    has_speech = False
+                    continue
+
                 # Converter bytes para numpy float
                 audio_int16 = np.frombuffer(data, dtype=np.int16)
                 # Se stereo, pegar só canal esquerdo
@@ -153,6 +170,19 @@ class AudioCapture:
 
     def stop(self):
         self._running = False
+
+    def pause(self):
+        self._paused = True
+
+    def resume(self):
+        self._paused = False
+
+    def toggle(self):
+        self._paused = not self._paused
+        return self._paused
+
+    def is_paused(self):
+        return self._paused
 
     def __del__(self):
         self._pa.terminate()
