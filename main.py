@@ -96,7 +96,7 @@ def main():
     from screen_hide import hide_from_capture
 
     # Estado compartilhado entre init_thread e JsApi
-    state = {"capture": None, "gui": None, "assistant": None}
+    state = {"capture": None, "gui": None, "assistant": None, "transcriber": None, "language": "pt"}
 
     def _capture_screenshot_bytes():
         import mss
@@ -155,6 +155,15 @@ def main():
             threading.Thread(target=_process_screenshot, daemon=True).start()
             return True
 
+        def set_language(self, lang):
+            if lang in ("pt", "en"):
+                state["language"] = lang
+                tr = state["transcriber"]
+                if tr is not None:
+                    tr.language = lang
+                log.info(f"Idioma forcado: {lang}")
+            return state["language"]
+
     window = webview.create_window(
         "Interview Assistant",
         html=get_html(),
@@ -200,7 +209,8 @@ def main():
 
             gui.set_status("initializing", "Carregando Whisper...")
             from transcriber import Transcriber
-            transcriber = Transcriber(model_size=args.model, language=args.language)
+            transcriber = Transcriber(model_size=args.model, language=state["language"])
+            state["transcriber"] = transcriber
 
             provider_label = "Ollama (local)" if args.provider == "ollama" else "Claude API"
             gui.set_status("initializing", f"Carregando {provider_label}...")
@@ -224,13 +234,16 @@ def main():
         def on_audio_ready(audio_data, sample_rate):
             gui.set_status("transcribing", "Transcrevendo...")
 
-            text = transcriber.transcribe(audio_data, sample_rate)
+            text, _ = transcriber.transcribe(audio_data, sample_rate)
+            lang = state["language"]  # idioma escolhido pelo usuario
 
             if not text or len(text.strip()) < 5:
                 gui.set_status("listening", "Ouvindo...")
                 return
 
-            gui.add_question(text)
+            log.info(f"Idioma: {lang} | Texto: {text[:80]}")
+            display_text = f"[{lang.upper()}] {text}" if lang != "pt" else text
+            gui.add_question(display_text)
             gui.set_status("answering", "Respondendo...")
             gui.start_answer()
 
@@ -238,7 +251,7 @@ def main():
                 gui.append_token(token)
 
             try:
-                assistant_ai.answer(text, on_token=on_token)
+                assistant_ai.answer(text, on_token=on_token, language=lang)
             except Exception as e:
                 gui.append_token(f"\n\n**Erro:** {e}")
                 log.error(f"Erro ao gerar resposta: {e}")

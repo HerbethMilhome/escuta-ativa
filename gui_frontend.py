@@ -104,6 +104,27 @@ def get_html():
   #print-btn:hover { background: #388bfd; }
   #print-btn:disabled { opacity: 0.5; cursor: wait; }
 
+  .lang-btn {
+    -webkit-app-region: no-drag;
+    background: #21262d;
+    color: #8b949e;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 4px;
+  }
+  .lang-btn:hover { background: #30363d; color: #e6edf3; }
+  .lang-btn.active {
+    background: #238636;
+    color: #ffffff;
+    border-color: #238636;
+  }
+  .lang-btn.active:hover { background: #2ea043; }
+
   #chat {
     flex: 1;
     overflow-y: auto;
@@ -238,6 +259,8 @@ def get_html():
   <div id="status">
     <span id="status-dot" class="initializing"></span>
     <span id="status-text">Inicializando...</span>
+    <button id="lang-pt" class="lang-btn active" onclick="setLanguage('pt')">PT</button>
+    <button id="lang-en" class="lang-btn" onclick="setLanguage('en')">EN</button>
     <button id="toggle-btn" onclick="toggleListening()">Pausar</button>
     <button id="print-btn" onclick="takeScreenshot()">Print</button>
   </div>
@@ -357,6 +380,16 @@ def get_html():
     try {
       const paused = await window.pywebview.api.toggle_listening();
       setPausedUi(paused);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function setLanguage(lang) {
+    try {
+      await window.pywebview.api.set_language(lang);
+      document.getElementById('lang-pt').classList.toggle('active', lang === 'pt');
+      document.getElementById('lang-en').classList.toggle('active', lang === 'en');
     } catch (e) {
       console.error(e);
     }

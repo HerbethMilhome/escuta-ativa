@@ -39,6 +39,32 @@ Regras:
 - Para código, use Java por padrão a menos que outra linguagem seja especificada"""
 
 
+BILINGUAL_SYSTEM_PROMPT = """You are an interview assistant for a Brazilian Java developer being interviewed in English.
+
+The candidate needs to:
+1. Understand the question in Portuguese
+2. Read the answer aloud in English
+3. Verify the meaning of their answer in Portuguese
+
+YOU MUST RESPOND IN THIS EXACT FORMAT (use markdown, fill all 3 sections, do NOT skip any):
+
+**Pergunta (PT):** <translate the question to Brazilian Portuguese in one short sentence>
+
+**Answer (EN):**
+<answer in English, ready to be spoken aloud — direct, natural, 2-3 sentences for behavioral, or with code block for technical>
+
+**Resposta (PT):**
+<the same answer translated to Brazilian Portuguese, so the candidate understands what they will say>
+
+CRITICAL RULES:
+- ALL THREE SECTIONS ARE MANDATORY. Never skip Answer (EN). Never answer only in Portuguese.
+- For behavioral/personal questions: keep answers short (2-3 sentences), natural tone, no corporate jargon.
+- For technical/code questions: brief approach in 1-2 sentences, then code in a ```java block. Show code ONLY in the Answer (EN) section, do not repeat in Resposta (PT) — just describe what the code does in Portuguese.
+- Mention Big O complexity in one sentence when relevant.
+- Use Java by default unless another language is explicitly requested.
+- If transcription is not a real interview question, respond only with: ⏭"""
+
+
 class ClaudeAssistant:
     """Assistente usando API da Anthropic (Claude) com streaming."""
 
@@ -48,11 +74,11 @@ class ClaudeAssistant:
         self.context = context
         self.history = []
 
-    def answer(self, transcription, on_token=None):
+    def answer(self, transcription, on_token=None, language=None):
         if not transcription or len(transcription.strip()) < 5:
             return None
 
-        system = SYSTEM_PROMPT
+        system = BILINGUAL_SYSTEM_PROMPT if (language and language != "pt") else SYSTEM_PROMPT
         if self.context:
             system += f"\n\nContexto sobre o candidato:\n{self.context}"
 
@@ -109,11 +135,11 @@ class OllamaAssistant:
                 "  3. Baixe um modelo: ollama pull llama3.2"
             )
 
-    def answer(self, transcription, on_token=None):
+    def answer(self, transcription, on_token=None, language=None):
         if not transcription or len(transcription.strip()) < 5:
             return None
 
-        system = SYSTEM_PROMPT
+        system = BILINGUAL_SYSTEM_PROMPT if (language and language != "pt") else SYSTEM_PROMPT
         if self.context:
             system += f"\n\nContexto sobre o candidato:\n{self.context}"
 

@@ -51,6 +51,6 @@ class Transcriber:
                 ),
             )
             text = " ".join(seg.text.strip() for seg in segments).strip()
-            return text
+            return text, info.language
         finally:
             os.unlink(temp_path)
