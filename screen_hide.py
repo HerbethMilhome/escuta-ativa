@@ -14,6 +14,43 @@ WDA_NONE = 0x00000000
 WDA_MONITOR = 0x00000001
 WDA_EXCLUDEFROMCAPTURE = 0x00000011
 
+# Window styles
+GWL_EXSTYLE = -20
+WS_EX_APPWINDOW = 0x00040000
+WS_EX_TOOLWINDOW = 0x00000080
+SW_HIDE = 0
+SW_SHOW = 5
+
+
+def hide_from_taskbar(hwnd):
+    """Remove a janela da barra de tarefas usando WS_EX_TOOLWINDOW.
+
+    A janela continua acessivel via Alt+Tab e mantem foco normal,
+    mas nao aparece na taskbar (e por consequencia, nao aparece em
+    screen share da tela inteira).
+    """
+    if not hwnd:
+        return False
+    try:
+        # Get current style
+        get_window_long = user32.GetWindowLongPtrW if ctypes.sizeof(ctypes.c_void_p) == 8 else user32.GetWindowLongW
+        set_window_long = user32.SetWindowLongPtrW if ctypes.sizeof(ctypes.c_void_p) == 8 else user32.SetWindowLongW
+
+        style = get_window_long(ctypes.wintypes.HWND(hwnd), GWL_EXSTYLE)
+        # Remove WS_EX_APPWINDOW e adiciona WS_EX_TOOLWINDOW
+        new_style = (style & ~WS_EX_APPWINDOW) | WS_EX_TOOLWINDOW
+
+        # Precisa esconder, alterar style, e mostrar de novo
+        user32.ShowWindow(ctypes.wintypes.HWND(hwnd), SW_HIDE)
+        set_window_long(ctypes.wintypes.HWND(hwnd), GWL_EXSTYLE, new_style)
+        user32.ShowWindow(ctypes.wintypes.HWND(hwnd), SW_SHOW)
+
+        log.info("Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).")
+        return True
+    except Exception as e:
+        log.warning(f"Falha ao remover da taskbar: {e}")
+        return False
+
 
 def hide_from_capture(hwnd):
     """Aplica SetWindowDisplayAffinity para esconder a janela de screen capture.

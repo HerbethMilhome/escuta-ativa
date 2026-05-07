@@ -125,6 +125,28 @@ def get_html():
   }
   .lang-btn.active:hover { background: #2ea043; }
 
+  .prov-btn {
+    -webkit-app-region: no-drag;
+    background: #21262d;
+    color: #8b949e;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-right: 4px;
+  }
+  .prov-btn:hover { background: #30363d; color: #e6edf3; }
+  .prov-btn.active {
+    background: #d29922;
+    color: #ffffff;
+    border-color: #d29922;
+  }
+  .prov-btn.active:hover { background: #e3a008; }
+  .prov-btn:disabled { opacity: 0.5; cursor: wait; }
+
   #chat {
     flex: 1;
     overflow-y: auto;
@@ -259,10 +281,12 @@ def get_html():
   <div id="status">
     <span id="status-dot" class="initializing"></span>
     <span id="status-text">Inicializando...</span>
+    <button id="prov-local" class="prov-btn" onclick="setProvider('ollama')">Local</button>
+    <button id="prov-api" class="prov-btn" onclick="setProvider('claude')">API</button>
     <button id="lang-pt" class="lang-btn active" onclick="setLanguage('pt')">PT</button>
     <button id="lang-en" class="lang-btn" onclick="setLanguage('en')">EN</button>
-    <button id="toggle-btn" onclick="toggleListening()">Pausar</button>
-    <button id="print-btn" onclick="takeScreenshot()">Print</button>
+    <button id="toggle-btn" onclick="toggleListening()" disabled>Pausar</button>
+    <button id="print-btn" onclick="takeScreenshot()" disabled>Print</button>
   </div>
 </div>
 
@@ -385,6 +409,29 @@ def get_html():
     }
   }
 
+  async function setProvider(provider) {
+    const localBtn = document.getElementById('prov-local');
+    const apiBtn = document.getElementById('prov-api');
+    localBtn.disabled = true;
+    apiBtn.disabled = true;
+    setStatus('initializing', 'Carregando ' + (provider === 'claude' ? 'Claude API' : 'Ollama Local') + '...');
+    try {
+      const ok = await window.pywebview.api.set_provider(provider);
+      if (ok) {
+        localBtn.classList.toggle('active', provider === 'ollama');
+        apiBtn.classList.toggle('active', provider === 'claude');
+        document.getElementById('toggle-btn').disabled = false;
+        document.getElementById('print-btn').disabled = false;
+      }
+    } catch (e) {
+      console.error(e);
+      setStatus('error', 'Erro ao trocar provider');
+    } finally {
+      localBtn.disabled = false;
+      apiBtn.disabled = false;
+    }
+  }
+
   async function setLanguage(lang) {
     try {
       await window.pywebview.api.set_language(lang);
@@ -405,6 +452,11 @@ def get_html():
     } finally {
       setTimeout(function() { btn.disabled = false; }, 1500);
     }
+  }
+
+  function setReady(ready) {
+    document.getElementById('toggle-btn').disabled = !ready;
+    document.getElementById('print-btn').disabled = !ready;
   }
 
   // API exposta para Python chamar via evaluate_js

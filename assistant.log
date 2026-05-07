@@ -17,3 +17,101 @@
 15:10:41 Processing audio with duration 00:26.000
 15:10:41 VAD filter removed 00:12.152 of audio
 15:10:43 Idioma: pt | Texto: Java é uma língua de programas de objeto de alta nível. É um plataforma independ
+16:21:22 Contexto carregado de context.txt (2661 chars)
+16:21:23 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+16:21:26 Idioma forcado: en
+16:21:30 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+16:21:41 Processing audio with duration 00:07.500
+16:21:41 VAD filter removed 00:01.948 of audio
+16:21:44 Processing audio with duration 00:02.500
+16:21:44 VAD filter removed 00:01.356 of audio
+16:21:44 Idioma: en | Texto: Okay. Go, steal everything. Steal everything, steal everything and I'll go to th
+16:21:54 Processing audio with duration 00:10.500
+16:21:54 VAD filter removed 00:03.300 of audio
+16:21:57 Processing audio with duration 00:03.000
+16:21:57 VAD filter removed 00:00.244 of audio
+16:21:59 Idioma: en | Texto: It's crazy.
+16:22:01 Idioma: en | Texto: Oh come on, I'm going. Hey. Oh, there's a guy there already. Let's go, let's go,
+16:22:01 Idioma: en | Texto: Go, go! Go, go, go, go, go, go!
+16:22:28 Processing audio with duration 00:05.000
+16:22:28 VAD filter removed 00:02.768 of audio
+16:22:30 Idioma: en | Texto: Tell me a little about yourself.
+16:36:17 Contexto carregado de context.txt (2661 chars)
+16:36:47 Contexto carregado de context.txt (2661 chars)
+16:37:37 Contexto carregado de context.txt (2661 chars)
+16:37:42 Contexto carregado de context.txt (2661 chars)
+16:39:12 Contexto carregado de context.txt (2661 chars)
+16:44:39 Contexto carregado de context.txt (2661 chars)
+16:45:20 Contexto carregado de context.txt (2661 chars)
+17:02:02 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:02:02 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:02:02 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:02:02 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:02:08 FakeTensor cache stats:
+17:02:08   cache_hits: 0
+17:02:08   cache_misses: 0
+17:05:52 Contexto carregado de context.txt (2661 chars)
+17:05:52 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:05:52 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:05:57 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:05:57 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:06:04 Idioma forcado: en
+17:06:04 Idioma forcado: pt
+17:06:16 Contexto carregado de context.txt (2661 chars)
+17:06:26 Contexto carregado de context.txt (2661 chars)
+17:07:43 Contexto carregado de context.txt (2661 chars)
+17:10:44 Contexto carregado de context.txt (2661 chars)
+17:10:46 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:10:52 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:11:15 Provider ativado: claude
+17:11:34 Processing audio with duration 00:04.500
+17:11:34 VAD filter removed 00:02.204 of audio
+17:11:36 Idioma: pt | Texto: para a próxima entrevista de codos.
+17:11:36 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+17:11:36 Erro ao gerar resposta: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'Invalid authentication credentials'}, 'request_id': 'req_011CaopNLEPztxEJaC9rnVCv'}
+17:11:40 Idioma forcado: en
+17:11:54 Processing audio with duration 00:17.000
+17:11:54 VAD filter removed 00:10.680 of audio
+17:11:56 Idioma: en | Texto: Here we go. The first question is, what is Java and why is it platform independe
+17:11:56 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+17:11:56 Erro ao gerar resposta: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'Invalid authentication credentials'}, 'request_id': 'req_011CaopPoFNgPD5GeY63MSqn'}
+17:24:42 Contexto carregado de context.txt (2661 chars)
+17:24:43 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:24:47 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:25:02 Provider ativado: claude
+17:25:04 Idioma forcado: en
+17:25:14 Processing audio with duration 00:12.000
+17:25:14 VAD filter removed 00:06.856 of audio
+17:25:15 Idioma: en | Texto: The first question is, what is Java and why is it platform independent?
+17:25:16 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+17:25:16 Erro ao gerar resposta: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'Invalid authentication credentials'}, 'request_id': 'req_011CaoqQixoYUY3TE8vX39zT'}
+17:32:51 Contexto carregado de context.txt (2661 chars)
+17:32:52 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:32:55 Idioma forcado: en
+17:32:56 Provider ativado: claude
+17:32:56 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:33:39 Provider ativado: claude
+17:33:49 Processing audio with duration 00:09.500
+17:33:49 VAD filter removed 00:04.516 of audio
+17:33:50 Idioma: en | Texto: A primeira pergunta é, o que é Java e por que é plataforma independentista?
+17:33:51 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+17:33:51 Erro ao gerar resposta: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'Invalid authentication credentials'}, 'request_id': 'req_011Caor4gvpVYGfxxwvXGXEq'}
+17:33:53 Processing audio with duration 00:04.000
+17:33:53 VAD filter removed 00:02.920 of audio
+17:33:54 Idioma: en | Texto: Java é...
+17:33:54 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+17:33:54 Erro ao gerar resposta: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'Invalid authentication credentials'}, 'request_id': 'req_011Caor4xc9ZfLWAaKPv9vgy'}
+17:34:00 Provider ativado: claude
+17:35:26 Contexto carregado de context.txt (2661 chars)
+17:35:26 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:35:30 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:35:32 Provider ativado: claude
+17:35:34 Idioma forcado: en
+17:35:45 Processing audio with duration 00:09.000
+17:35:46 VAD filter removed 00:03.888 of audio
+17:35:47 Idioma: en | Texto: The first question is, what is Java and why is it platform independent?
+17:35:48 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:36:21 Processing audio with duration 00:13.000
+17:36:21 VAD filter removed 00:10.672 of audio
+17:36:23 Idioma: en | Texto: Tell me a little about yourself.
+17:36:24 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"

@@ -93,7 +93,7 @@ def main():
     import webview
     from gui_frontend import get_html
     from gui_api import GuiApi
-    from screen_hide import hide_from_capture
+    from screen_hide import hide_from_capture, hide_from_taskbar
 
     # Estado compartilhado entre init_thread e JsApi
     state = {"capture": None, "gui": None, "assistant": None, "transcriber": None, "language": "pt"}
@@ -164,6 +164,39 @@ def main():
                 log.info(f"Idioma forcado: {lang}")
             return state["language"]
 
+        def set_provider(self, provider):
+            gui = state["gui"]
+            cap = state["capture"]
+            if provider not in ("ollama", "claude"):
+                return False
+            if provider == "claude" and not api_key:
+                if gui:
+                    gui.set_status("error", "ANTHROPIC_API_KEY nao definida no .env")
+                log.error("Tentativa de usar Claude sem API key.")
+                return False
+            try:
+                from assistant import create_assistant
+                assistant_ai = create_assistant(
+                    provider=provider,
+                    context=args.context,
+                    api_key=api_key,
+                    ollama_model=args.ollama_model,
+                    vision_model=args.vision_model,
+                )
+                state["assistant"] = assistant_ai
+                state["provider"] = provider
+                if cap is not None:
+                    cap.resume()
+                if gui:
+                    gui.set_status("listening", "Ouvindo...")
+                log.info(f"Provider ativado: {provider}")
+                return True
+            except Exception as e:
+                if gui:
+                    gui.set_status("error", f"Erro: {e}")
+                log.error(f"Erro ao trocar provider: {e}")
+                return False
+
     window = webview.create_window(
         "Interview Assistant",
         html=get_html(),
@@ -190,6 +223,7 @@ def main():
                 log.warning("Backend nao suportado para screen hide.")
                 return
             hide_from_capture(hwnd)
+            hide_from_taskbar(hwnd)
         except Exception as e:
             log.warning(f"Nao foi possivel ocultar da captura: {e}")
 
@@ -212,30 +246,24 @@ def main():
             transcriber = Transcriber(model_size=args.model, language=state["language"])
             state["transcriber"] = transcriber
 
-            provider_label = "Ollama (local)" if args.provider == "ollama" else "Claude API"
-            gui.set_status("initializing", f"Carregando {provider_label}...")
-            from assistant import create_assistant
-            assistant_ai = create_assistant(
-                provider=args.provider,
-                context=args.context,
-                api_key=api_key,
-                ollama_model=args.ollama_model,
-                vision_model=args.vision_model,
-            )
-            state["assistant"] = assistant_ai
-
         except Exception as e:
             gui.set_status("error", f"Erro: {e}")
             log.error(f"Erro ao inicializar: {e}")
             return
 
-        gui.set_status("listening", "Ouvindo...")
+        # Inicia pausado; usuario precisa escolher Local ou API
+        capture.pause()
+        gui.set_status("initializing", "Escolha Local ou API para iniciar")
 
         def on_audio_ready(audio_data, sample_rate):
+            assistant_ai = state["assistant"]
+            if assistant_ai is None:
+                return  # nenhum provider escolhido ainda
+
             gui.set_status("transcribing", "Transcrevendo...")
 
             text, _ = transcriber.transcribe(audio_data, sample_rate)
-            lang = state["language"]  # idioma escolhido pelo usuario
+            lang = state["language"]
 
             if not text or len(text.strip()) < 5:
                 gui.set_status("listening", "Ouvindo...")

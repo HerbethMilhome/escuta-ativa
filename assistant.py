@@ -108,6 +108,36 @@ class ClaudeAssistant:
         self.history.append({"role": "assistant", "content": full_answer})
         return full_answer
 
+    def answer_image(self, image_bytes, on_token=None, prompt=None):
+        """Envia uma imagem (PNG bytes) para o Claude Sonnet com visao."""
+        image_b64 = base64.b64encode(image_bytes).decode("ascii")
+        system = VISION_PROMPT
+        if self.context:
+            system += f"\n\nContexto sobre o candidato:\n{self.context}"
+
+        user_text = prompt or "Analise a tela e responda."
+
+        messages = [{
+            "role": "user",
+            "content": [
+                {"type": "image", "source": {"type": "base64", "media_type": "image/png", "data": image_b64}},
+                {"type": "text", "text": user_text},
+            ],
+        }]
+
+        full_answer = ""
+        with self.client.messages.stream(
+            model="claude-sonnet-4-20250514",
+            max_tokens=4096,
+            system=system,
+            messages=messages,
+        ) as stream:
+            for text in stream.text_stream:
+                full_answer += text
+                if on_token:
+                    on_token(text)
+        return full_answer
+
 
 class OllamaAssistant:
     """Assistente usando Ollama local (gratuito) com streaming."""
