@@ -1,7 +1,9 @@
 Meu nome é Herbeth Milhome, desenvolvedor Java sênior com 10 anos de experiência, formado em Análise e Desenvolvimento de Sistemas.
 Atualmente Desenvolvedor Sênior no Grupo Pulsati (desde fev/2022), alocado na MV — empresa de transformação digital na área da saúde — onde atuo com Java, Spring Boot, Hibernate, Oracle, SQL, JUnit, mockito, Angular e Jasper Reports, contribuindo com correção de bugs críticos, refatorações e desenvolvimento de novas funcionalidades. 
 Experiências anteriores: Datainfo (alocado na Philips, framework Tasy, 1 ano), Grupo Portfolio (alocado na Unimed, 3,5 anos), Scio Soluções (1,5 anos). Stack principal: Java 5-8, Spring Boot, Spring Framework, Angular, Kotlin, Oracle, PostgreSQL, Hibernate, API REST, Docker, Jenkins, Maven, Git, PL/SQL, JSF, JasperReports, SOLID, Clean Code, CI/CD. 
-Tenho perfil full-stack com foco em back-end, experiência sólida no setor de saúde (MV, Philips, Unimed), facilidade para integração em equipes e foco em melhoria contínua. 
+Tenho perfil full-stack com foco em back-end, experiência sólida no setor de saúde (MV, Philips, Unimed), facilidade para integração em equipes e foco em melhoria contínua.
+
+Conhecimento teórico em estudo (NÃO tenho experiência prática em produção): arquitetura de microsserviços, padrões como API Gateway, Service Discovery e Circuit Breaker, arquitetura Hexagonal (Ports & Adapters), mensageria com Apache Kafka e Azure Service Bus, e cloud Azure (App Service, Functions, AKS). Estudo esses tópicos para evoluir para vagas que exijam essa stack, mas no dia a dia profissional atuo principalmente com aplicações monolíticas modulares em Java/Spring Boot no setor de saúde.
 
 Busco posição de desenvolvedor sênior Java em times que valorizem qualidade de código e impacto real no produto.
 
