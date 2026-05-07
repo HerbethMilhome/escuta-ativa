@@ -296,16 +296,23 @@ def get_html():
 
 <script>
   // Configurar marked com highlight.js
-  marked.setOptions({
-    highlight: function(code, lang) {
-      if (lang && hljs.getLanguage(lang)) {
-        return hljs.highlight(code, { language: lang }).value;
-      }
-      return hljs.highlightAuto(code).value;
-    },
-    breaks: true,
-    gfm: true
-  });
+  if (typeof marked !== 'undefined') {
+    marked.setOptions({
+      highlight: function(code, lang) {
+        if (typeof hljs === 'undefined') return code;
+        try {
+          if (lang && hljs.getLanguage(lang)) {
+            return hljs.highlight(code, { language: lang }).value;
+          }
+          return hljs.highlightAuto(code).value;
+        } catch (e) {
+          return code;
+        }
+      },
+      breaks: true,
+      gfm: true
+    });
+  }
 
   const chat = document.getElementById('chat');
   const statusDot = document.getElementById('status-dot');
@@ -372,10 +379,13 @@ def get_html():
     }
     if (currentAnswerContent) {
       currentAnswerContent.innerHTML = marked.parse(tokenBuffer);
-      // Re-highlight all code blocks
-      currentAnswerContent.querySelectorAll('pre code').forEach(function(block) {
-        hljs.highlightElement(block);
-      });
+      if (typeof hljs !== 'undefined') {
+        try {
+          currentAnswerContent.querySelectorAll('pre code').forEach(function(block) {
+            hljs.highlightElement(block);
+          });
+        } catch (e) { /* ignore */ }
+      }
       currentAnswerContent = null;
       tokenBuffer = '';
       scrollToBottom();

@@ -5,23 +5,35 @@ import json
 import urllib.request
 import sys
 
+# IMPORTANTE: NUNCA trocar para Opus (custo ~5x maior). Apenas Sonnet.
+CLAUDE_MODEL = "claude-sonnet-4-20250514"
+
 
 VISION_PROMPT = """Voce esta vendo um screenshot da tela do candidato durante uma entrevista de programacao.
-Sua tarefa: RESOLVER o que esta na tela, nao descrever.
+Sua tarefa: RESOLVER o que esta na tela e EXPLICAR a logica de forma clara, como o candidato faria narrando.
 
 REGRAS OBRIGATORIAS:
-- Se for um desafio de codigo (LeetCode, HackerRank, etc): ESCREVA A SOLUCAO COMPLETA EM JAVA dentro de um bloco ```java. NAO descreva o problema. NAO diga "o candidato deve fazer X". Apenas resolva.
+- Se for um desafio de codigo (LeetCode, HackerRank, etc): ESCREVA A SOLUCAO COMPLETA EM JAVA dentro de um bloco ```java. NAO descreva o enunciado, mas EXPLIQUE a abordagem.
 - Se a tela ja tem um esqueleto de codigo (ex: class Solution com metodo vazio), preencha o metodo com a implementacao funcional completa.
-- Apos o codigo, em UMA frase, mencione complexidade Big O (ex: "O(n) tempo, O(n) espaco").
-- Se for pergunta teorica em texto: resposta CURTA e direta (2-3 frases).
-- NUNCA explique o enunciado, NUNCA descreva o que ve. Va direto a solucao.
 - Use Java por padrao a menos que outra linguagem esteja explicita na tela.
+- Para perguntas teoricas em texto: resposta direta e clara em 3-5 frases.
 
-Formato esperado para desafios de codigo:
+FORMATO OBRIGATORIO para desafios de codigo (use markdown e siga EXATAMENTE essa estrutura):
+
+**Abordagem:** <1-2 frases explicando a estrategia escolhida — ex: "Uso um HashMap para armazenar cada numero ja visto e seu indice. Para cada elemento atual, verifico se o complemento (alvo - numero) ja esta no mapa.">
+
 ```java
-// codigo completo e funcional aqui
+// codigo completo e funcional
 ```
-**Complexidade:** O(n) tempo, O(n) espaco."""
+
+**Como funciona (passo a passo):**
+1. <primeiro passo da execucao>
+2. <segundo passo>
+3. <terceiro passo, se houver>
+
+**Complexidade:** O(n) tempo, O(n) espaco — <1 frase justificando: "porque percorremos o array uma vez e o HashMap pode armazenar todos os elementos">
+
+**Casos de borda:** <mencione 1-2 casos importantes, ex: "Array vazio retorna null. Numeros duplicados sao tratados pelo mapa.">"""
 
 
 SYSTEM_PROMPT = """Você é um assistente de entrevistas de emprego. Gere respostas como uma pessoa mais reservada e direta responderia numa entrevista.
@@ -95,7 +107,7 @@ class ClaudeAssistant:
 
         full_answer = ""
         with self.client.messages.stream(
-            model="claude-sonnet-4-20250514",
+            model=CLAUDE_MODEL,
             max_tokens=4096,
             system=system,
             messages=self.history,
@@ -127,7 +139,7 @@ class ClaudeAssistant:
 
         full_answer = ""
         with self.client.messages.stream(
-            model="claude-sonnet-4-20250514",
+            model=CLAUDE_MODEL,
             max_tokens=4096,
             system=system,
             messages=messages,
