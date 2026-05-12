@@ -147,6 +147,27 @@ def get_html():
   .prov-btn.active:hover { background: #e3a008; }
   .prov-btn:disabled { opacity: 0.5; cursor: wait; }
 
+  .mode-btn {
+    -webkit-app-region: no-drag;
+    background: #21262d;
+    color: #8b949e;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-right: 4px;
+  }
+  .mode-btn:hover { background: #30363d; color: #e6edf3; }
+  .mode-btn.active {
+    background: #8957e5;
+    color: #ffffff;
+    border-color: #8957e5;
+  }
+  .mode-btn.active:hover { background: #a371f7; }
+
   #chat {
     flex: 1;
     overflow-y: auto;
@@ -281,10 +302,12 @@ def get_html():
   <div id="status">
     <span id="status-dot" class="initializing"></span>
     <span id="status-text">Inicializando...</span>
+    <button id="mode-interview" class="mode-btn active" onclick="setMode('interview')">Entrev</button>
+    <button id="mode-translate" class="mode-btn" onclick="setMode('translate')">Trad</button>
     <button id="prov-local" class="prov-btn" onclick="setProvider('ollama')">Local</button>
     <button id="prov-api" class="prov-btn" onclick="setProvider('claude')">API</button>
-    <button id="lang-pt" class="lang-btn active" onclick="setLanguage('pt')">PT</button>
-    <button id="lang-en" class="lang-btn" onclick="setLanguage('en')">EN</button>
+    <button id="lang-pt" class="lang-btn" onclick="setLanguage('pt')">PT</button>
+    <button id="lang-en" class="lang-btn active" onclick="setLanguage('en')">EN</button>
     <button id="toggle-btn" onclick="toggleListening()" disabled>Pausar</button>
     <button id="print-btn" onclick="takeScreenshot()" disabled>Print</button>
   </div>
@@ -439,6 +462,20 @@ def get_html():
     } finally {
       localBtn.disabled = false;
       apiBtn.disabled = false;
+    }
+  }
+
+  async function setMode(mode) {
+    try {
+      const newLang = await window.pywebview.api.set_mode(mode);
+      document.getElementById('mode-interview').classList.toggle('active', mode === 'interview');
+      document.getElementById('mode-translate').classList.toggle('active', mode === 'translate');
+      if (newLang === 'pt' || newLang === 'en') {
+        document.getElementById('lang-pt').classList.toggle('active', newLang === 'pt');
+        document.getElementById('lang-en').classList.toggle('active', newLang === 'en');
+      }
+    } catch (e) {
+      console.error(e);
     }
   }
 

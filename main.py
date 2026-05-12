@@ -54,7 +54,7 @@ def parse_args():
                         help="Modelo Ollama de visao para o botao Print (default: qwen2.5vl:7b)")
     parser.add_argument("--context", type=str, default=None,
                         help="Contexto sobre voce (ex: 'Dev Python, 5 anos, Django e AWS')")
-    parser.add_argument("--language", type=str, default="pt",
+    parser.add_argument("--language", type=str, default="en",
                         help="Idioma do audio (pt, en, es, etc)")
     parser.add_argument("--model", type=str, default="tiny",
                         help="Modelo Whisper (tiny, base, small, medium, large-v3)")
@@ -62,6 +62,8 @@ def parse_args():
                         help="Segundos de silencio para considerar fim da fala (default: 0.6)")
     parser.add_argument("--threshold", type=float, default=0.5,
                         help="Limite de probabilidade Silero VAD para detectar fala (0..1, default: 0.5)")
+    parser.add_argument("--mode", type=str, default="interview", choices=["interview", "translate"],
+                        help="Modo: 'interview' (respostas de entrevista) ou 'translate' (traduz audio EN para PT-BR)")
     return parser.parse_args()
 
 
@@ -96,7 +98,8 @@ def main():
     from screen_hide import hide_from_capture, hide_from_taskbar
 
     # Estado compartilhado entre init_thread e JsApi
-    state = {"capture": None, "gui": None, "assistant": None, "transcriber": None, "language": "pt"}
+    default_lang = "en" if args.mode == "translate" else args.language
+    state = {"capture": None, "gui": None, "assistant": None, "transcriber": None, "language": default_lang, "mode": args.mode}
 
     def _capture_screenshot_bytes():
         import mss
@@ -164,6 +167,30 @@ def main():
                 log.info(f"Idioma forcado: {lang}")
             return state["language"]
 
+        def set_mode(self, mode):
+            if mode not in ("interview", "translate"):
+                return False
+            args.mode = mode
+            state["mode"] = mode
+            # Idioma padrao por modo (usuario ainda pode trocar manualmente nos botoes PT/EN)
+            new_lang = "en" if mode == "translate" else "pt"
+            state["language"] = new_lang
+            tr = state["transcriber"]
+            if tr is not None:
+                tr.language = new_lang
+            # Se ja existe assistente carregado, troca o modo em tempo real e limpa historico
+            ai = state["assistant"]
+            if ai is not None:
+                ai.mode = mode
+                ai.history = []
+            gui = state["gui"]
+            if gui:
+                label = "Traducao EN->PT" if mode == "translate" else "Entrevista"
+                gui.set_status("listening" if ai else "initializing",
+                               f"{label} - " + ("Ouvindo..." if ai else "Escolha Local ou API"))
+            log.info(f"Modo: {mode} | idioma: {new_lang}")
+            return new_lang
+
         def set_provider(self, provider):
             gui = state["gui"]
             cap = state["capture"]
@@ -182,6 +209,7 @@ def main():
                     api_key=api_key,
                     ollama_model=args.ollama_model,
                     vision_model=args.vision_model,
+                    mode=args.mode,
                 )
                 state["assistant"] = assistant_ai
                 state["provider"] = provider

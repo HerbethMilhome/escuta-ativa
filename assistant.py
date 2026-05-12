@@ -84,22 +84,35 @@ CRITICAL RULES:
 - If transcription is not a real interview question, respond only with: ⏭"""
 
 
+TRANSLATE_SYSTEM_PROMPT = """Você é um tradutor simultâneo. Sua única tarefa é traduzir para PORTUGUÊS BRASILEIRO o texto recebido.
+
+Regras:
+- Responda APENAS com a tradução em português, sem explicações, sem comentários, sem prefixos.
+- Mantenha o tom, registro e pontuação do original.
+- Se o texto já estiver em português, repita-o sem alterações.
+- Se o texto for inaudível ou vazio, responda apenas: ⏭"""
+
+
 class ClaudeAssistant:
     """Assistente usando API da Anthropic (Claude) com streaming."""
 
-    def __init__(self, api_key, context=""):
+    def __init__(self, api_key, context="", mode="interview"):
         import anthropic
         self.client = anthropic.Anthropic(api_key=api_key)
         self.context = context
+        self.mode = mode
         self.history = []
 
     def answer(self, transcription, on_token=None, language=None):
         if not transcription or len(transcription.strip()) < 5:
             return None
 
-        system = BILINGUAL_SYSTEM_PROMPT if (language and language != "pt") else SYSTEM_PROMPT
-        if self.context:
-            system += f"\n\nContexto sobre o candidato:\n{self.context}"
+        if self.mode == "translate":
+            system = TRANSLATE_SYSTEM_PROMPT
+        else:
+            system = BILINGUAL_SYSTEM_PROMPT if (language and language != "pt") else SYSTEM_PROMPT
+            if self.context:
+                system += f"\n\nContexto sobre o candidato:\n{self.context}"
 
         self.history.append({"role": "user", "content": transcription})
         if len(self.history) > 10:
@@ -154,10 +167,11 @@ class ClaudeAssistant:
 class OllamaAssistant:
     """Assistente usando Ollama local (gratuito) com streaming."""
 
-    def __init__(self, model="llama3.2", context="", base_url="http://localhost:11434", vision_model=None):
+    def __init__(self, model="llama3.2", context="", base_url="http://localhost:11434", vision_model=None, mode="interview"):
         self.model = model
         self.vision_model = vision_model
         self.context = context
+        self.mode = mode
         self.base_url = base_url
         self.history = []
         self._check_connection()
@@ -188,9 +202,12 @@ class OllamaAssistant:
         if not transcription or len(transcription.strip()) < 5:
             return None
 
-        system = BILINGUAL_SYSTEM_PROMPT if (language and language != "pt") else SYSTEM_PROMPT
-        if self.context:
-            system += f"\n\nContexto sobre o candidato:\n{self.context}"
+        if self.mode == "translate":
+            system = TRANSLATE_SYSTEM_PROMPT
+        else:
+            system = BILINGUAL_SYSTEM_PROMPT if (language and language != "pt") else SYSTEM_PROMPT
+            if self.context:
+                system += f"\n\nContexto sobre o candidato:\n{self.context}"
 
         self.history.append({"role": "user", "content": transcription})
         if len(self.history) > 10:
@@ -268,13 +285,13 @@ class OllamaAssistant:
         return full_answer
 
 
-def create_assistant(provider, context="", api_key=None, ollama_model="llama3.2", vision_model=None):
+def create_assistant(provider, context="", api_key=None, ollama_model="llama3.2", vision_model=None, mode="interview"):
     """Factory para criar o assistente correto."""
     if provider == "claude":
         if not api_key:
             raise ValueError("ANTHROPIC_API_KEY necessária para usar Claude.")
-        return ClaudeAssistant(api_key=api_key, context=context)
+        return ClaudeAssistant(api_key=api_key, context=context, mode=mode)
     elif provider == "ollama":
-        return OllamaAssistant(model=ollama_model, context=context, vision_model=vision_model)
+        return OllamaAssistant(model=ollama_model, context=context, vision_model=vision_model, mode=mode)
     else:
         raise ValueError(f"Provider desconhecido: {provider}")

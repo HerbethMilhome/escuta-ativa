@@ -130,3 +130,279 @@
 18:54:19 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
 18:54:23 Provider ativado: claude
 18:54:33 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:10:05 Contexto carregado de context.txt (2661 chars)
+14:10:07 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+14:10:07 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+14:10:27 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 500 Internal Server Error"
+14:10:44 Provider ativado: claude
+14:10:54 Processing audio with duration 00:07.500
+14:10:54 VAD filter removed 00:04.508 of audio
+14:10:59 Processing audio with duration 00:04.500
+14:10:59 VAD filter removed 00:03.548 of audio
+14:11:07 Idioma: pt | Texto: É, você. Mm-hmm, você é vida.
+14:11:09 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:11:09 Processing audio with duration 00:10.500
+14:11:09 VAD filter removed 00:04.172 of audio
+14:11:11 Idioma: pt | Texto: Parece que está no banheiro. Mas é de tão limpo.
+14:11:12 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:11:15 Processing audio with duration 00:05.500
+14:11:15 VAD filter removed 00:01.500 of audio
+14:11:21 Idioma: pt | Texto: É, é... É tudo.
+14:11:23 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:12:35 Processing audio with duration 00:06.500
+14:12:35 VAD filter removed 00:05.484 of audio
+14:12:37 Idioma: pt | Texto: That's it.
+14:12:38 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:12:41 Processing audio with duration 00:06.500
+14:12:41 VAD filter removed 00:04.780 of audio
+14:12:43 Idioma: pt | Texto: Oitafrado.
+14:12:44 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:12:45 Processing audio with duration 00:03.500
+14:12:45 VAD filter removed 00:01.940 of audio
+14:12:46 Idioma: pt | Texto: Fala mais um pouquinho.
+14:12:48 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:12:51 Processing audio with duration 00:06.500
+14:12:51 VAD filter removed 00:02.036 of audio
+14:12:53 Idioma: pt | Texto: Não acho que está melhor.
+14:12:54 Processing audio with duration 00:02.500
+14:12:54 VAD filter removed 00:01.324 of audio
+14:12:54 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:13:00 Processing audio with duration 00:06.500
+14:13:00 VAD filter removed 00:05.580 of audio
+14:13:06 Processing audio with duration 00:06.000
+14:13:06 VAD filter removed 00:03.360 of audio
+14:13:08 Idioma: pt | Texto: Hahaha!
+14:13:09 Idioma: pt | Texto: Agora sim!
+14:13:10 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:13:10 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:13:11 Processing audio with duration 00:05.000
+14:13:11 VAD filter removed 00:01.624 of audio
+14:13:13 Idioma: pt | Texto: Sim... Fala em uma safadeza pra mim.
+14:13:14 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:13:17 Processing audio with duration 00:06.000
+14:13:17 VAD filter removed 00:03.744 of audio
+14:13:22 Idioma: pt | Texto: Um, dois, três, vamos.
+14:13:23 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:13:23 Processing audio with duration 00:06.000
+14:13:23 VAD filter removed 00:03.456 of audio
+14:13:25 Idioma: pt | Texto: Hum, é ótimo convite.
+14:13:26 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:13:28 Processing audio with duration 00:04.500
+14:13:28 VAD filter removed 00:02.684 of audio
+14:13:29 Idioma: pt | Texto: Tá bem melhor assim.
+14:13:30 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:13:33 Processing audio with duration 00:05.500
+14:13:33 VAD filter removed 00:03.372 of audio
+14:13:37 Idioma: pt | Texto: Pindo.
+14:13:38 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:13:57 Processing audio with duration 00:01.500
+14:13:57 VAD filter removed 00:00.452 of audio
+14:14:02 Processing audio with duration 00:02.500
+14:14:02 VAD filter removed 00:02.500 of audio
+14:14:05 Idioma: pt | Texto: Um beijo e tchau!
+14:14:06 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:14:10 Processing audio with duration 00:08.500
+14:14:10 VAD filter removed 00:04.644 of audio
+14:14:12 Idioma: pt | Texto: Oi, podemos começar... Sim, podemos começar a entrevista?
+14:14:14 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:14:22 Processing audio with duration 00:11.500
+14:14:22 VAD filter removed 00:04.228 of audio
+14:14:24 Idioma: pt | Texto: Me conta como é que é a sua... Qual seu nível de inglês hoje?
+14:14:25 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:14:35 Processing audio with duration 00:13.000
+14:14:35 VAD filter removed 00:05.528 of audio
+14:14:37 Idioma: pt | Texto: Hum, delícia! E me conta hoje qual é o ambiente de trabalho que você mais gosta?
+14:14:38 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:14:46 Processing audio with duration 00:11.500
+14:14:46 VAD filter removed 00:05.148 of audio
+14:14:48 Idioma: pt | Texto: Hum, excelente resposta! E o que é que motiva você para trabalhar?
+14:14:49 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:14:58 Processing audio with duration 00:11.500
+14:14:58 VAD filter removed 00:05.412 of audio
+14:14:59 Idioma: pt | Texto: E você acorda com vontade de fazer o que?
+14:15:01 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:15:04 Processing audio with duration 00:06.000
+14:15:04 VAD filter removed 00:05.304 of audio
+14:15:08 Processing audio with duration 00:04.500
+14:15:08 VAD filter removed 00:03.260 of audio
+14:15:10 Idioma: pt | Texto: lindo
+14:15:11 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:15:12 Processing audio with duration 00:03.500
+14:15:12 VAD filter removed 00:01.524 of audio
+14:15:13 Idioma: pt | Texto: Fácil mais alguma pergunta?
+14:15:15 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:15:16 Processing audio with duration 00:04.000
+14:15:16 VAD filter removed 00:01.896 of audio
+14:15:20 Idioma: pt | Texto: Eu sei, eu sei.
+14:15:22 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:15:25 Processing audio with duration 00:09.000
+14:15:25 VAD filter removed 00:05.184 of audio
+14:15:30 Idioma: pt | Texto: Por favor, aproveite o vídeo.
+14:15:31 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:15:31 Processing audio with duration 00:06.000
+14:15:31 VAD filter removed 00:02.296 of audio
+14:15:32 Idioma: pt | Texto: Ah, e você gosta de fazer alguma pergunta sobre a vaga?
+14:15:34 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:15:40 Processing audio with duration 00:09.000
+14:15:40 VAD filter removed 00:07.888 of audio
+14:15:41 Idioma: pt | Texto: Tem que...
+14:15:43 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:15:47 Processing audio with duration 00:07.500
+14:15:47 VAD filter removed 00:04.212 of audio
+14:15:49 Idioma: pt | Texto: Tem, tem sim. O nosso pagamento é com piques.
+14:15:50 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:16:02 Processing audio with duration 00:15.000
+14:16:02 VAD filter removed 00:03.588 of audio
+14:16:04 Idioma: pt | Texto: Você pode solicitar antecipação, não precisa acessar no final do mês, quando voc
+14:16:06 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:16:10 Processing audio with duration 00:08.000
+14:16:10 VAD filter removed 00:05.704 of audio
+14:16:12 Idioma: pt | Texto: Ótimo, então está contratado.
+14:16:13 Processing audio with duration 00:02.500
+14:16:13 VAD filter removed 00:01.260 of audio
+14:16:13 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:16:15 Processing audio with duration 00:02.500
+14:16:16 VAD filter removed 00:01.324 of audio
+14:16:18 Idioma: pt | Texto: lindo
+14:16:19 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:16:19 Processing audio with duration 00:04.000
+14:16:19 Idioma: pt | Texto: Hahaha.
+14:16:19 VAD filter removed 00:01.768 of audio
+14:16:21 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:16:21 Idioma: pt | Texto: Sim, sim, minha vida.
+14:16:22 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:33:35 Contexto carregado de context.txt (2661 chars)
+17:33:36 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:33:36 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+17:33:43 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:42:07 Contexto carregado de context.txt (2661 chars)
+17:42:08 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:42:08 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+17:42:11 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:42:15 Provider ativado: claude
+17:42:49 Idioma forcado: en
+17:43:51 Processing audio with duration 00:06.000
+17:43:51 VAD filter removed 00:00.116 of audio
+17:43:52 Idioma: en | Texto: Okay, okay, cool. Can you tell me how does spring bean life cycle work internall
+17:43:54 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:47:04 Contexto carregado de context.txt (2661 chars)
+17:47:04 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:47:04 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+17:47:07 Idioma forcado: en
+17:47:08 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:47:09 Provider ativado: claude
+17:47:16 Processing audio with duration 00:06.500
+17:47:16 VAD filter removed 00:00.000 of audio
+17:47:18 Idioma: en | Texto: So for the like it will be very simplified. There will be no null pointer except
+17:47:22 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:47:52 Processing audio with duration 00:13.500
+17:47:52 VAD filter removed 00:01.656 of audio
+17:47:53 Idioma: en | Texto: preferred. Okay and other than null pointer exception do we have other benefits 
+17:47:54 Processing audio with duration 00:02.500
+17:47:54 VAD filter removed 00:01.560 of audio
+17:47:55 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:48:16 Idioma forcado: pt
+17:48:18 Idioma forcado: en
+17:48:22 Processing audio with duration 00:10.000
+17:48:22 VAD filter removed 00:08.788 of audio
+17:48:24 Idioma: en | Texto: Definitely because
+17:48:25 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:48:31 Contexto carregado de context.txt (2661 chars)
+17:48:32 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:48:32 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+17:48:35 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:48:42 Idioma forcado: en
+17:48:45 Provider ativado: claude
+17:48:49 Processing audio with duration 00:03.000
+17:48:49 VAD filter removed 00:00.652 of audio
+17:48:50 Idioma: en | Texto: conditional annotation in Spring Boot.
+17:48:51 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:49:19 Processing audio with duration 00:07.000
+17:49:19 VAD filter removed 00:01.792 of audio
+17:49:20 Idioma: en | Texto: Okay cool. Have you used conditional annotation in Spring Boot?
+17:49:22 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:51:47 Processing audio with duration 00:18.000
+17:51:47 VAD filter removed 00:00.660 of audio
+17:51:50 Idioma: en | Texto: Moving to our interview. Okay, so Shikha as we have discussed about auto configu
+17:51:52 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:56:34 Processing audio with duration 00:09.500
+17:56:34 VAD filter removed 00:01.208 of audio
+17:56:35 Idioma: en | Texto: Let's say you want to design a multi-threaded arrest controller, right? So how c
+17:56:37 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:01:56 Processing audio with duration 00:10.500
+18:01:56 VAD filter removed 00:01.472 of audio
+18:01:58 Idioma: en | Texto: Okay, let's say you want to update only selected fields of an entity. Okay, so h
+18:02:00 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:03:44 Processing audio with duration 00:13.500
+18:03:44 VAD filter removed 00:00.400 of audio
+18:03:47 Idioma: en | Texto: got it. So Shikha like you know and we will know like when we call rest API is r
+18:03:49 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:10:56 Processing audio with duration 00:15.000
+18:10:56 VAD filter removed 00:02.172 of audio
+18:10:58 Idioma: en | Texto: correct correct. Okay, do you know how distributed tracing works in microservice
+18:10:59 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:11:01 Processing audio with duration 00:04.500
+18:11:01 VAD filter removed 00:00.904 of audio
+18:11:02 Idioma: en | Texto: or tracing the request tracing the request I get
+18:11:04 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:15:33 Processing audio with duration 00:09.500
+18:15:34 VAD filter removed 00:00.600 of audio
+18:15:35 Idioma: en | Texto: got it and like can you tell me some important get commands that you use in your
+18:15:37 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:18:59 Contexto carregado de context.txt (2661 chars)
+18:18:59 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+18:18:59 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+18:19:02 Idioma forcado: en
+18:19:03 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+18:19:03 Provider ativado: claude
+18:19:20 Provider ativado: claude
+18:19:28 Processing audio with duration 00:08.000
+18:19:28 VAD filter removed 00:00.000 of audio
+18:19:31 Idioma: en | Texto: services and those want to give same free mock interview please fill out the for
+18:19:32 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:21:14 Processing audio with duration 00:58.000
+18:21:14 VAD filter removed 00:00.816 of audio
+18:21:21 Idioma: en | Texto: Yeah, so I have around four years of experience working as a Java microservices 
+18:21:23 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:11:18 Contexto carregado de context.txt (2661 chars)
+19:11:19 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+19:11:19 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+19:11:23 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+19:11:24 Idioma forcado: en
+19:11:32 Provider ativado: claude
+19:11:35 Modo: translate | idioma: en
+19:11:39 Modo: interview | idioma: pt
+19:11:45 Idioma forcado: en
+19:11:46 Modo: translate | idioma: en
+19:11:46 Modo: interview | idioma: pt
+19:11:47 Idioma forcado: en
+19:11:47 Idioma forcado: pt
+19:11:48 Idioma forcado: en
+19:11:51 Idioma forcado: pt
+19:16:27 Processing audio with duration 00:07.000
+19:16:27 VAD filter removed 00:00.000 of audio
+19:16:29 Idioma: pt | Texto: que é como você utilizaria o desempenho de um componente grande no Engra.
+19:16:30 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:17:30 Processing audio with duration 00:07.000
+19:17:30 VAD filter removed 00:00.000 of audio
+19:17:32 Idioma: pt | Texto: Como você organizaria os estilos SSSS da sua aplicação? Porque você usa SSSS, né
+19:17:33 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:17:49 Idioma forcado: en
+19:19:29 Processing audio with duration 00:05.000
+19:19:29 VAD filter removed 00:00.000 of audio
+19:19:31 Idioma: en | Texto: What is the difference between promise, observe and signals? Let's start with th
+19:19:32 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:23:57 Processing audio with duration 00:18.500
+19:23:57 VAD filter removed 00:00.000 of audio
+19:24:00 Idioma: en | Texto: how would you do to refactor a component that is large and shallow that is, it i
+19:24:01 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:26:21 Contexto carregado de context.txt (2661 chars)
+19:26:21 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+19:26:21 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+19:26:25 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+19:26:30 Provider ativado: claude
+19:35:14 Modo: translate | idioma: en
+19:35:16 Modo: interview | idioma: pt
+19:35:18 Modo: translate | idioma: en
+19:35:21 Modo: interview | idioma: pt
+19:35:22 Idioma forcado: en
