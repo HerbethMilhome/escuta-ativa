@@ -67,6 +67,47 @@ def parse_args():
     return parser.parse_args()
 
 
+def _normalize(text):
+    """Lowercase + remove acentos para matching tolerante."""
+    import unicodedata
+    text = text.lower().strip()
+    return "".join(c for c in unicodedata.normalize("NFD", text) if unicodedata.category(c) != "Mn")
+
+
+def load_canned_answers():
+    """Carrega respostas pre-cadastradas de respostas.json (se existir)."""
+    import json
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "respostas.json")
+    if not os.path.exists(path):
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        normalized = []
+        for entry in data:
+            kws = [_normalize(k) for k in entry.get("keywords", []) if k.strip()]
+            resp = entry.get("resposta", "").strip()
+            if kws and resp:
+                normalized.append({"keywords": kws, "resposta": resp})
+        log.info(f"Respostas prontas carregadas: {len(normalized)}")
+        return normalized
+    except Exception as e:
+        log.error(f"Erro ao ler respostas.json: {e}")
+        return []
+
+
+def match_canned(text, canned):
+    """Retorna a resposta pronta se alguma keyword aparecer na transcricao, senao None."""
+    if not canned or not text:
+        return None
+    norm_text = _normalize(text)
+    for entry in canned:
+        for kw in entry["keywords"]:
+            if kw in norm_text:
+                return entry["resposta"]
+    return None
+
+
 def load_context(args_context):
     """Carrega contexto: argumento CLI > arquivo context.txt > string vazia."""
     if args_context is not None:
@@ -100,6 +141,7 @@ def main():
     # Estado compartilhado entre init_thread e JsApi
     default_lang = "en" if args.mode == "translate" else args.language
     state = {"capture": None, "gui": None, "assistant": None, "transcriber": None, "language": default_lang, "mode": args.mode}
+    canned_answers = load_canned_answers()
 
     def _capture_screenshot_bytes():
         import mss
@@ -128,7 +170,7 @@ def main():
             def on_token(token):
                 gui.append_token(token)
 
-            ai.answer_image(img_bytes, on_token=on_token)
+            ai.answer_image(img_bytes, on_token=on_token, language=state["language"])
             gui.finish_answer()
             cap = state["capture"]
             if cap and not cap.is_paused():
@@ -300,6 +342,27 @@ def main():
             log.info(f"Idioma: {lang} | Texto: {text[:80]}")
             display_text = f"[{lang.upper()}] {text}" if lang != "pt" else text
             gui.add_question(display_text)
+
+            # Resposta pronta
+            canned = match_canned(text, canned_answers) if state["mode"] != "translate" else None
+            if canned:
+                gui.start_answer()
+                if lang == "en":
+                    log.info("Resposta pronta acionada (traduzindo PT->EN via AI)")
+                    gui.set_status("answering", "Traduzindo resposta pronta...")
+                    try:
+                        assistant_ai.translate_canned(canned, on_token=lambda t: gui.append_token(t))
+                    except Exception as e:
+                        gui.append_token(f"\n\n**Erro tradução:** {e}\n\n{canned}")
+                        log.error(f"Erro traduzindo canned: {e}")
+                else:
+                    log.info("Resposta pronta acionada (PT direto, sem AI)")
+                    gui.set_status("answering", "Resposta pronta...")
+                    gui.append_token(canned)
+                gui.finish_answer()
+                gui.set_status("listening", "Ouvindo...")
+                return
+
             gui.set_status("answering", "Respondendo...")
             gui.start_answer()
 

@@ -406,3 +406,42 @@
 19:35:18 Modo: translate | idioma: en
 19:35:21 Modo: interview | idioma: pt
 19:35:22 Idioma forcado: en
+16:42:09 Contexto carregado de context.txt (2661 chars)
+16:42:09 Respostas prontas carregadas: 6
+16:42:11 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+16:42:11 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+16:42:17 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+16:42:43 Provider ativado: claude
+16:43:25 Processing audio with duration 00:41.000
+16:43:25 VAD filter removed 00:04.380 of audio
+16:43:29 Idioma: en | Texto: Okay, so Sammy, here's my technical question for you. A farmer wants to farm the
+16:43:31 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+16:43:46 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+16:49:24 Contexto carregado de context.txt (2661 chars)
+16:49:25 Respostas prontas carregadas: 6
+16:49:25 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+16:49:25 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+16:49:29 Modo: interview | idioma: pt
+16:49:29 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+16:49:30 Provider ativado: claude
+16:49:31 Idioma forcado: en
+16:49:40 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+16:49:49 Processing audio with duration 00:02.000
+16:49:49 VAD filter removed 00:01.444 of audio
+16:52:33 Contexto carregado de context.txt (2661 chars)
+16:52:33 Respostas prontas carregadas: 6
+16:52:34 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+16:52:34 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+16:52:37 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+16:52:38 Modo: interview | idioma: pt
+16:52:41 Provider ativado: claude
+16:52:41 Idioma forcado: en
+16:52:48 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:13:59 Contexto carregado de context.txt (2661 chars)
+17:13:59 Respostas prontas carregadas: 6
+17:14:00 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:14:00 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+17:14:03 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:14:03 Provider ativado: claude
+17:14:09 Provider ativado: ollama
+17:14:10 Provider ativado: claude

@@ -33,7 +33,35 @@ FORMATO OBRIGATORIO para desafios de codigo (use markdown e siga EXATAMENTE essa
 
 **Complexidade:** O(n) tempo, O(n) espaco — <1 frase justificando: "porque percorremos o array uma vez e o HashMap pode armazenar todos os elementos">
 
-**Casos de borda:** <mencione 1-2 casos importantes, ex: "Array vazio retorna null. Numeros duplicados sao tratados pelo mapa.">"""
+**Casos de borda:** <mencione 1-2 casos importantes, ex: "Array vazio retorna null. Numeros duplicados sao tratados pelo mapa.">
+
+**Perguntas para o recrutador (parecer natural):**
+1. <pergunta curta de esclarecimento sobre o enunciado>
+2. <pergunta sobre restricoes/escala>
+3. <pergunta sobre comportamento esperado>
+
+REGRA das perguntas:
+- Sempre gere 2-3 perguntas curtas, diretas, que um dev senior faria ANTES de codar.
+- Foque em: tipos de entrada, casos de borda, restricoes de performance/memoria, formato de saida esperado.
+- NUNCA pergunte algo que ja esta claro no enunciado.
+- Se for pergunta teorica (nao codigo), pule esta secao."""
+
+
+VISION_BILINGUAL_SUFFIX = """
+
+IMPORTANTE — O CANDIDATO ESTA EM UMA ENTREVISTA EM INGLES. Adicione AO FINAL da resposta uma secao bilingue:
+
+**Clarifying questions (EN):**
+1. <same question #1 in natural spoken English>
+2. <same question #2 in English>
+3. <same question #3 in English>
+
+**Perguntas (PT):**
+1. <mesma pergunta 1 em PT>
+2. <mesma pergunta 2 em PT>
+3. <mesma pergunta 3 em PT>
+
+As perguntas em EN devem soar naturais, prontas para serem lidas em voz alta para o recrutador."""
 
 
 SYSTEM_PROMPT = """Você é um assistente de entrevistas de emprego. Gere respostas como uma pessoa mais reservada e direta responderia numa entrevista.
@@ -44,6 +72,7 @@ Regras:
   - Primeiro explique brevemente a abordagem (1-2 frases)
   - Depois mostre o código completo em um bloco de código com a linguagem (```java, ```python, etc)
   - Se relevante, mencione complexidade (Big O) em 1 frase
+  - No final, adicione uma seção **Perguntas para o recrutador:** com 2-3 perguntas curtas de esclarecimento que um dev sênior faria antes de codar (tipos de entrada, casos de borda, restrições de performance/memória, formato de saída). Nunca pergunte algo óbvio no enunciado.
 - Vá direto ao ponto, sem introduções ou conclusões elaboradas
 - NÃO use palavras rebuscadas ou corporativas demais
 - Se a transcrição não parecer uma pergunta de entrevista, responda apenas "⏭"
@@ -78,10 +107,26 @@ YOU MUST RESPOND IN THIS EXACT FORMAT (use markdown, fill all 3 sections, do NOT
 CRITICAL RULES:
 - ALL THREE SECTIONS ARE MANDATORY. Never skip Answer (EN). Never answer only in Portuguese.
 - For behavioral/personal questions: keep answers short (2-3 sentences), natural tone, no corporate jargon.
-- For technical/code questions: brief approach in 1-2 sentences, then code in a ```java block. Show code ONLY in the Answer (EN) section, do not repeat in Resposta (PT) — just describe what the code does in Portuguese.
+- For technical/code questions: brief approach in 1-2 sentences, then code in a ```java block. Show code ONLY in the Answer (EN) section, do not repeat in Resposta (PT) — just describe what the code does in Portuguese. After the code (still inside Answer (EN)), add a short list "**Clarifying questions:**" with 2-3 senior-level questions to ask the recruiter (input types, edge cases, performance/memory constraints, expected output format). Mirror them in the Resposta (PT) section under "**Perguntas para o recrutador:**".
 - Mention Big O complexity in one sentence when relevant.
 - Use Java by default unless another language is explicitly requested.
 - If transcription is not a real interview question, respond only with: ⏭"""
+
+
+CANNED_TO_EN_PROMPT = """You translate Brazilian Portuguese interview answers into natural spoken English.
+
+Output format (markdown, exactly these 3 sections, never skip):
+
+**Answer (EN):**
+<the answer in natural spoken English, ready to be read aloud — keep tone and length close to the original>
+
+**Resposta (PT):**
+<the original Portuguese text, unchanged>
+
+Rules:
+- Keep code blocks (```...```) untouched — do not translate code.
+- Do not add explanations or commentary outside the sections.
+- Preserve line breaks and formatting from the original."""
 
 
 TRANSLATE_SYSTEM_PROMPT = """Você é um tradutor simultâneo. Sua única tarefa é traduzir para PORTUGUÊS BRASILEIRO o texto recebido.
@@ -133,10 +178,27 @@ class ClaudeAssistant:
         self.history.append({"role": "assistant", "content": full_answer})
         return full_answer
 
-    def answer_image(self, image_bytes, on_token=None, prompt=None):
+    def translate_canned(self, text_pt, on_token=None):
+        """Traduz uma resposta pronta PT->EN no formato bilingue. Nao toca historico."""
+        full = ""
+        with self.client.messages.stream(
+            model=CLAUDE_MODEL,
+            max_tokens=2048,
+            system=CANNED_TO_EN_PROMPT,
+            messages=[{"role": "user", "content": text_pt}],
+        ) as stream:
+            for tok in stream.text_stream:
+                full += tok
+                if on_token:
+                    on_token(tok)
+        return full
+
+    def answer_image(self, image_bytes, on_token=None, prompt=None, language=None):
         """Envia uma imagem (PNG bytes) para o Claude Sonnet com visao."""
         image_b64 = base64.b64encode(image_bytes).decode("ascii")
         system = VISION_PROMPT
+        if language and language != "pt":
+            system += VISION_BILINGUAL_SUFFIX
         if self.context:
             system += f"\n\nContexto sobre o candidato:\n{self.context}"
 
@@ -242,13 +304,40 @@ class OllamaAssistant:
         self.history.append({"role": "assistant", "content": full_answer})
         return full_answer
 
-    def answer_image(self, image_bytes, on_token=None, prompt=None):
+    def translate_canned(self, text_pt, on_token=None):
+        """Traduz uma resposta pronta PT->EN no formato bilingue. Nao toca historico."""
+        messages = [
+            {"role": "system", "content": CANNED_TO_EN_PROMPT},
+            {"role": "user", "content": text_pt},
+        ]
+        payload = json.dumps({"model": self.model, "messages": messages, "stream": True}).encode()
+        req = urllib.request.Request(
+            f"{self.base_url}/api/chat",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+        )
+        full = ""
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            for line in resp:
+                if not line.strip():
+                    continue
+                chunk = json.loads(line)
+                tok = chunk.get("message", {}).get("content", "")
+                if tok:
+                    full += tok
+                    if on_token:
+                        on_token(tok)
+        return full
+
+    def answer_image(self, image_bytes, on_token=None, prompt=None, language=None):
         """Envia uma imagem (PNG/JPEG bytes) para o modelo de visao do Ollama."""
         if not self.vision_model:
             raise RuntimeError("vision_model nao configurado.")
 
         image_b64 = base64.b64encode(image_bytes).decode("ascii")
         system = VISION_PROMPT
+        if language and language != "pt":
+            system += VISION_BILINGUAL_SUFFIX
         if self.context:
             system += f"\n\nContexto sobre o candidato:\n{self.context}"
 

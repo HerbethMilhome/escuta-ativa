@@ -1,0 +1,121 @@
+[
+  {
+    "keywords": [
+      "fale sobre voce",
+      "fale um pouco sobre voce",
+      "me fala sobre voce",
+      "me conta sobre voce",
+      "conte sobre voce",
+      "se apresenta",
+      "apresente-se",
+      "apresentacao",
+      "quem e voce",
+      "tell me about yourself",
+      "tell us about yourself",
+      "tell me a little about yourself",
+      "introduce yourself",
+      "walk me through your background",
+      "talk about yourself",
+      "a bit about yourself"
+    ],
+    "resposta": "Trabalho com Java e Spring Boot há mais de 10 anos, principalmente em grandes ambientes corporativos, como os da área da saúde, sistemas transacionais de alto volume e outros de grande escala.\n\nO que desenvolvi ao longo do tempo não se resume apenas a habilidades técnicas. Desenvolvi um olhar apurado para ambientes de produção. Consigo chegar a um incidente em produção, entender o que está causando o problema e por quê, e corrigi-lo sem criar novos problemas. Essa calma sob pressão é algo que só se desenvolve vivenciando centenas de situações críticas.\n\nTrabalhei com toda a pilha de desenvolvimento, desde o backend em Java e o frontend em Angular, até os bancos de dados Oracle e PostgreSQL e APIs REST. Portanto, consigo me comunicar com qualquer parte do sistema e entender como uma mudança em um local afeta todo o resto.\n\nO que busco agora é uma equipe que leve a qualidade a sério, onde eu possa aplicar essa mentalidade de produção e continuar aprimorando minhas habilidades técnicas."
+  },
+  {
+    "keywords": [
+      "pretensao salarial",
+      "qual sua pretensao",
+      "expectativa salarial",
+      "quanto voce ganha",
+      "quanto espera receber",
+      "faixa salarial",
+      "salary expectation",
+      "salary expectations",
+      "expected salary",
+      "salary range",
+      "compensation expectation",
+      "how much are you looking",
+      "what are your salary expectations",
+      "what's your expected salary"
+    ],
+    "resposta": "Estou aberto a discutir uma faixa compativel com o mercado e com a senioridade da vaga. Voces ja tem uma faixa de referencia para a posicao?"
+  },
+  {
+    "keywords": [
+      "por que quer sair",
+      "porque quer sair",
+      "por que quer sair da empresa",
+      "por que esta saindo",
+      "porque esta saindo",
+      "motivo de sair",
+      "motivo da saida",
+      "por que procura outra",
+      "por que esta buscando",
+      "por que esta procurando",
+      "por que mudar de emprego",
+      "why are you looking for a new opportunity",
+      "why are you looking for a new job",
+      "why are you leaving",
+      "why do you want to leave",
+      "reason for leaving",
+      "looking for a new opportunity",
+      "looking for a change",
+      "why change jobs",
+      "why are you on the market"
+    ],
+    "resposta": "O projeto atual está chegando ao fim e ainda não existe uma confirmação sobre minha realocação. Por isso comecei a avaliar oportunidades que possam trazer continuidade, crescimento profissional e novos desafios."
+  },
+  {
+    "keywords": [
+      "pontos fortes",
+      "seus pontos fortes",
+      "principais pontos fortes",
+      "suas qualidades",
+      "quais suas qualidades",
+      "suas forcas",
+      "what are your strengths",
+      "your strengths",
+      "biggest strength",
+      "main strengths",
+      "key strengths",
+      "greatest strength",
+      "what's your strength"
+    ],
+    "resposta": "Eu diria que meus principais pontos fortes são a resolução de problemas, a experiência em suporte à produção e a adaptabilidade. Estou acostumado a trabalhar com sistemas críticos, analisar incidentes e encontrar soluções com o mínimo impacto para os usuários. Também trabalho bem em equipe e me adapto rapidamente a novas tecnologias e regras de negócio."
+  },
+  {
+    "keywords": [
+      "tecnologias que voce usa",
+      "tecnologias que usa diariamente",
+      "tecnologias do dia a dia",
+      "quais tecnologias voce usa",
+      "stack que voce usa",
+      "ferramentas que voce usa",
+      "what technologies do you use",
+      "what tech stack",
+      "which technologies do you use daily",
+      "tools you use daily",
+      "what's your stack",
+      "tech stack you work with"
+    ],
+    "resposta": "No meu dia a dia, trabalho principalmente com Java, Spring Boot, Angular, APIs REST, Oracle, PostgreSQL, Git e SQL. Também trabalho com manutenção de sistemas, depuração e análise de problemas em produção."
+  },
+  {
+    "keywords": [
+      "lida com incidentes",
+      "como voce lida com incidentes",
+      "incidentes em producao",
+      "problemas em producao",
+      "como resolve problemas em producao",
+      "como age em producao",
+      "como trata um bug em producao",
+      "how do you handle incidents",
+      "how do you handle production incidents",
+      "how do you deal with production issues",
+      "production outage",
+      "handling incidents",
+      "how do you troubleshoot",
+      "how do you debug in production"
+    ],
+    "resposta": "Primeiro, tento entender o impacto e a urgência do problema. Depois, analiso os logs, reproduzo o problema quando possível, identifico a causa raiz e aplico a solução mais segura com o mínimo impacto para os usuários. Após a correção, continuo monitorando o sistema para garantir a estabilidade."
+  }
+]
