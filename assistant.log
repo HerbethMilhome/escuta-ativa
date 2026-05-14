@@ -445,3 +445,10 @@
 17:14:03 Provider ativado: claude
 17:14:09 Provider ativado: ollama
 17:14:10 Provider ativado: claude
+18:36:04 Contexto carregado de context.txt (2661 chars)
+18:36:04 Respostas prontas carregadas: 6
+18:36:05 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+18:36:05 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+18:36:11 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+18:36:15 Provider ativado: claude
+18:37:00 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"

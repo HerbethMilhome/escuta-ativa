@@ -18,7 +18,7 @@
       "talk about yourself",
       "a bit about yourself"
     ],
-    "resposta": "Trabalho com Java e Spring Boot há mais de 10 anos, principalmente em grandes ambientes corporativos, como os da área da saúde, sistemas transacionais de alto volume e outros de grande escala.\n\nO que desenvolvi ao longo do tempo não se resume apenas a habilidades técnicas. Desenvolvi um olhar apurado para ambientes de produção. Consigo chegar a um incidente em produção, entender o que está causando o problema e por quê, e corrigi-lo sem criar novos problemas. Essa calma sob pressão é algo que só se desenvolve vivenciando centenas de situações críticas.\n\nTrabalhei com toda a pilha de desenvolvimento, desde o backend em Java e o frontend em Angular, até os bancos de dados Oracle e PostgreSQL e APIs REST. Portanto, consigo me comunicar com qualquer parte do sistema e entender como uma mudança em um local afeta todo o resto.\n\nO que busco agora é uma equipe que leve a qualidade a sério, onde eu possa aplicar essa mentalidade de produção e continuar aprimorando minhas habilidades técnicas."
+    "resposta": "Imagino que vocês já viram bastante candidato com perfil mais focado em greenfield, então deixa eu trazer um ângulo um pouco diferente.\n\nTrabalho com Java e Spring Boot há mais de 10 anos, principalmente em grandes ambientes corporativos — saúde, sistemas transacionais de alto volume e outros de grande escala.\n\nO que desenvolvi ao longo do tempo não se resume a habilidades técnicas. Tenho um olhar apurado para ambientes de produção: consigo chegar num incidente, entender o que está causando o problema e por quê, e corrigir sem criar novos problemas. Essa calma sob pressão só se desenvolve passando por centenas de situações críticas.\n\nTrabalhei com toda a pilha — backend Java, frontend Angular, Oracle, PostgreSQL e APIs REST — então consigo entender como uma mudança em um ponto afeta o resto.\n\nO que busco agora é um time que leve qualidade a sério, onde essa mentalidade de produção tenha valor. Quais são os maiores desafios técnicos que vocês estão enfrentando hoje?"
   },
   {
     "keywords": [
@@ -62,7 +62,7 @@
       "why change jobs",
       "why are you on the market"
     ],
-    "resposta": "O projeto atual está chegando ao fim e ainda não existe uma confirmação sobre minha realocação. Por isso comecei a avaliar oportunidades que possam trazer continuidade, crescimento profissional e novos desafios."
+    "resposta": "O projeto atual está chegando ao fim e ainda não há confirmação sobre minha realocação. Por isso comecei a avaliar oportunidades que tragam continuidade e desafios técnicos mais alinhados com o que faço melhor — sistemas críticos e arquitetura sólida. Como está o momento do time de vocês? É mais um cenário de crescimento ou de estabilização de uma base existente?"
   },
   {
     "keywords": [
@@ -80,7 +80,7 @@
       "greatest strength",
       "what's your strength"
     ],
-    "resposta": "Eu diria que meus principais pontos fortes são a resolução de problemas, a experiência em suporte à produção e a adaptabilidade. Estou acostumado a trabalhar com sistemas críticos, analisar incidentes e encontrar soluções com o mínimo impacto para os usuários. Também trabalho bem em equipe e me adapto rapidamente a novas tecnologias e regras de negócio."
+    "resposta": "Resolução de problemas em produção, experiência com sistemas críticos e adaptabilidade. Estou acostumado a analisar incidentes, achar a causa raiz e aplicar a correção com o mínimo impacto pro usuário. Também me adapto rápido a novas tecnologias e regras de negócio. Qual desses pontos é o mais crítico pra vaga hoje? Pergunto porque quero entender onde vocês mais sentem falta."
   },
   {
     "keywords": [
