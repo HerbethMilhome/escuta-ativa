@@ -452,3 +452,129 @@
 18:36:11 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
 18:36:15 Provider ativado: claude
 18:37:00 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:22:45 Contexto carregado de context.txt (2661 chars)
+09:22:45 Respostas prontas carregadas: 6
+09:22:46 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+09:22:46 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+09:22:53 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+09:22:58 Provider ativado: claude
+10:02:20 Processing audio with duration 00:30.000
+10:02:20 VAD filter removed 00:01.484 of audio
+10:02:22 Idioma: en | Texto: a position of the Fistech developer. And then I talked to you just to talk about
+10:02:24 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:02:28 Processing audio with duration 00:08.500
+10:02:28 VAD filter removed 00:02.828 of audio
+10:02:34 Idioma: en | Texto: Be sure to assess how you can master a key.
+10:02:35 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:02:36 Processing audio with duration 00:08.000
+10:02:36 VAD filter removed 00:04.144 of audio
+10:02:38 Idioma: en | Texto: How many years have you lived?
+10:02:39 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:02:41 Processing audio with duration 00:05.000
+10:02:41 VAD filter removed 00:02.544 of audio
+10:02:43 Idioma: en | Texto: And where do you live?
+10:02:44 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:03:09 Processing audio with duration 00:17.500
+10:03:09 VAD filter removed 00:10.020 of audio
+10:03:12 Idioma: en | Texto: You can't trust the couple who got married. This is the risk of life, Albert.
+10:03:13 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:04:12 Processing audio with duration 00:08.000
+10:04:12 VAD filter removed 00:03.056 of audio
+10:04:14 Idioma: en | Texto: And there is a level of 2, how you consider it.
+10:04:15 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:04:36 Processing audio with duration 00:23.500
+10:04:36 VAD filter removed 00:17.684 of audio
+10:04:37 Idioma: en | Texto: And you are currently working...
+10:04:39 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:05:23 Processing audio with duration 00:47.000
+10:05:23 VAD filter removed 00:35.688 of audio
+10:05:25 Idioma: en | Texto: And maybe that's why you're looking for another opportunity, because it's about 
+10:05:26 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:05:46 Processing audio with duration 00:23.000
+10:05:46 VAD filter removed 00:15.360 of audio
+10:05:47 Idioma: en | Texto: And salary retention and in the case of the PJ model, what do you have?
+10:05:49 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:06:02 Processing audio with duration 00:16.000
+10:06:02 VAD filter removed 00:15.112 of audio
+10:06:03 Idioma: en | Texto: Thank you.
+10:06:05 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:06:12 Processing audio with duration 00:10.000
+10:06:12 VAD filter removed 00:03.832 of audio
+10:06:15 Idioma: en | Texto: 16,000 group PJs, an open company you already have.
+10:06:17 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:06:44 Processing audio with duration 00:32.000
+10:06:44 VAD filter removed 00:15.144 of audio
+10:06:46 Idioma: en | Texto: And what is your availability, thinking about the phase of the process, the poss
+10:06:47 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:06:55 Processing audio with duration 00:11.500
+10:06:55 VAD filter removed 00:10.612 of audio
+10:06:57 Idioma: en | Texto: See you.
+10:06:59 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:07:48 Processing audio with duration 00:53.000
+10:07:48 VAD filter removed 00:18.880 of audio
+10:07:52 Idioma: en | Texto: And, well, Albert, I wanted to know exactly what you did, at least one for me, o
+10:07:54 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:08:41 Processing audio with duration 00:52.500
+10:08:41 VAD filter removed 00:52.500 of audio
+10:09:41 Processing audio with duration 01:00.500
+10:09:41 VAD filter removed 01:00.500 of audio
+10:11:59 Processing audio with duration 02:18.000
+10:12:00 VAD filter removed 02:18.000 of audio
+10:12:23 Processing audio with duration 00:23.500
+10:12:23 VAD filter removed 00:13.796 of audio
+10:12:25 Idioma: en | Texto: And the Java... Bert, what did you have the opportunity to use in the sense of t
+10:12:26 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:13:17 Processing audio with duration 00:54.500
+10:13:17 VAD filter removed 00:45.684 of audio
+10:13:19 Idioma: en | Texto: And from Angular, you can also see and do fun things there.
+10:13:20 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:14:25 Processing audio with duration 01:08.000
+10:14:25 VAD filter removed 01:08.000 of audio
+10:14:48 Processing audio with duration 00:22.500
+10:14:48 VAD filter removed 00:05.324 of audio
+10:14:50 Idioma: en | Texto: And let me talk a little bit about our scenario here. I'm from a simple team, wh
+10:14:51 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:19:44 Processing audio with duration 00:08.500
+10:19:44 VAD filter removed 00:01.480 of audio
+10:19:47 Idioma: en | Texto: And also to ensure the sustainability of the sector.
+10:19:48 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:20:05 Processing audio with duration 00:21.000
+10:20:05 VAD filter removed 00:02.124 of audio
+10:20:07 Idioma: en | Texto: About the vague in itself, I shared the link with you in the position where you 
+10:20:08 Processing audio with duration 00:03.000
+10:20:08 VAD filter removed 00:02.016 of audio
+10:20:08 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:21:00 Processing audio with duration 00:51.500
+10:21:00 VAD filter removed 00:02.676 of audio
+10:21:05 Idioma: en | Texto: So you must have noticed that the professional will participate in projects of h
+10:21:06 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:23:14 Processing audio with duration 00:46.000
+10:23:14 VAD filter removed 00:02.576 of audio
+10:23:18 Idioma: en | Texto: We provide a direct profile to the client, so I will go to our commercial respon
+10:23:20 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:23:26 Processing audio with duration 00:11.500
+10:23:26 VAD filter removed 00:06.100 of audio
+10:23:28 Processing audio with duration 00:02.500
+10:23:28 VAD filter removed 00:01.420 of audio
+10:23:35 Idioma: en | Texto: a platform of moving the field so very quick.
+10:23:36 Processing audio with duration 00:07.500
+10:23:36 VAD filter removed 00:00.884 of audio
+10:23:37 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:23:39 Idioma: en | Texto: It's AWS, but they put it as...
+10:23:40 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:24:47 Processing audio with duration 00:02.500
+10:24:47 VAD filter removed 00:01.368 of audio
+10:24:51 Idioma: en | Texto: Thank you.
+10:24:53 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:25:07 Processing audio with duration 00:20.000
+10:25:07 VAD filter removed 00:10.488 of audio
+10:25:09 Idioma: en | Texto: But if you have any questions, you can contact me normally, okay? I don't have a
+10:25:10 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:25:29 Processing audio with duration 00:21.500
+10:25:29 VAD filter removed 00:02.208 of audio
+10:25:31 Idioma: en | Texto: I would like to thank you for your time and your availability. Now we are waitin
+10:25:32 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:25:43 Processing audio with duration 00:14.500
+10:25:43 VAD filter removed 00:09.044 of audio
+10:25:45 Idioma: en | Texto: Thank you very much, and a good weekend for you. Thank you, bye.
+10:25:46 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"

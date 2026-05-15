@@ -12,6 +12,7 @@ Para a versao CLI original: python main_cli.py
 """
 
 import argparse
+import datetime
 import importlib
 import logging
 import os
@@ -43,6 +44,41 @@ logging.basicConfig(
 )
 log = logging.getLogger("assistant")
 
+# Log da conversa: 1 arquivo por sessao em logs/conversa_YYYYMMDD_HHMMSS.txt
+_LOGS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")
+os.makedirs(_LOGS_DIR, exist_ok=True)
+CONVERSA_FILE = os.path.join(
+    _LOGS_DIR, f"conversa_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+)
+
+
+def _extract_section(text, *markers):
+    """Extrai o conteudo de uma secao markdown tipo '**Resposta (PT):**'.
+    Retorna o texto entre o marker e o proximo marker bold (ou fim). None se nao achar.
+    """
+    import re
+    for marker in markers:
+        pattern = re.compile(re.escape(marker), re.IGNORECASE)
+        m = pattern.search(text)
+        if not m:
+            continue
+        start = m.end()
+        # proximo header bold "**Algo:**"
+        nxt = re.search(r"\n\s*\*\*[^*]+:\*\*", text[start:])
+        end = start + nxt.start() if nxt else len(text)
+        return text[start:end].strip()
+    return None
+
+
+def log_conversa(role, text):
+    """Grava uma linha no log da conversa (entrevistador / candidato)."""
+    try:
+        ts = datetime.datetime.now().strftime("%H:%M:%S")
+        with open(CONVERSA_FILE, "a", encoding="utf-8") as f:
+            f.write(f"[{ts}] {role}: {text}\n\n")
+    except Exception as e:
+        log.error(f"Erro ao gravar log de conversa: {e}")
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Interview Assistant GUI")
@@ -72,6 +108,30 @@ def _normalize(text):
     import unicodedata
     text = text.lower().strip()
     return "".join(c for c in unicodedata.normalize("NFD", text) if unicodedata.category(c) != "Mn")
+
+
+def _log_turn(interviewer_raw, response_full, lang):
+    """Grava um turno completo (pergunta + resposta) com versao PT quando possivel."""
+    if lang == "pt":
+        log_conversa("ENTREVISTADOR", interviewer_raw)
+        log_conversa("CANDIDATO", response_full)
+        return
+    # lang == "en": resposta tem secoes bilingues
+    pergunta_pt = _extract_section(response_full, "**Pergunta (PT):**")
+    resposta_pt = _extract_section(response_full, "**Resposta (PT):**")
+    answer_en = _extract_section(response_full, "**Answer (EN):**", "**Answer:**")
+
+    if pergunta_pt:
+        log_conversa("ENTREVISTADOR", f"[EN] {interviewer_raw}\n[PT] {pergunta_pt}")
+    else:
+        log_conversa("ENTREVISTADOR", f"[EN] {interviewer_raw}")
+
+    if answer_en and resposta_pt:
+        log_conversa("CANDIDATO", f"[EN] {answer_en}\n[PT] {resposta_pt}")
+    elif resposta_pt:
+        log_conversa("CANDIDATO", f"[PT] {resposta_pt}")
+    else:
+        log_conversa("CANDIDATO", response_full)
 
 
 def load_canned_answers():
@@ -342,31 +402,41 @@ def main():
             log.info(f"Idioma: {lang} | Texto: {text[:80]}")
             display_text = f"[{lang.upper()}] {text}" if lang != "pt" else text
             gui.add_question(display_text)
+            # Log do entrevistador: original; PT sera adicionado depois (extraido da resposta)
+            interviewer_raw = text
 
             # Resposta pronta
             canned = match_canned(text, canned_answers) if state["mode"] != "translate" else None
             if canned:
                 gui.start_answer()
+                collected = []
+                def collect(t):
+                    collected.append(t)
+                    gui.append_token(t)
                 if lang == "en":
                     log.info("Resposta pronta acionada (traduzindo PT->EN via AI)")
                     gui.set_status("answering", "Traduzindo resposta pronta...")
                     try:
-                        assistant_ai.translate_canned(canned, on_token=lambda t: gui.append_token(t))
+                        assistant_ai.translate_canned(canned, on_token=collect)
                     except Exception as e:
                         gui.append_token(f"\n\n**Erro tradução:** {e}\n\n{canned}")
                         log.error(f"Erro traduzindo canned: {e}")
                 else:
                     log.info("Resposta pronta acionada (PT direto, sem AI)")
                     gui.set_status("answering", "Resposta pronta...")
-                    gui.append_token(canned)
+                    collect(canned)
                 gui.finish_answer()
+                full = "".join(collected)
+                _log_turn(interviewer_raw, full, lang)
                 gui.set_status("listening", "Ouvindo...")
                 return
 
             gui.set_status("answering", "Respondendo...")
             gui.start_answer()
 
+            collected_ans = []
             def on_token(token):
+                collected_ans.append(token)
                 gui.append_token(token)
 
             try:
@@ -376,6 +446,7 @@ def main():
                 log.error(f"Erro ao gerar resposta: {e}")
 
             gui.finish_answer()
+            _log_turn(interviewer_raw, "".join(collected_ans), lang)
             gui.set_status("listening", "Ouvindo...")
 
         try:
