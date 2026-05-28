@@ -9,5 +9,6 @@ silero-vad>=5.1
 pywebview>=5.0
 mss>=9.0
 pillow>=10.0
+keyboard>=0.13.5
 # anthropic é opcional - só necessário se usar --provider claude
 # ollama não precisa de lib python - usa HTTP direto

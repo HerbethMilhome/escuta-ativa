@@ -578,3 +578,126 @@
 10:25:43 VAD filter removed 00:09.044 of audio
 10:25:45 Idioma: en | Texto: Thank you very much, and a good weekend for you. Thank you, bye.
 10:25:46 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:36:36 Contexto carregado de context.txt (2661 chars)
+10:36:36 Respostas prontas carregadas: 6
+10:36:36 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+10:36:36 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+10:36:40 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+10:36:43 Provider ativado: claude
+17:06:20 Contexto carregado de context.txt (2661 chars)
+17:06:20 Respostas prontas carregadas: 6
+17:06:21 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:06:21 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+17:06:28 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:06:31 Provider ativado: claude
+17:07:06 Processing audio with duration 00:34.000
+17:07:06 VAD filter removed 00:00.992 of audio
+17:07:11 Idioma: en | Texto: I'm going to probably just jump right into this interview. I'm just curious, are
+17:07:12 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:07:59 Processing audio with duration 00:13.500
+17:07:59 VAD filter removed 00:00.104 of audio
+17:08:01 Idioma: en | Texto: I'm going to just run like a couple simple lines of code. You can try just runni
+17:08:03 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:10:47 Processing audio with duration 00:04.000
+17:10:47 VAD filter removed 00:00.000 of audio
+17:10:48 Idioma: en | Texto: And how are you today? Well, how are you?
+17:10:50 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:11:45 Processing audio with duration 00:39.000
+17:11:45 VAD filter removed 00:00.000 of audio
+17:11:50 Idioma: en | Texto: All right, cool. Let me ask you a quick question. Given a sequence of open Engli
+17:11:52 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:33:55 Contexto carregado de context.txt (2661 chars)
+18:33:55 Respostas prontas carregadas: 6
+18:33:57 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+18:33:57 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+18:34:04 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+18:34:08 Provider ativado: claude
+19:25:12 Contexto carregado de context.txt (2661 chars)
+19:25:12 Respostas prontas carregadas: 6
+19:25:13 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+19:25:13 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+19:25:16 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+19:25:19 Provider ativado: claude
+19:25:45 Processing audio with duration 00:17.500
+19:25:45 VAD filter removed 00:13.604 of audio
+19:25:46 Idioma: en | Texto: One, two, three, testing. Roll, roll, roll.
+19:25:48 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:27:55 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:31:06 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:35:40 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:40:36 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:43:41 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:47:37 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:50:35 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+08:36:14 Contexto carregado de context.txt (2661 chars)
+08:36:14 Respostas prontas carregadas: 6
+08:36:15 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+08:36:15 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+08:36:22 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+08:36:25 Provider ativado: claude
+08:39:41 Processing audio with duration 00:13.500
+08:39:41 VAD filter removed 00:11.588 of audio
+08:39:43 Idioma: en | Texto: In this video, I will explain...
+08:39:44 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+08:53:41 Contexto carregado de context.txt (2661 chars)
+08:53:41 Respostas prontas carregadas: 6
+08:53:42 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+08:53:42 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+08:53:47 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+08:53:47 Hotkey global registrado: ctrl+shift+p
+08:53:54 Provider ativado: claude
+08:55:14 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+08:57:49 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:07:12 Contexto carregado de context.txt (2661 chars)
+09:07:12 Respostas prontas carregadas: 6
+09:07:12 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+09:07:12 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+09:07:16 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+09:07:17 Hotkey global registrado: f9
+09:18:33 Provider ativado: claude
+09:33:35 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:34:49 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:38:02 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:39:47 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:41:45 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:43:16 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:45:10 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:46:50 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:11:48 Contexto carregado de context.txt (2661 chars)
+10:11:48 Respostas prontas carregadas: 6
+10:11:49 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+10:11:49 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+10:11:52 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+10:11:53 Hotkey global registrado: f9
+10:11:55 Provider ativado: claude
+17:40:53 Contexto carregado de context.txt (2661 chars)
+17:40:53 Respostas prontas carregadas: 6
+17:40:54 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+17:40:54 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+17:41:01 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:41:02 Hotkey global registrado: f9
+17:41:04 Provider ativado: claude
+18:01:48 Processing audio with duration 05:04.500
+18:01:49 VAD filter removed 05:01.652 of audio
+18:01:50 Idioma: en | Texto: Hey, I'm Ali, founder and CEO of MicroOne.
+18:01:51 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:02:50 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:10:12 Contexto carregado de context.txt (2661 chars)
+18:10:12 Respostas prontas carregadas: 6
+18:10:12 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+18:10:12 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+18:10:16 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+18:10:16 Hotkey global registrado: f9
+18:10:36 Provider ativado: claude
+18:12:36 Processing audio with duration 00:02.500
+18:12:36 VAD filter removed 00:01.420 of audio
+18:12:42 Idioma: en | Texto: Thank you.
+18:12:43 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:22:52 Contexto carregado de context.txt (2661 chars)
+18:22:53 Respostas prontas carregadas: 6
+18:22:53 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+18:22:53 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+18:22:57 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+18:22:58 Hotkey global registrado: f9
+18:23:03 Provider ativado: claude
+18:23:17 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"

@@ -8,3 +8,5 @@ whisper_models/
 
 venv312/
 .venv312/
+
+logs/

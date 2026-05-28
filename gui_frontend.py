@@ -8,7 +8,7 @@ def get_html():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interview Assistant</title>
+<title></title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css">
 <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/highlight.min.js"></script>
@@ -298,18 +298,18 @@ def get_html():
 <body>
 
 <div id="header">
-  <h1>Interview Assistant</h1>
+  <h1></h1>
   <div id="status">
     <span id="status-dot" class="initializing"></span>
     <span id="status-text">Inicializando...</span>
-    <button id="mode-interview" class="mode-btn active" onclick="setMode('interview')">Entrev</button>
-    <button id="mode-translate" class="mode-btn" onclick="setMode('translate')">Trad</button>
-    <button id="prov-local" class="prov-btn" onclick="setProvider('ollama')">Local</button>
-    <button id="prov-api" class="prov-btn" onclick="setProvider('claude')">API</button>
-    <button id="lang-pt" class="lang-btn" onclick="setLanguage('pt')">PT</button>
-    <button id="lang-en" class="lang-btn active" onclick="setLanguage('en')">EN</button>
-    <button id="toggle-btn" onclick="toggleListening()" disabled>Pausar</button>
-    <button id="print-btn" onclick="takeScreenshot()" disabled>Print</button>
+    <button id="mode-interview" class="mode-btn active" onclick="setMode('interview')" title="Entrevista">&#127919;</button>
+    <button id="mode-translate" class="mode-btn" onclick="setMode('translate')" title="Traducao">&#127760;</button>
+    <button id="prov-local" class="prov-btn" onclick="setProvider('ollama')" title="Local">&#128187;</button>
+    <button id="prov-api" class="prov-btn" onclick="setProvider('claude')" title="API">&#9729;</button>
+    <button id="lang-pt" class="lang-btn" onclick="setLanguage('pt')">&#127463;&#127479;</button>
+    <button id="lang-en" class="lang-btn active" onclick="setLanguage('en')">&#127482;&#127480;</button>
+    <button id="toggle-btn" onclick="toggleListening()" disabled>&#9208;</button>
+    <button id="print-btn" onclick="takeScreenshot()" disabled>&#128248;</button>
   </div>
 </div>
 
@@ -425,10 +425,10 @@ def get_html():
 
   function setPausedUi(paused) {
     if (paused) {
-      toggleBtn.textContent = 'Retomar';
+      toggleBtn.innerHTML = '&#9654;';
       toggleBtn.classList.add('paused');
     } else {
-      toggleBtn.textContent = 'Pausar';
+      toggleBtn.innerHTML = '&#9208;';
       toggleBtn.classList.remove('paused');
     }
   }

@@ -109,12 +109,12 @@ The candidate needs to:
 2. Read the answer aloud in English
 3. Verify the meaning of their answer in Portuguese
 
-YOU MUST RESPOND IN THIS EXACT FORMAT (use markdown, fill all 3 sections, do NOT skip any):
-
-**Pergunta (PT):** <translate the question to Brazilian Portuguese in one short sentence>
+YOU MUST RESPOND IN THIS EXACT ORDER (use markdown, fill all 3 sections, do NOT skip any). The "Answer (EN)" section MUST come FIRST so the candidate can start reading it aloud as soon as it streams in:
 
 **Answer (EN):**
 <answer in English, ready to be spoken aloud — direct, natural, 2-3 sentences for behavioral, or with code block for technical>
+
+**Pergunta (PT):** <translate the question to Brazilian Portuguese in one short sentence>
 
 **Resposta (PT):**
 <the same answer translated to Brazilian Portuguese, so the candidate understands what they will say>
@@ -144,7 +144,7 @@ CRITICAL RULES:
 
 CANNED_TO_EN_PROMPT = """You translate Brazilian Portuguese interview answers into natural spoken English.
 
-Output format (markdown, exactly these 3 sections, never skip):
+Output format (markdown, EXACT ORDER — Answer (EN) FIRST so the candidate can start reading aloud as it streams):
 
 **Answer (EN):**
 <the answer in natural spoken English, ready to be read aloud — keep tone and length close to the original>
@@ -196,7 +196,7 @@ class ClaudeAssistant:
         with self.client.messages.stream(
             model=CLAUDE_MODEL,
             max_tokens=4096,
-            system=system,
+            system=[{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}],
             messages=self.history,
         ) as stream:
             for text in stream.text_stream:
@@ -213,7 +213,7 @@ class ClaudeAssistant:
         with self.client.messages.stream(
             model=CLAUDE_MODEL,
             max_tokens=2048,
-            system=CANNED_TO_EN_PROMPT,
+            system=[{"type": "text", "text": CANNED_TO_EN_PROMPT, "cache_control": {"type": "ephemeral"}}],
             messages=[{"role": "user", "content": text_pt}],
         ) as stream:
             for tok in stream.text_stream:
@@ -245,7 +245,7 @@ class ClaudeAssistant:
         with self.client.messages.stream(
             model=CLAUDE_MODEL,
             max_tokens=4096,
-            system=system,
+            system=[{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}],
             messages=messages,
         ) as stream:
             for text in stream.text_stream:

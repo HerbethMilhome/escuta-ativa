@@ -100,6 +100,8 @@ def parse_args():
                         help="Limite de probabilidade Silero VAD para detectar fala (0..1, default: 0.5)")
     parser.add_argument("--mode", type=str, default="interview", choices=["interview", "translate"],
                         help="Modo: 'interview' (respostas de entrevista) ou 'translate' (traduz audio EN para PT-BR)")
+    parser.add_argument("--hotkey", type=str, default="f9",
+                        help="Atalho global para tirar print sem trocar foco (default: ctrl+shift+p)")
     return parser.parse_args()
 
 
@@ -328,7 +330,7 @@ def main():
                 return False
 
     window = webview.create_window(
-        "Interview Assistant",
+        "",
         html=get_html(),
         width=700,
         height=800,
@@ -384,6 +386,16 @@ def main():
         # Inicia pausado; usuario precisa escolher Local ou API
         capture.pause()
         gui.set_status("initializing", "Escolha Local ou API para iniciar")
+
+        # Atalho global para tirar print sem precisar clicar/focar na janela
+        try:
+            import keyboard
+            def _hotkey_cb():
+                threading.Thread(target=_process_screenshot, daemon=True).start()
+            keyboard.add_hotkey(args.hotkey, _hotkey_cb)
+            log.info(f"Hotkey global registrado: {args.hotkey}")
+        except Exception as e:
+            log.warning(f"Nao foi possivel registrar hotkey global: {e}")
 
         def on_audio_ready(audio_data, sample_rate):
             assistant_ai = state["assistant"]
