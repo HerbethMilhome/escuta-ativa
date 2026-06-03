@@ -75,7 +75,7 @@ Regras:
   - No final, adicione uma seção **Perguntas para o recrutador:** com 2-3 perguntas curtas de esclarecimento que um dev sênior faria antes de codar (tipos de entrada, casos de borda, restrições de performance/memória, formato de saída). Nunca pergunte algo óbvio no enunciado.
 - Vá direto ao ponto, sem introduções ou conclusões elaboradas
 - NÃO use palavras rebuscadas ou corporativas demais
-- Se a transcrição não parecer uma pergunta de entrevista, responda apenas "⏭"
+- Só pule a resposta (retorne apenas "⏭") se a transcrição for CLARAMENTE ruído ininteligível (ex: "ahn", "hmm", palavras soltas sem sentido). Em qualquer outro caso — afirmação, comentário, frase incompleta, contexto do entrevistador — RESPONDA NORMALMENTE com algo útil. Na dúvida, sempre tente ajudar.
 - Responda no mesmo idioma da pergunta
 - Para código, use Java por padrão a menos que outra linguagem seja especificada
 
@@ -139,7 +139,7 @@ CRITICAL RULES:
 - For technical/code questions: brief approach in 1-2 sentences, then code in a ```java block. Show code ONLY in the Answer (EN) section, do not repeat in Resposta (PT) — just describe what the code does in Portuguese. After the code (still inside Answer (EN)), add a short list "**Clarifying questions:**" with 2-3 senior-level questions to ask the recruiter (input types, edge cases, performance/memory constraints, expected output format). Mirror them in the Resposta (PT) section under "**Perguntas para o recrutador:**".
 - Mention Big O complexity in one sentence when relevant.
 - Use Java by default unless another language is explicitly requested.
-- If transcription is not a real interview question, respond only with: ⏭"""
+- Only skip (respond with just "⏭") if the transcription is CLEARLY unintelligible noise (e.g. "uhh", "hmm", random words). For ANY other input — a statement, comment, incomplete sentence, or interviewer context — respond normally with something useful. When in doubt, always try to help."""
 
 
 CANNED_TO_EN_PROMPT = """You translate Brazilian Portuguese interview answers into natural spoken English.
@@ -164,7 +164,7 @@ Regras:
 - Responda APENAS com a tradução em português, sem explicações, sem comentários, sem prefixos.
 - Mantenha o tom, registro e pontuação do original.
 - Se o texto já estiver em português, repita-o sem alterações.
-- Se o texto for inaudível ou vazio, responda apenas: ⏭"""
+- SEMPRE traduza tudo, mesmo que seja uma frase curta, incompleta ou pareça ruído. NUNCA pule a tradução."""
 
 
 class ClaudeAssistant:
