@@ -1138,3 +1138,91 @@
 15:45:33 VAD filter removed 00:00.000 of audio
 15:45:35 Idioma: en | Texto: It refers to balancing your work responsibilities and your personal life.
 15:45:36 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:41:40 Contexto carregado de context.txt (2661 chars)
+10:41:40 Respostas prontas carregadas: 6
+10:41:41 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+10:41:41 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+10:41:52 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+10:41:53 Hotkey global registrado: f9
+10:41:57 Provider ativado: claude
+10:42:29 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:53:53 Contexto carregado de context.txt (2661 chars)
+10:53:53 Respostas prontas carregadas: 6
+10:53:54 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+10:53:54 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+10:53:58 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+10:53:59 Hotkey global registrado: f9
+10:54:15 Provider ativado: claude
+11:10:34 Processing audio with duration 00:50.500
+11:10:34 VAD filter removed 00:30.300 of audio
+11:10:37 Idioma: en | Texto: Before starting the interview, please note that the recording of your AI intervi
+11:10:39 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:10:46 Processing audio with duration 00:12.000
+11:10:46 VAD filter removed 00:04.720 of audio
+11:10:48 Idioma: en | Texto: Hi, Herbeth. My name is Zara. I'm an AI recruiter at Micro1. Thank you for joini
+11:10:50 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:11:45 Processing audio with duration 00:59.500
+11:11:45 VAD filter removed 00:50.652 of audio
+11:11:48 Idioma: en | Texto: Nice to meet you too, Herbeth. I'm glad to hear you're doing well and excited to
+11:11:48 Resposta pronta acionada (traduzindo PT->EN via AI)
+11:11:49 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:12:21 Processing audio with duration 00:36.000
+11:12:21 VAD filter removed 00:26.736 of audio
+11:12:24 Idioma: en | Texto: We'll keep the interview in English. In object-oriented programming, what's the 
+11:12:25 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:14:21 Processing audio with duration 01:59.500
+11:14:21 VAD filter removed 01:43.204 of audio
+11:14:24 Idioma: en | Texto: Got it. You're describing interfaces as contracts and abstract classes as sharin
+11:14:25 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:16:06 Processing audio with duration 01:45.500
+11:16:06 VAD filter removed 01:33.108 of audio
+11:16:09 Idioma: en | Texto: That makes sense. Using an interface keeps inheritance open and improves flexibi
+11:16:12 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:18:04 Processing audio with duration 01:57.500
+11:18:04 VAD filter removed 01:45.652 of audio
+11:18:07 Idioma: en | Texto: Thanks, Arbuth. Good coverage of encapsulation and immutability, especially priv
+11:18:08 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:20:02 Processing audio with duration 01:58.500
+11:20:02 VAD filter removed 01:43.828 of audio
+11:20:06 Idioma: en | Texto: That's correct. ArrayList is strong for indexed random access, while Linkless te
+11:20:07 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:20:29 Processing audio with duration 00:27.000
+11:20:29 VAD filter removed 00:18.096 of audio
+11:20:32 Idioma: en | Texto: Take your time. Just share what you recall. How do a hash set and tree set diffe
+11:20:33 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:22:18 Processing audio with duration 01:48.500
+11:22:18 VAD filter removed 01:34.244 of audio
+11:22:21 Idioma: en | Texto: Good. Hashset relies on hashcode slash equals and gives no ordering, while tree 
+11:22:22 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:24:43 Processing audio with duration 02:25.000
+11:24:43 VAD filter removed 02:09.032 of audio
+11:24:46 Idioma: en | Texto: That's on the right track. Herbif. Collisions land in the same bucket. And equal
+11:24:48 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:26:40 Processing audio with duration 01:57.500
+11:26:40 VAD filter removed 01:42.996 of audio
+11:26:43 Idioma: en | Texto: Exactly. Checking hash code, slash equals, consistency is a solid first move, es
+11:26:44 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:29:06 Processing audio with duration 02:26.500
+11:29:07 VAD filter removed 02:11.068 of audio
+11:29:10 Idioma: en | Texto: Herbeth, I see. You're describing how mutating a key after it's inserted can mak
+11:29:11 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:31:17 Processing audio with duration 02:10.500
+11:31:17 VAD filter removed 01:54.156 of audio
+11:31:21 Idioma: en | Texto: That's a solid distinction. Races are about unsynchronized interleavings, causin
+11:31:22 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:33:04 Processing audio with duration 01:47.000
+11:33:04 VAD filter removed 01:41.792 of audio
+11:33:06 Idioma: en | Texto: Understood, let's proceed with the next steps. Please say, save interview to sav
+11:33:08 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:33:32 Processing audio with duration 00:28.500
+11:33:32 VAD filter removed 00:12.540 of audio
+11:33:35 Idioma: en | Texto: Congrats! You just finished the verbal questions. The last step is a coding exer
+11:33:36 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:34:37 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:48:03 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:53:10 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:59:40 Contexto carregado de context.txt (2661 chars)
+11:59:40 Respostas prontas carregadas: 6
+11:59:40 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+11:59:40 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+11:59:46 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"

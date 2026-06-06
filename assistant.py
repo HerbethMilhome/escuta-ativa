@@ -12,9 +12,20 @@ CLAUDE_MODEL = "claude-sonnet-4-20250514"
 VISION_PROMPT = """Voce esta vendo um screenshot da tela do candidato durante uma entrevista de programacao.
 Sua tarefa: RESOLVER o que esta na tela e EXPLICAR a logica de forma clara, como o candidato faria narrando.
 
+ANTES DE RESPONDER — LEIA A TELA INTEIRA COM ATENCAO:
+- Examine TODO o codigo visivel, de cima a baixo: imports, declaracao da classe, metodo main, outros metodos (mesmo os que estao abaixo ou acima do foco), variaveis globais.
+- PROCURE ATIVAMENTE POR ERROS no codigo existente, especialmente:
+  - Erros de inicializacao de variaveis. Ex: `int[][] a = [1,2], [3,4]` esta ERRADO em Java — o correto e `int[][] a = {{1,2},{3,4}};`.
+  - Erros de sintaxe (ponto e virgula faltando, chaves, tipos incompativeis).
+  - Chamadas de metodo incorretas: verifique se o metodo chamado existe, se a assinatura bate (parametros, tipos de retorno) e se o contexto static/non-static esta correto. Ex: chamar metodo de instancia de dentro de um `static main` sem instanciar a classe e ERRO.
+  - Variaveis usadas mas nao declaradas, ou declaradas mas nao usadas.
+  - Indices fora dos limites, null pointer potencial, loops infinitos.
+
 REGRAS OBRIGATORIAS:
-- Se for um desafio de codigo (LeetCode, HackerRank, etc): ESCREVA A SOLUCAO COMPLETA EM JAVA dentro de um bloco ```java. NAO descreva o enunciado, mas EXPLIQUE a abordagem.
+- Se for um desafio de codigo (LeetCode, HackerRank, etc): ESCREVA A SOLUCAO COMPLETA E COMPILAVEL EM JAVA dentro de um bloco ```java. NAO descreva o enunciado, mas EXPLIQUE a abordagem. O codigo deve compilar e rodar sem erros.
+- Se a tela ja tem codigo COM ERROS: CORRIJA os erros e entregue a versao funcional completa. No inicio da Abordagem, diga em 1 frase o que estava errado e como corrigiu (ex: "A matriz estava inicializada com colchetes ao inves de chaves, e o metodo estava sendo chamado em contexto static sem instancia — corrigi ambos.").
 - Se a tela ja tem um esqueleto de codigo (ex: class Solution com metodo vazio), preencha o metodo com a implementacao funcional completa.
+- Garanta que TODA a solucao compila: declaracoes corretas, chamadas validas, contexto static/non-static coerente, imports necessarios.
 - Use Java por padrao a menos que outra linguagem esteja explicita na tela.
 - Para perguntas teoricas em texto: resposta direta e clara em 3-5 frases.
 
@@ -49,19 +60,49 @@ REGRA das perguntas:
 
 VISION_BILINGUAL_SUFFIX = """
 
-IMPORTANTE — O CANDIDATO ESTA EM UMA ENTREVISTA EM INGLES. Adicione AO FINAL da resposta uma secao bilingue:
+IMPORTANTE — O CANDIDATO ESTA EM UMA ENTREVISTA EM INGLES e vai LER A RESPOSTA EM VOZ ALTA em ingles para o entrevistador.
+SOBRESCREVA o idioma das secoes acima e produza TUDO de forma BILINGUE, com a parte em INGLES PRIMEIRO (para o candidato comecar a ler logo). Siga exatamente um dos dois formatos:
+
+== SE FOR DESAFIO DE CODIGO ==
+O bloco ```java``` NAO se traduz (codigo e neutro). As secoes de texto ficam bilingues, ingles primeiro:
+
+**Approach (EN):** <abordagem em ingles natural, pronta para narrar>
+
+```java
+// codigo completo e funcional
+```
+
+**How it works (EN):**
+1. <passo em ingles>
+2. <passo em ingles>
+
+**Complexity:** O(...) time, O(...) space — <justificativa em ingles>
 
 **Clarifying questions (EN):**
-1. <same question #1 in natural spoken English>
-2. <same question #2 in English>
-3. <same question #3 in English>
+1. <pergunta em ingles, pronta para ler em voz alta>
+2. <pergunta em ingles>
+3. <pergunta em ingles>
 
-**Perguntas (PT):**
-1. <mesma pergunta 1 em PT>
-2. <mesma pergunta 2 em PT>
-3. <mesma pergunta 3 em PT>
+---
 
-As perguntas em EN devem soar naturais, prontas para serem lidas em voz alta para o recrutador."""
+**Abordagem (PT):** <a mesma abordagem traduzida para portugues>
+
+**Como funciona (PT):**
+1. <mesmo passo em portugues>
+2. <mesmo passo em portugues>
+
+**Perguntas para o recrutador (PT):**
+1. <mesma pergunta em portugues>
+2. <mesma pergunta em portugues>
+3. <mesma pergunta em portugues>
+
+== SE FOR PERGUNTA TEORICA (nao e codigo) ==
+
+**Answer (EN):**
+<resposta em ingles natural, pronta para ler em voz alta, 3-5 frases>
+
+**Resposta (PT):**
+<a mesma resposta traduzida para portugues, para o candidato conferir o sentido>"""
 
 
 SYSTEM_PROMPT = """Você é um assistente de entrevistas de emprego. Gere respostas como uma pessoa mais reservada e direta responderia numa entrevista.
