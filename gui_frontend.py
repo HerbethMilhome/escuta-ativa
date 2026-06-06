@@ -240,12 +240,18 @@ def get_html():
     border-radius: 6px;
     padding: 12px;
     margin: 8px 0;
-    overflow-x: auto;
+    overflow-x: hidden;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   .answer .content code {
     font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
     font-size: 13px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   .answer .content :not(pre) > code {
@@ -308,6 +314,8 @@ def get_html():
     <button id="prov-api" class="prov-btn" onclick="setProvider('claude')" title="API">&#9729;</button>
     <button id="lang-pt" class="lang-btn" onclick="setLanguage('pt')">&#127463;&#127479;</button>
     <button id="lang-en" class="lang-btn active" onclick="setLanguage('en')">&#127482;&#127480;</button>
+    <button id="opacity-down" class="lang-btn" onclick="adjustOpacity(-0.1)" title="Mais transparente">&#9790;&minus;</button>
+    <button id="opacity-up" class="lang-btn" onclick="adjustOpacity(0.1)" title="Mais opaco">&#9789;&plus;</button>
     <button id="toggle-btn" onclick="toggleListening()" disabled>&#9208;</button>
     <button id="print-btn" onclick="takeScreenshot()" disabled>&#128248;</button>
   </div>
@@ -462,6 +470,14 @@ def get_html():
     } finally {
       localBtn.disabled = false;
       apiBtn.disabled = false;
+    }
+  }
+
+  async function adjustOpacity(delta) {
+    try {
+      await window.pywebview.api.adjust_opacity(delta);
+    } catch (e) {
+      console.error(e);
     }
   }
 

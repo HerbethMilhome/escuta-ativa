@@ -102,6 +102,8 @@ def parse_args():
                         help="Modo: 'interview' (respostas de entrevista) ou 'translate' (traduz audio EN para PT-BR)")
     parser.add_argument("--hotkey", type=str, default="f9",
                         help="Atalho global para tirar print sem trocar foco (default: ctrl+shift+p)")
+    parser.add_argument("--opacity", type=float, default=0.85,
+                        help="Transparencia da janela (0.2=bem transparente, 1.0=opaco, default: 0.85)")
     return parser.parse_args()
 
 
@@ -198,11 +200,11 @@ def main():
     import webview
     from gui_frontend import get_html
     from gui_api import GuiApi
-    from screen_hide import hide_from_capture, hide_from_taskbar
+    from screen_hide import hide_from_capture, hide_from_taskbar, set_opacity
 
     # Estado compartilhado entre init_thread e JsApi
     default_lang = "en" if args.mode == "translate" else args.language
-    state = {"capture": None, "gui": None, "assistant": None, "transcriber": None, "language": default_lang, "mode": args.mode}
+    state = {"capture": None, "gui": None, "assistant": None, "transcriber": None, "language": default_lang, "mode": args.mode, "hwnd": None, "opacity": max(0.2, min(1.0, args.opacity))}
     canned_answers = load_canned_answers()
 
     def _capture_screenshot_bytes():
@@ -261,6 +263,17 @@ def main():
         def take_screenshot(self):
             threading.Thread(target=_process_screenshot, daemon=True).start()
             return True
+
+        def adjust_opacity(self, delta):
+            """Ajusta a transparencia da janela (+/-). Thread-safe via Win32."""
+            hwnd = state.get("hwnd")
+            if not hwnd:
+                return state["opacity"]
+            new_val = max(0.2, min(1.0, state["opacity"] + delta))
+            state["opacity"] = new_val
+            set_opacity(hwnd, new_val)
+            log.info(f"Opacidade: {new_val:.2f}")
+            return new_val
 
         def set_language(self, lang):
             if lang in ("pt", "en"):
@@ -356,6 +369,10 @@ def main():
                 return
             hide_from_capture(hwnd)
             hide_from_taskbar(hwnd)
+            # Transparencia via Win32 (thread-safe) — guarda hwnd para ajuste ao vivo
+            state["hwnd"] = hwnd
+            set_opacity(hwnd, state["opacity"])
+            log.info(f"Opacidade aplicada: {state['opacity']:.2f}")
         except Exception as e:
             log.warning(f"Nao foi possivel ocultar da captura: {e}")
 

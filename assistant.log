@@ -1226,3 +1226,79 @@
 11:59:40 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
 11:59:40 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
 11:59:46 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+12:17:58 Contexto carregado de context.txt (2661 chars)
+12:17:58 Respostas prontas carregadas: 6
+12:17:58 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+12:17:58 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+12:25:34 Contexto carregado de context.txt (2661 chars)
+12:25:34 Respostas prontas carregadas: 6
+12:25:35 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+12:25:35 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+12:25:35 Opacidade aplicada: 0.85
+12:25:40 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+12:25:41 Hotkey global registrado: f9
+12:25:45 Opacidade: 0.95
+12:25:45 Opacidade: 1.00
+12:25:46 Opacidade: 1.00
+12:25:46 Opacidade: 1.00
+12:25:47 Opacidade: 0.90
+12:25:48 Opacidade: 0.80
+12:25:48 Opacidade: 0.70
+12:25:48 Opacidade: 0.60
+12:25:48 Opacidade: 0.50
+12:25:52 Opacidade: 0.60
+12:25:52 Opacidade: 0.70
+12:25:53 Opacidade: 0.80
+12:25:53 Opacidade: 0.90
+12:26:06 Opacidade: 1.00
+12:26:06 Opacidade: 1.00
+12:26:07 Opacidade: 1.00
+12:26:07 Opacidade: 0.90
+12:26:08 Opacidade: 0.80
+12:26:08 Opacidade: 0.70
+12:26:08 Opacidade: 0.60
+12:26:08 Opacidade: 0.50
+12:26:08 Opacidade: 0.40
+12:26:09 Opacidade: 0.30
+12:26:11 Opacidade: 0.40
+12:26:11 Opacidade: 0.50
+12:26:12 Opacidade: 0.60
+12:26:12 Opacidade: 0.70
+12:26:12 Opacidade: 0.80
+12:26:12 Opacidade: 0.90
+12:26:12 Opacidade: 1.00
+12:26:13 Opacidade: 0.90
+12:26:13 Opacidade: 0.80
+12:26:43 Opacidade: 0.70
+12:26:43 Opacidade: 0.60
+12:26:44 Opacidade: 0.50
+12:26:44 Opacidade: 0.40
+12:26:44 Opacidade: 0.50
+12:26:45 Opacidade: 0.60
+12:26:45 Opacidade: 0.70
+12:26:45 Opacidade: 0.80
+12:26:45 Opacidade: 0.90
+12:26:45 Opacidade: 1.00
+12:26:46 Opacidade: 1.00
+12:26:47 Opacidade: 0.90
+12:26:47 Opacidade: 0.80
+12:26:57 Opacidade: 0.70
+12:26:57 Opacidade: 0.80
+12:26:58 Opacidade: 0.90
+12:26:58 Opacidade: 0.80
+12:26:58 Opacidade: 0.70
+12:27:00 Opacidade: 0.80
+12:27:00 Opacidade: 0.90
+12:27:02 Opacidade: 1.00
+12:27:03 Opacidade: 1.00
+12:27:03 Opacidade: 0.90
+12:27:04 Opacidade: 0.80
+12:27:09 Provider ativado: claude
+12:27:37 Processing audio with duration 00:16.000
+12:27:37 VAD filter removed 00:11.688 of audio
+12:27:39 Idioma: en | Texto: I recently talked to several people who work with IA.
+12:27:40 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+12:27:51 Opacidade: 0.70
+12:27:52 Opacidade: 0.60
+12:27:53 Opacidade: 0.70
+12:27:54 Opacidade: 0.80
