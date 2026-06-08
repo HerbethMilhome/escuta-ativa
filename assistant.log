@@ -1302,3 +1302,62 @@
 12:27:52 Opacidade: 0.60
 12:27:53 Opacidade: 0.70
 12:27:54 Opacidade: 0.80
+11:37:54 Contexto carregado de context.txt (2661 chars)
+11:37:54 Respostas prontas carregadas: 6
+11:37:55 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+11:37:55 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+11:37:55 Opacidade aplicada: 0.85
+11:38:28 Opacidade: 0.95
+11:38:28 Opacidade: 1.00
+11:38:29 Opacidade: 0.90
+11:38:29 Opacidade: 0.80
+11:38:30 Opacidade: 0.70
+11:38:30 Opacidade: 0.60
+11:38:30 Opacidade: 0.50
+11:38:31 Opacidade: 0.40
+11:38:31 Opacidade: 0.30
+11:38:31 Opacidade: 0.20
+11:38:32 Opacidade: 0.20
+11:38:32 Opacidade: 0.20
+11:38:33 Opacidade: 0.30
+11:38:34 Opacidade: 0.40
+11:38:34 Opacidade: 0.50
+11:38:34 Opacidade: 0.60
+11:38:34 Opacidade: 0.70
+11:38:35 Opacidade: 0.80
+11:38:35 Opacidade: 0.90
+11:38:35 Opacidade: 1.00
+11:38:35 Opacidade: 1.00
+11:38:35 Opacidade: 1.00
+11:38:35 Opacidade: 1.00
+11:38:36 Opacidade: 0.90
+11:38:36 Opacidade: 0.80
+11:38:37 Opacidade: 0.70
+11:38:57 Contexto carregado de context.txt (2661 chars)
+11:38:57 Respostas prontas carregadas: 6
+11:38:58 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+11:38:58 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+11:38:58 Opacidade aplicada: 0.85
+11:39:46 Provider ativado: claude
+11:43:11 Contexto carregado de context.txt (2661 chars)
+11:43:12 Respostas prontas carregadas: 6
+11:43:12 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+11:43:12 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+11:43:12 Opacidade aplicada: 0.85
+11:44:11 Contexto carregado de context.txt (2661 chars)
+11:44:11 Respostas prontas carregadas: 6
+11:44:12 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+11:44:12 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+11:44:12 Opacidade aplicada: 0.85
+11:44:15 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+11:44:16 Gatilho de print: 3x 'ctrl' em 1.0s
+11:46:20 Contexto carregado de context.txt (2661 chars)
+11:46:20 Respostas prontas carregadas: 6
+11:46:21 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso.
+11:46:21 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+11:46:21 Opacidade aplicada: 0.85
+11:46:24 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+11:46:25 Gatilho de print: 3x 'ctrl' em 1.0s
+11:46:28 Provider ativado: claude
+11:46:40 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:47:49 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"

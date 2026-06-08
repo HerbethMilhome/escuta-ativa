@@ -18,6 +18,7 @@ import logging
 import os
 import sys
 import threading
+import time
 
 # Python 3.8+ no Windows ignora PATH para DLLs de extensoes — registra antes de qualquer import CUDA
 for _pkg in ("nvidia.cudnn", "nvidia.cublas", "nvidia.cuda_runtime"):
@@ -100,8 +101,12 @@ def parse_args():
                         help="Limite de probabilidade Silero VAD para detectar fala (0..1, default: 0.5)")
     parser.add_argument("--mode", type=str, default="interview", choices=["interview", "translate"],
                         help="Modo: 'interview' (respostas de entrevista) ou 'translate' (traduz audio EN para PT-BR)")
-    parser.add_argument("--hotkey", type=str, default="f9",
-                        help="Atalho global para tirar print sem trocar foco (default: ctrl+shift+p)")
+    parser.add_argument("--print-key", type=str, default="ctrl",
+                        help="Tecla do gatilho de print por toques repetidos (default: ctrl)")
+    parser.add_argument("--print-taps", type=int, default=3,
+                        help="Quantos toques na tecla para disparar o print (default: 3)")
+    parser.add_argument("--print-window", type=float, default=1.0,
+                        help="Janela de tempo (s) para contar os toques (default: 1.0)")
     parser.add_argument("--opacity", type=float, default=0.85,
                         help="Transparencia da janela (0.2=bem transparente, 1.0=opaco, default: 0.85)")
     return parser.parse_args()
@@ -404,15 +409,38 @@ def main():
         capture.pause()
         gui.set_status("initializing", "Escolha Local ou API para iniciar")
 
-        # Atalho global para tirar print sem precisar clicar/focar na janela
+        # Gatilho discreto: tocar a tecla N vezes rapido (default: 3x Ctrl).
+        # Nao gera caractere nem aparece no editor — passa despercebido em monitoramento.
         try:
             import keyboard
-            def _hotkey_cb():
-                threading.Thread(target=_process_screenshot, daemon=True).start()
-            keyboard.add_hotkey(args.hotkey, _hotkey_cb)
-            log.info(f"Hotkey global registrado: {args.hotkey}")
+            trigger_key = args.print_key.lower()
+            taps_needed = max(2, args.print_taps)
+            tap_window = args.print_window
+            tap_state = {"times": [], "held": False}
+
+            def _on_key(event):
+                name = (event.name or "").lower()
+                if trigger_key not in name:
+                    return
+                if event.event_type == "up":
+                    tap_state["held"] = False
+                    return
+                # event_type == "down": conta apenas a transicao (ignora auto-repeat)
+                if tap_state["held"]:
+                    return
+                tap_state["held"] = True
+                now = time.time()
+                tap_state["times"].append(now)
+                # mantem so os toques dentro da janela
+                tap_state["times"] = [t for t in tap_state["times"] if now - t <= tap_window]
+                if len(tap_state["times"]) >= taps_needed:
+                    tap_state["times"].clear()
+                    threading.Thread(target=_process_screenshot, daemon=True).start()
+
+            keyboard.hook(_on_key)
+            log.info(f"Gatilho de print: {taps_needed}x '{trigger_key}' em {tap_window}s")
         except Exception as e:
-            log.warning(f"Nao foi possivel registrar hotkey global: {e}")
+            log.warning(f"Nao foi possivel registrar gatilho de print: {e}")
 
         def on_audio_ready(audio_data, sample_rate):
             assistant_ai = state["assistant"]
