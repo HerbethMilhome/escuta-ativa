@@ -209,7 +209,7 @@ def main():
 
     # Estado compartilhado entre init_thread e JsApi
     default_lang = "en" if args.mode == "translate" else args.language
-    state = {"capture": None, "gui": None, "assistant": None, "transcriber": None, "language": default_lang, "mode": args.mode, "hwnd": None, "opacity": max(0.2, min(1.0, args.opacity))}
+    state = {"capture": None, "gui": None, "assistant": None, "transcriber": None, "language": default_lang, "mode": args.mode, "hwnd": None, "opacity": max(0.2, min(1.0, args.opacity)), "last_shot": None, "last_effort": "low"}
     canned_answers = load_canned_answers()
 
     def _capture_screenshot_bytes():
@@ -224,22 +224,33 @@ def main():
             img.save(buf, format="PNG", optimize=True)
             return buf.getvalue()
 
-    def _process_screenshot():
+    def _process_screenshot(effort="low", reuse=False):
+        """Captura (ou reaproveita) a tela e pede analise ao modelo de visao.
+        effort: low padrao; medium/high custam mais tokens, use so quando o low nao resolver.
+        reuse=True reanalisa o ultimo print sem capturar de novo (mesmo problema, mais esforco).
+        """
         gui = state["gui"]
         ai = state["assistant"]
         if gui is None or ai is None:
             return
         try:
-            gui.set_status("transcribing", "Capturando tela...")
-            img_bytes = _capture_screenshot_bytes()
-            gui.add_question("[Print da tela]")
-            gui.set_status("answering", "Analisando imagem...")
+            if reuse and state.get("last_shot"):
+                img_bytes = state["last_shot"]
+                gui.set_status("transcribing", f"Reanalisando print (esforco {effort})...")
+                gui.add_question(f"[Reanalisar print — esforco {effort}]")
+            else:
+                gui.set_status("transcribing", "Capturando tela...")
+                img_bytes = _capture_screenshot_bytes()
+                state["last_shot"] = img_bytes
+                gui.add_question("[Print da tela]")
+            state["last_effort"] = effort
+            gui.set_status("answering", f"Analisando imagem (esforco {effort})...")
             gui.start_answer()
 
             def on_token(token):
                 gui.append_token(token)
 
-            ai.answer_image(img_bytes, on_token=on_token, language=state["language"])
+            ai.answer_image(img_bytes, on_token=on_token, language=state["language"], effort=effort)
             gui.finish_answer()
             cap = state["capture"]
             if cap and not cap.is_paused():
@@ -266,8 +277,19 @@ def main():
             return paused
 
         def take_screenshot(self):
-            threading.Thread(target=_process_screenshot, daemon=True).start()
+            threading.Thread(target=lambda: _process_screenshot(effort="low", reuse=False), daemon=True).start()
             return True
+
+        def escalate_screenshot(self):
+            """Reanalisa o ultimo print no proximo nivel de esforco (low->medium->high).
+            Economiza tokens: so paga esforco maior quando o usuario pede, e na mesma imagem."""
+            if not state.get("last_shot"):
+                return False
+            levels = ["low", "medium", "high"]
+            cur = state.get("last_effort", "low")
+            nxt = levels[min(levels.index(cur) + 1, len(levels) - 1)]
+            threading.Thread(target=lambda: _process_screenshot(effort=nxt, reuse=True), daemon=True).start()
+            return nxt
 
         def adjust_opacity(self, delta):
             """Ajusta a transparencia da janela (+/-). Thread-safe via Win32."""
@@ -416,7 +438,25 @@ def main():
             trigger_key = args.print_key.lower()
             taps_needed = max(2, args.print_taps)
             tap_window = args.print_window
-            tap_state = {"times": [], "held": False}
+            # Apos o ultimo toque, espera "settle" pra contar o burst inteiro antes de decidir o nivel:
+            #   taps_needed (3) = print novo em low; +1 (4) = medium; +2 (5) = high (reanalisa o ultimo).
+            # Necessario porque 3/4/5 compartilham a mesma tecla — sem a espera, dispararia no 3o toque.
+            settle = min(0.45, tap_window)
+            levels = ["low", "medium", "high"]
+            tap_state = {"times": [], "held": False, "timer": None}
+
+            def _fire_taps():
+                n = len(tap_state["times"])
+                tap_state["times"] = []
+                tap_state["timer"] = None
+                if n < taps_needed:
+                    return
+                extra = n - taps_needed
+                if extra <= 0:
+                    threading.Thread(target=lambda: _process_screenshot(effort="low", reuse=False), daemon=True).start()
+                else:
+                    eff = levels[min(extra, len(levels) - 1)]
+                    threading.Thread(target=lambda: _process_screenshot(effort=eff, reuse=True), daemon=True).start()
 
             def _on_key(event):
                 name = (event.name or "").lower()
@@ -433,12 +473,15 @@ def main():
                 tap_state["times"].append(now)
                 # mantem so os toques dentro da janela
                 tap_state["times"] = [t for t in tap_state["times"] if now - t <= tap_window]
-                if len(tap_state["times"]) >= taps_needed:
-                    tap_state["times"].clear()
-                    threading.Thread(target=_process_screenshot, daemon=True).start()
+                # (re)inicia o timer de settle: decide o nivel quando os toques pararem
+                if tap_state["timer"] is not None:
+                    tap_state["timer"].cancel()
+                tap_state["timer"] = threading.Timer(settle, _fire_taps)
+                tap_state["timer"].daemon = True
+                tap_state["timer"].start()
 
             keyboard.hook(_on_key)
-            log.info(f"Gatilho de print: {taps_needed}x '{trigger_key}' em {tap_window}s")
+            log.info(f"Gatilho de print: {taps_needed}x '{trigger_key}'=low, +1=medium, +2=high (settle {settle}s, janela {tap_window}s)")
         except Exception as e:
             log.warning(f"Nao foi possivel registrar gatilho de print: {e}")
 

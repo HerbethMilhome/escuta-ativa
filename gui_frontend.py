@@ -318,6 +318,7 @@ def get_html():
     <button id="opacity-up" class="lang-btn" onclick="adjustOpacity(0.1)" title="Mais opaco">&#9789;&plus;</button>
     <button id="toggle-btn" onclick="toggleListening()" disabled>&#9208;</button>
     <button id="print-btn" onclick="takeScreenshot()" disabled>&#128248;</button>
+    <button id="escalate-btn" class="lang-btn" onclick="escalateScreenshot()" disabled title="Reanalisar ultimo print com mais esforco (low&rarr;medio&rarr;alto)">&#11014;</button>
   </div>
 </div>
 
@@ -463,6 +464,7 @@ def get_html():
         apiBtn.classList.toggle('active', provider === 'claude');
         document.getElementById('toggle-btn').disabled = false;
         document.getElementById('print-btn').disabled = false;
+        document.getElementById('escalate-btn').disabled = false;
       }
     } catch (e) {
       console.error(e);
@@ -517,9 +519,22 @@ def get_html():
     }
   }
 
+  async function escalateScreenshot() {
+    const btn = document.getElementById('escalate-btn');
+    btn.disabled = true;
+    try {
+      await window.pywebview.api.escalate_screenshot();
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setTimeout(function() { btn.disabled = false; }, 1500);
+    }
+  }
+
   function setReady(ready) {
     document.getElementById('toggle-btn').disabled = !ready;
     document.getElementById('print-btn').disabled = !ready;
+    document.getElementById('escalate-btn').disabled = !ready;
   }
 
   // API exposta para Python chamar via evaluate_js

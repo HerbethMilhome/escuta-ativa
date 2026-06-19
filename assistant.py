@@ -6,7 +6,12 @@ import urllib.request
 import sys
 
 # IMPORTANTE: NUNCA trocar para Opus (custo ~5x maior). Apenas Sonnet.
-CLAUDE_MODEL = "claude-sonnet-4-20250514"
+# Sonnet para as respostas de entrevista (qualidade); thinking off + effort low = baixa latencia.
+CLAUDE_MODEL = "claude-sonnet-4-6"
+# Traducao: testado Haiku 4.5 aqui e ele erra (inverte pronomes, as vezes RESPONDE
+# em vez de traduzir). Sonnet 4.6 com effort low ja traduz em ~1.5-2s e acerta.
+# Para forcar Haiku na traducao (mais barato, menos preciso): "claude-haiku-4-5".
+TRANSLATE_MODEL = CLAUDE_MODEL
 
 
 VISION_PROMPT = """Voce esta vendo um screenshot da tela do candidato durante uma entrevista de programacao.
@@ -218,53 +223,65 @@ class ClaudeAssistant:
         self.mode = mode
         self.history = []
 
+    def _stream(self, model, system, messages, on_token=None, max_tokens=4096, effort="low"):
+        """Chama a API em streaming e retorna o texto completo.
+        thinking desligado em todos (resposta direta = menor latencia). 'effort'
+        (low|medium|high|max) so vale no Sonnet — Haiku 4.5 nao aceita
+        output_config.effort e retornaria erro.
+        """
+        kwargs = {
+            "model": model,
+            "max_tokens": max_tokens,
+            "thinking": {"type": "disabled"},
+            "system": [{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}],
+            "messages": messages,
+        }
+        if model == CLAUDE_MODEL:
+            kwargs["output_config"] = {"effort": effort}
+
+        full = ""
+        with self.client.messages.stream(**kwargs) as stream:
+            for text in stream.text_stream:
+                full += text
+                if on_token:
+                    on_token(text)
+        return full
+
     def answer(self, transcription, on_token=None, language=None):
         if not transcription or len(transcription.strip()) < 5:
             return None
 
         if self.mode == "translate":
             system = TRANSLATE_SYSTEM_PROMPT
+            model = TRANSLATE_MODEL
         else:
             system = BILINGUAL_SYSTEM_PROMPT if (language and language != "pt") else SYSTEM_PROMPT
             if self.context:
                 system += f"\n\nContexto sobre o candidato:\n{self.context}"
+            model = CLAUDE_MODEL
 
         self.history.append({"role": "user", "content": transcription})
         if len(self.history) > 10:
             self.history = self.history[-10:]
 
-        full_answer = ""
-        with self.client.messages.stream(
-            model=CLAUDE_MODEL,
-            max_tokens=4096,
-            system=[{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}],
-            messages=self.history,
-        ) as stream:
-            for text in stream.text_stream:
-                full_answer += text
-                if on_token:
-                    on_token(text)
-
+        full_answer = self._stream(model, system, self.history, on_token=on_token)
         self.history.append({"role": "assistant", "content": full_answer})
         return full_answer
 
     def translate_canned(self, text_pt, on_token=None):
         """Traduz uma resposta pronta PT->EN no formato bilingue. Nao toca historico."""
-        full = ""
-        with self.client.messages.stream(
-            model=CLAUDE_MODEL,
+        return self._stream(
+            TRANSLATE_MODEL,
+            CANNED_TO_EN_PROMPT,
+            [{"role": "user", "content": text_pt}],
+            on_token=on_token,
             max_tokens=2048,
-            system=[{"type": "text", "text": CANNED_TO_EN_PROMPT, "cache_control": {"type": "ephemeral"}}],
-            messages=[{"role": "user", "content": text_pt}],
-        ) as stream:
-            for tok in stream.text_stream:
-                full += tok
-                if on_token:
-                    on_token(tok)
-        return full
+        )
 
-    def answer_image(self, image_bytes, on_token=None, prompt=None, language=None):
-        """Envia uma imagem (PNG bytes) para o Claude Sonnet com visao."""
+    def answer_image(self, image_bytes, on_token=None, prompt=None, language=None, effort="low"):
+        """Envia uma imagem (PNG bytes) para o Claude Sonnet com visao.
+        effort: low (padrao) e suficiente na maioria; suba para medium/high quando
+        nao resolver (custa mais tokens de raciocinio)."""
         image_b64 = base64.b64encode(image_bytes).decode("ascii")
         system = VISION_PROMPT
         if language and language != "pt":
@@ -282,18 +299,7 @@ class ClaudeAssistant:
             ],
         }]
 
-        full_answer = ""
-        with self.client.messages.stream(
-            model=CLAUDE_MODEL,
-            max_tokens=4096,
-            system=[{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}],
-            messages=messages,
-        ) as stream:
-            for text in stream.text_stream:
-                full_answer += text
-                if on_token:
-                    on_token(text)
-        return full_answer
+        return self._stream(CLAUDE_MODEL, system, messages, on_token=on_token, effort=effort)
 
 
 class OllamaAssistant:
@@ -399,8 +405,9 @@ class OllamaAssistant:
                         on_token(tok)
         return full
 
-    def answer_image(self, image_bytes, on_token=None, prompt=None, language=None):
-        """Envia uma imagem (PNG/JPEG bytes) para o modelo de visao do Ollama."""
+    def answer_image(self, image_bytes, on_token=None, prompt=None, language=None, effort="low"):
+        """Envia uma imagem (PNG/JPEG bytes) para o modelo de visao do Ollama.
+        effort e ignorado aqui (sem equivalente no Ollama); aceito so p/ compatibilidade."""
         if not self.vision_model:
             raise RuntimeError("vision_model nao configurado.")
 
