@@ -125,18 +125,19 @@ def _log_turn(interviewer_raw, response_full, lang):
         log_conversa("ENTREVISTADOR", interviewer_raw)
         log_conversa("CANDIDATO", response_full)
         return
-    # lang == "en": resposta tem secoes bilingues
+    # lang != "pt": resposta tem secoes bilingues (idioma alvo + PT)
+    tag = lang.upper()
     pergunta_pt = _extract_section(response_full, "**Pergunta (PT):**")
     resposta_pt = _extract_section(response_full, "**Resposta (PT):**")
-    answer_en = _extract_section(response_full, "**Answer (EN):**", "**Answer:**")
+    answer_target = _extract_section(response_full, f"**Answer ({tag}):**", "**Answer:**")
 
     if pergunta_pt:
-        log_conversa("ENTREVISTADOR", f"[EN] {interviewer_raw}\n[PT] {pergunta_pt}")
+        log_conversa("ENTREVISTADOR", f"[{tag}] {interviewer_raw}\n[PT] {pergunta_pt}")
     else:
-        log_conversa("ENTREVISTADOR", f"[EN] {interviewer_raw}")
+        log_conversa("ENTREVISTADOR", f"[{tag}] {interviewer_raw}")
 
-    if answer_en and resposta_pt:
-        log_conversa("CANDIDATO", f"[EN] {answer_en}\n[PT] {resposta_pt}")
+    if answer_target and resposta_pt:
+        log_conversa("CANDIDATO", f"[{tag}] {answer_target}\n[PT] {resposta_pt}")
     elif resposta_pt:
         log_conversa("CANDIDATO", f"[PT] {resposta_pt}")
     else:
@@ -303,7 +304,7 @@ def main():
             return new_val
 
         def set_language(self, lang):
-            if lang in ("pt", "en"):
+            if lang in ("pt", "en", "es"):
                 state["language"] = lang
                 tr = state["transcriber"]
                 if tr is not None:
@@ -513,11 +514,11 @@ def main():
                 def collect(t):
                     collected.append(t)
                     gui.append_token(t)
-                if lang == "en":
-                    log.info("Resposta pronta acionada (traduzindo PT->EN via AI)")
+                if lang != "pt":
+                    log.info(f"Resposta pronta acionada (traduzindo PT->{lang.upper()} via AI)")
                     gui.set_status("answering", "Traduzindo resposta pronta...")
                     try:
-                        assistant_ai.translate_canned(canned, on_token=collect)
+                        assistant_ai.translate_canned(canned, on_token=collect, language=lang)
                     except Exception as e:
                         gui.append_token(f"\n\n**Erro tradução:** {e}\n\n{canned}")
                         log.error(f"Erro traduzindo canned: {e}")

@@ -314,6 +314,7 @@ def get_html():
     <button id="prov-api" class="prov-btn" onclick="setProvider('claude')" title="API">&#9729;</button>
     <button id="lang-pt" class="lang-btn" onclick="setLanguage('pt')">&#127463;&#127479;</button>
     <button id="lang-en" class="lang-btn active" onclick="setLanguage('en')">&#127482;&#127480;</button>
+    <button id="lang-es" class="lang-btn" onclick="setLanguage('es')">&#127466;&#127480;</button>
     <button id="opacity-down" class="lang-btn" onclick="adjustOpacity(-0.1)" title="Mais transparente">&#9790;&minus;</button>
     <button id="opacity-up" class="lang-btn" onclick="adjustOpacity(0.1)" title="Mais opaco">&#9789;&plus;</button>
     <button id="toggle-btn" onclick="toggleListening()" disabled>&#9208;</button>
@@ -491,6 +492,7 @@ def get_html():
       if (newLang === 'pt' || newLang === 'en') {
         document.getElementById('lang-pt').classList.toggle('active', newLang === 'pt');
         document.getElementById('lang-en').classList.toggle('active', newLang === 'en');
+        document.getElementById('lang-es').classList.toggle('active', false);
       }
     } catch (e) {
       console.error(e);
@@ -502,6 +504,7 @@ def get_html():
       await window.pywebview.api.set_language(lang);
       document.getElementById('lang-pt').classList.toggle('active', lang === 'pt');
       document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+      document.getElementById('lang-es').classList.toggle('active', lang === 'es');
     } catch (e) {
       console.error(e);
     }

@@ -63,30 +63,35 @@ REGRA das perguntas:
 - Se for pergunta teorica (nao codigo), pule esta secao."""
 
 
-VISION_BILINGUAL_SUFFIX = """
+def _vision_bilingual_suffix(lang_code):
+    """Monta o sufixo bilingue PT + idioma alvo (en/es) para o prompt de visao."""
+    name_pt = LANG_NAMES_PT.get(lang_code, lang_code.upper())
+    name_pt_lower = name_pt.lower()
+    tag = lang_code.upper()
+    return f"""
 
-IMPORTANTE — O CANDIDATO ESTA EM UMA ENTREVISTA EM INGLES e vai LER A RESPOSTA EM VOZ ALTA em ingles para o entrevistador.
-SOBRESCREVA o idioma das secoes acima e produza TUDO de forma BILINGUE, com a parte em INGLES PRIMEIRO (para o candidato comecar a ler logo). Siga exatamente um dos dois formatos:
+IMPORTANTE — O CANDIDATO ESTA EM UMA ENTREVISTA EM {name_pt} e vai LER A RESPOSTA EM VOZ ALTA em {name_pt_lower} para o entrevistador.
+SOBRESCREVA o idioma das secoes acima e produza TUDO de forma BILINGUE, com a parte em {name_pt} PRIMEIRO (para o candidato comecar a ler logo). Siga exatamente um dos dois formatos:
 
 == SE FOR DESAFIO DE CODIGO ==
-O bloco ```java``` NAO se traduz (codigo e neutro). As secoes de texto ficam bilingues, ingles primeiro:
+O bloco ```java``` NAO se traduz (codigo e neutro). As secoes de texto ficam bilingues, {name_pt_lower} primeiro:
 
-**Approach (EN):** <abordagem em ingles natural, pronta para narrar>
+**Approach ({tag}):** <abordagem em {name_pt_lower} natural, pronta para narrar>
 
 ```java
 // codigo completo e funcional
 ```
 
-**How it works (EN):**
-1. <passo em ingles>
-2. <passo em ingles>
+**How it works ({tag}):**
+1. <passo em {name_pt_lower}>
+2. <passo em {name_pt_lower}>
 
-**Complexity:** O(...) time, O(...) space — <justificativa em ingles>
+**Complexity:** O(...) time, O(...) space — <justificativa em {name_pt_lower}>
 
-**Clarifying questions (EN):**
-1. <pergunta em ingles, pronta para ler em voz alta>
-2. <pergunta em ingles>
-3. <pergunta em ingles>
+**Clarifying questions ({tag}):**
+1. <pergunta em {name_pt_lower}, pronta para ler em voz alta>
+2. <pergunta em {name_pt_lower}>
+3. <pergunta em {name_pt_lower}>
 
 ---
 
@@ -103,8 +108,8 @@ O bloco ```java``` NAO se traduz (codigo e neutro). As secoes de texto ficam bil
 
 == SE FOR PERGUNTA TEORICA (nao e codigo) ==
 
-**Answer (EN):**
-<resposta em ingles natural, pronta para ler em voz alta, 3-5 frases>
+**Answer ({tag}):**
+<resposta em {name_pt_lower} natural, pronta para ler em voz alta, 3-5 frases>
 
 **Resposta (PT):**
 <a mesma resposta traduzida para portugues, para o candidato conferir o sentido>"""
@@ -148,17 +153,25 @@ REGRA CRÍTICA SOBRE EXPERIÊNCIA:
 - É melhor admitir falta de experiência prática e dar uma resposta teórica boa do que mentir e quebrar a credibilidade na entrevista."""
 
 
-BILINGUAL_SYSTEM_PROMPT = """You are an interview assistant for a Brazilian Java developer being interviewed in English.
+LANG_NAMES = {"en": "English", "es": "Spanish"}
+LANG_NAMES_PT = {"en": "INGLES", "es": "ESPANHOL"}
+
+
+def _bilingual_system_prompt(lang_code):
+    """Monta o prompt bilingue PT + idioma alvo (en/es) dinamicamente."""
+    lang_name = LANG_NAMES.get(lang_code, lang_code)
+    tag = lang_code.upper()
+    return f"""You are an interview assistant for a Brazilian Java developer being interviewed in {lang_name}.
 
 The candidate needs to:
 1. Understand the question in Portuguese
-2. Read the answer aloud in English
+2. Read the answer aloud in {lang_name}
 3. Verify the meaning of their answer in Portuguese
 
-YOU MUST RESPOND IN THIS EXACT ORDER (use markdown, fill all 3 sections, do NOT skip any). The "Answer (EN)" section MUST come FIRST so the candidate can start reading it aloud as soon as it streams in:
+YOU MUST RESPOND IN THIS EXACT ORDER (use markdown, fill all 3 sections, do NOT skip any). The "Answer ({tag})" section MUST come FIRST so the candidate can start reading it aloud as soon as it streams in:
 
-**Answer (EN):**
-<answer in English, ready to be spoken aloud — direct, natural, 2-3 sentences for behavioral, or with code block for technical>
+**Answer ({tag}):**
+<answer in {lang_name}, ready to be spoken aloud — direct, natural, 2-3 sentences for behavioral, or with code block for technical>
 
 **Pergunta (PT):** <translate the question to Brazilian Portuguese in one short sentence>
 
@@ -180,20 +193,24 @@ Apply ONLY to behavioral/open-ended questions. NEVER on technical questions — 
 GOLDEN RULE: high status is NOT deflection. Answer with substance, THEN steer. Technical questions (algorithms, code, concepts) get a direct, complete answer — no detours.
 
 CRITICAL RULES:
-- ALL THREE SECTIONS ARE MANDATORY. Never skip Answer (EN). Never answer only in Portuguese.
+- ALL THREE SECTIONS ARE MANDATORY. Never skip Answer ({tag}). Never answer only in Portuguese.
 - For behavioral/personal questions: keep answers short (2-3 sentences), natural tone, no corporate jargon.
-- For technical/code questions: brief approach in 1-2 sentences, then code in a ```java block. Show code ONLY in the Answer (EN) section, do not repeat in Resposta (PT) — just describe what the code does in Portuguese. After the code (still inside Answer (EN)), add a short list "**Clarifying questions:**" with 2-3 senior-level questions to ask the recruiter (input types, edge cases, performance/memory constraints, expected output format). Mirror them in the Resposta (PT) section under "**Perguntas para o recrutador:**".
+- For technical/code questions: brief approach in 1-2 sentences, then code in a ```java block. Show code ONLY in the Answer ({tag}) section, do not repeat in Resposta (PT) — just describe what the code does in Portuguese. After the code (still inside Answer ({tag})), add a short list "**Clarifying questions:**" with 2-3 senior-level questions to ask the recruiter (input types, edge cases, performance/memory constraints, expected output format). Mirror them in the Resposta (PT) section under "**Perguntas para o recrutador:**".
 - Mention Big O complexity in one sentence when relevant.
 - Use Java by default unless another language is explicitly requested.
 - Only skip (respond with just "⏭") if the transcription is CLEARLY unintelligible noise (e.g. "uhh", "hmm", random words). For ANY other input — a statement, comment, incomplete sentence, or interviewer context — respond normally with something useful. When in doubt, always try to help."""
 
 
-CANNED_TO_EN_PROMPT = """You translate Brazilian Portuguese interview answers into natural spoken English.
+def _canned_translate_prompt(lang_code):
+    """Monta o prompt de traducao PT -> idioma alvo (en/es) para respostas prontas."""
+    lang_name = LANG_NAMES.get(lang_code, lang_code)
+    tag = lang_code.upper()
+    return f"""You translate Brazilian Portuguese interview answers into natural spoken {lang_name}.
 
-Output format (markdown, EXACT ORDER — Answer (EN) FIRST so the candidate can start reading aloud as it streams):
+Output format (markdown, EXACT ORDER — Answer ({tag}) FIRST so the candidate can start reading aloud as it streams):
 
-**Answer (EN):**
-<the answer in natural spoken English, ready to be read aloud — keep tone and length close to the original>
+**Answer ({tag}):**
+<the answer in natural spoken {lang_name}, ready to be read aloud — keep tone and length close to the original>
 
 **Resposta (PT):**
 <the original Portuguese text, unchanged>
@@ -255,7 +272,7 @@ class ClaudeAssistant:
             system = TRANSLATE_SYSTEM_PROMPT
             model = TRANSLATE_MODEL
         else:
-            system = BILINGUAL_SYSTEM_PROMPT if (language and language != "pt") else SYSTEM_PROMPT
+            system = _bilingual_system_prompt(language) if (language and language != "pt") else SYSTEM_PROMPT
             if self.context:
                 system += f"\n\nContexto sobre o candidato:\n{self.context}"
             model = CLAUDE_MODEL
@@ -268,11 +285,11 @@ class ClaudeAssistant:
         self.history.append({"role": "assistant", "content": full_answer})
         return full_answer
 
-    def translate_canned(self, text_pt, on_token=None):
-        """Traduz uma resposta pronta PT->EN no formato bilingue. Nao toca historico."""
+    def translate_canned(self, text_pt, on_token=None, language="en"):
+        """Traduz uma resposta pronta PT->idioma alvo no formato bilingue. Nao toca historico."""
         return self._stream(
             TRANSLATE_MODEL,
-            CANNED_TO_EN_PROMPT,
+            _canned_translate_prompt(language),
             [{"role": "user", "content": text_pt}],
             on_token=on_token,
             max_tokens=2048,
@@ -285,7 +302,7 @@ class ClaudeAssistant:
         image_b64 = base64.b64encode(image_bytes).decode("ascii")
         system = VISION_PROMPT
         if language and language != "pt":
-            system += VISION_BILINGUAL_SUFFIX
+            system += _vision_bilingual_suffix(language)
         if self.context:
             system += f"\n\nContexto sobre o candidato:\n{self.context}"
 
@@ -343,7 +360,7 @@ class OllamaAssistant:
         if self.mode == "translate":
             system = TRANSLATE_SYSTEM_PROMPT
         else:
-            system = BILINGUAL_SYSTEM_PROMPT if (language and language != "pt") else SYSTEM_PROMPT
+            system = _bilingual_system_prompt(language) if (language and language != "pt") else SYSTEM_PROMPT
             if self.context:
                 system += f"\n\nContexto sobre o candidato:\n{self.context}"
 
@@ -380,10 +397,10 @@ class OllamaAssistant:
         self.history.append({"role": "assistant", "content": full_answer})
         return full_answer
 
-    def translate_canned(self, text_pt, on_token=None):
-        """Traduz uma resposta pronta PT->EN no formato bilingue. Nao toca historico."""
+    def translate_canned(self, text_pt, on_token=None, language="en"):
+        """Traduz uma resposta pronta PT->idioma alvo no formato bilingue. Nao toca historico."""
         messages = [
-            {"role": "system", "content": CANNED_TO_EN_PROMPT},
+            {"role": "system", "content": _canned_translate_prompt(language)},
             {"role": "user", "content": text_pt},
         ]
         payload = json.dumps({"model": self.model, "messages": messages, "stream": True}).encode()
@@ -414,7 +431,7 @@ class OllamaAssistant:
         image_b64 = base64.b64encode(image_bytes).decode("ascii")
         system = VISION_PROMPT
         if language and language != "pt":
-            system += VISION_BILINGUAL_SUFFIX
+            system += _vision_bilingual_suffix(language)
         if self.context:
             system += f"\n\nContexto sobre o candidato:\n{self.context}"
 
