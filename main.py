@@ -19,6 +19,7 @@ import os
 import sys
 import threading
 import time
+import traceback
 
 # Python 3.8+ no Windows ignora PATH para DLLs de extensoes — registra antes de qualquer import CUDA
 for _pkg in ("nvidia.cudnn", "nvidia.cublas", "nvidia.cuda_runtime"):
@@ -32,6 +33,8 @@ for _pkg in ("nvidia.cudnn", "nvidia.cublas", "nvidia.cuda_runtime"):
         pass
 
 from dotenv import load_dotenv
+
+from bridges import pick_bridge
 
 load_dotenv()
 
@@ -107,6 +110,11 @@ def parse_args():
                         help="Quantos toques na tecla para disparar o print (default: 3)")
     parser.add_argument("--print-window", type=float, default=1.0,
                         help="Janela de tempo (s) para contar os toques (default: 1.0)")
+    parser.add_argument("--bridge", type=str, default="end", choices=["end", "transcript", "off"],
+                        help="Quando mostrar a frase-ponte (o que falar enquanto a IA gera): "
+                             "'end' = assim que o entrevistador para de falar (mais cedo, padrao), "
+                             "'transcript' = so depois da transcricao (~1s mais tarde, mas escolhida "
+                             "pelo tipo da pergunta), 'off' = desativada")
     parser.add_argument("--opacity", type=float, default=0.85,
                         help="Transparencia da janela (0.2=bem transparente, 1.0=opaco, default: 0.85)")
     return parser.parse_args()
@@ -206,7 +214,13 @@ def main():
     import webview
     from gui_frontend import get_html
     from gui_api import GuiApi
-    from screen_hide import hide_from_capture, hide_from_taskbar, set_opacity
+    from screen_hide import (
+        hide_from_capture,
+        hide_from_taskbar,
+        set_opacity,
+        start_capture_guard,
+        to_hwnd,
+    )
 
     # Estado compartilhado entre init_thread e JsApi
     default_lang = "en" if args.mode == "translate" else args.language
@@ -245,6 +259,11 @@ def main():
                 state["last_shot"] = img_bytes
                 gui.add_question("[Print da tela]")
             state["last_effort"] = effort
+            if args.bridge != "off":
+                # Print quase sempre e desafio de codigo: ponte tecnica ganha os segundos da visao
+                frase = pick_bridge(state["language"], "codigo")
+                gui.show_bridge(frase)
+                log_conversa("CANDIDATO (ponte)", frase)
             gui.set_status("answering", f"Analisando imagem (esforco {effort})...")
             gui.start_answer()
 
@@ -384,23 +403,28 @@ def main():
     def on_shown():
         """Chamado quando a janela e exibida - aplica screen capture exclusion."""
         try:
-            # Qt backend: window.native e um QMainWindow
             native = window.native
             if hasattr(native, 'Handle'):
-                # winforms backend
-                hwnd = native.Handle
+                # winforms/EdgeChromium: Handle e um System.IntPtr (pythonnet)
+                hwnd = to_hwnd(native.Handle)
             elif hasattr(native, 'winId'):
-                # Qt backend
-                hwnd = int(native.winId())
+                # Qt backend: winId() e int/sip.voidptr
+                hwnd = to_hwnd(native.winId())
             else:
                 log.warning("Backend nao suportado para screen hide.")
                 return
-            hide_from_capture(hwnd)
-            hide_from_taskbar(hwnd)
-            # Transparencia via Win32 (thread-safe) — guarda hwnd para ajuste ao vivo
             state["hwnd"] = hwnd
+            # Ordem importa: estilo e opacidade mexem no ex-style e podem
+            # derrubar a afinidade, entao a exclusao de captura vem por ultimo.
+            hide_from_taskbar(hwnd)
             set_opacity(hwnd, state["opacity"])
             log.info(f"Opacidade aplicada: {state['opacity']:.2f}")
+            if not hide_from_capture(hwnd):
+                gui = state.get("gui")
+                if gui:
+                    gui.set_status("error", "AVISO: janela VISIVEL em screen share")
+            # Reaplica periodicamente e cobre janelas criadas depois (popups, dialogs)
+            start_capture_guard()
         except Exception as e:
             log.warning(f"Nao foi possivel ocultar da captura: {e}")
 
@@ -486,17 +510,51 @@ def main():
         except Exception as e:
             log.warning(f"Nao foi possivel registrar gatilho de print: {e}")
 
+        def show_bridge(text=None):
+            """Exibe (e loga) a frase-ponte que o candidato fala enquanto a IA gera."""
+            frase = pick_bridge(state["language"], text)
+            gui.show_bridge(frase)
+            log_conversa("CANDIDATO (ponte)", frase)
+            return frase
+
+        def on_speech_end(speech_seconds):
+            """Instante em que o entrevistador para de falar — antes de transcrever.
+            Ponto mais cedo possivel para o candidato ter algo pra falar e nao ficar mudo
+            durante a transcricao + geracao da resposta."""
+            log.info(f"VAD: fim de fala ({speech_seconds:.1f}s de audio no buffer)")
+            if args.bridge != "end" or state["mode"] == "translate":
+                return
+            if state["assistant"] is None or capture.is_paused():
+                return
+            if speech_seconds < capture.min_audio_duration:
+                return  # fala curta demais: provavelmente ruido, nao vale a ponte
+            show_bridge()
+
         def on_audio_ready(audio_data, sample_rate):
+            """Wrapper: sem isso, qualquer erro mata a thread em silencio e o status
+            fica congelado em 'Ouvindo...' para sempre, sem nada no log."""
+            try:
+                _handle_audio(audio_data, sample_rate)
+            except Exception:
+                log.error("Erro ao processar o turno: " + traceback.format_exc())
+                gui.clear_bridge()
+                gui.set_status("listening", "Ouvindo... (erro no turno anterior, veja o log)")
+
+        def _handle_audio(audio_data, sample_rate):
             assistant_ai = state["assistant"]
             if assistant_ai is None:
-                return  # nenhum provider escolhido ainda
+                log.info("Audio recebido, mas nenhum provider escolhido ainda — ignorado")
+                return
 
+            log.info(f"Audio recebido: {len(audio_data) / sample_rate:.1f}s — transcrevendo")
             gui.set_status("transcribing", "Transcrevendo...")
 
             text, _ = transcriber.transcribe(audio_data, sample_rate)
             lang = state["language"]
 
             if not text or len(text.strip()) < 5:
+                log.info(f"Transcricao descartada (curta demais): {text!r}")
+                gui.clear_bridge()  # era ruido: tira a ponte que ficaria orfa
                 gui.set_status("listening", "Ouvindo...")
                 return
 
@@ -509,6 +567,10 @@ def main():
             # Resposta pronta
             canned = match_canned(text, canned_answers) if state["mode"] != "translate" else None
             if canned:
+                if lang == "pt":
+                    gui.clear_bridge()  # resposta pronta em PT sai na hora, ponte so atrapalha
+                elif args.bridge == "transcript":
+                    show_bridge(text)  # traducao da canned ainda passa pela IA
                 gui.start_answer()
                 collected = []
                 def collect(t):
@@ -532,6 +594,9 @@ def main():
                 gui.set_status("listening", "Ouvindo...")
                 return
 
+            if args.bridge == "transcript" and state["mode"] != "translate":
+                show_bridge(text)
+
             gui.set_status("answering", "Respondendo...")
             gui.start_answer()
 
@@ -548,10 +613,11 @@ def main():
 
             gui.finish_answer()
             _log_turn(interviewer_raw, "".join(collected_ans), lang)
+            log.info(f"Turno concluido ({len(''.join(collected_ans))} chars gerados)")
             gui.set_status("listening", "Ouvindo...")
 
         try:
-            capture.capture_until_silence(on_audio_ready)
+            capture.capture_until_silence(on_audio_ready, on_speech_end=on_speech_end)
         except Exception as e:
             gui.set_status("error", f"Erro captura: {e}")
             log.error(f"Erro na captura de audio: {e}")

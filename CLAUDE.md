@@ -34,6 +34,7 @@ python main.py --provider claude
 | `--model` | `tiny` | Whisper model size: `tiny/base/small/medium/large-v3` |
 | `--silence` | `0.6` | Seconds of silence to trigger transcription |
 | `--threshold` | `0.5` | Silero VAD speech probability threshold (0..1) |
+| `--bridge` | `end` | When to show the filler phrase: `end` (as soon as the interviewer stops talking), `transcript` (after transcription, matched to question type), `off` |
 
 ## Architecture
 
@@ -44,6 +45,7 @@ Four modules with clear responsibilities:
 - **[audio_capture.py](audio_capture.py)** — `AudioCapture` class. Captures system loopback audio via PyAudioWPatch/WASAPI, uses Silero VAD (neural) to detect speech/silence boundaries, invokes `on_audio_ready` callback with audio chunks.
 - **[transcriber.py](transcriber.py)** — `Transcriber` class. Runs Whisper locally to convert audio chunks to text. No cloud API involved.
 - **[assistant.py](assistant.py)** — Factory + two implementations. `create_assistant()` returns either `ClaudeAssistant` (Anthropic API, streaming) or `OllamaAssistant` (local HTTP, streaming). Both maintain the last 10 messages of conversation history and support a `user_context` string for personalization.
+- **[bridges.py](bridges.py)** — Local filler ("bridge") phrases in pt/en/es, classified as technical/behavioral/generic. Zero latency and zero tokens: shown the moment the interviewer stops speaking so the candidate has something to say while Whisper + the AI are still working. `AudioCapture.capture_until_silence` fires `on_speech_end` for this, before transcription starts.
 - **[main.py](main.py)** — Orchestrator. Parses CLI args, wires components together, runs the event loop, handles Rich UI output and graceful shutdown.
 
 **Key patterns**: factory (`create_assistant`), callback (`on_audio_ready`), streaming responses.

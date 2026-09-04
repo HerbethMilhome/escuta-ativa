@@ -396,3 +396,1030 @@
 15:38:17 VAD filter removed 00:02.884 of audio
 15:38:19 Idioma: en | Texto: Thank you very much for your time. Doctor, good luck there. See you later. Bye b
 15:38:21 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+12:07:00 Contexto carregado de context.txt (2661 chars)
+12:07:00 Respostas prontas carregadas: 6
+12:07:01 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+12:07:03 Nao foi possivel ocultar da captura: cannot be converted to pointer
+12:08:02 Tentativa de usar Claude sem API key.
+12:08:49 Contexto carregado de context.txt (2661 chars)
+12:08:49 Respostas prontas carregadas: 6
+12:08:49 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+12:08:50 Nao foi possivel ocultar da captura: cannot be converted to pointer
+12:09:02 HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+12:09:02 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+12:09:03 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/tree/536b0662742c02347bc0e980a01041f333bce120?recursive=true&expand=false "HTTP/1.1 200 OK"
+12:09:03 HTTP Request: HEAD https://huggingface.co/Systran/faster-whisper-small/resolve/536b0662742c02347bc0e980a01041f333bce120/config.json "HTTP/1.1 307 Temporary Redirect"
+12:09:03 HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Systran/faster-whisper-small/536b0662742c02347bc0e980a01041f333bce120/config.json "HTTP/1.1 200 OK"
+12:09:03 HTTP Request: HEAD https://huggingface.co/Systran/faster-whisper-small/resolve/536b0662742c02347bc0e980a01041f333bce120/vocabulary.txt "HTTP/1.1 307 Temporary Redirect"
+12:09:03 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+12:09:03 HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Systran/faster-whisper-small/536b0662742c02347bc0e980a01041f333bce120/config.json "HTTP/1.1 200 OK"
+12:09:03 HTTP Request: HEAD https://huggingface.co/Systran/faster-whisper-small/resolve/536b0662742c02347bc0e980a01041f333bce120/tokenizer.json "HTTP/1.1 307 Temporary Redirect"
+12:09:03 HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Systran/faster-whisper-small/536b0662742c02347bc0e980a01041f333bce120/vocabulary.txt "HTTP/1.1 200 OK"
+12:09:03 HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Systran/faster-whisper-small/536b0662742c02347bc0e980a01041f333bce120/tokenizer.json "HTTP/1.1 200 OK"
+12:09:03 HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Systran/faster-whisper-small/536b0662742c02347bc0e980a01041f333bce120/vocabulary.txt "HTTP/1.1 200 OK"
+12:09:03 HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Systran/faster-whisper-small/536b0662742c02347bc0e980a01041f333bce120/tokenizer.json "HTTP/1.1 200 OK"
+12:11:50 Contexto carregado de context.txt (2661 chars)
+12:11:50 Respostas prontas carregadas: 6
+12:11:50 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+12:11:50 Nao foi possivel ocultar da captura: cannot be converted to pointer
+12:11:54 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+12:11:55 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+12:12:06 Provider ativado: claude
+12:12:51 Processing audio with duration 00:03.500
+12:12:52 VAD filter removed 00:00.000 of audio
+12:12:53 Idioma: en | Texto: What is the difference between static class method and instance method?
+12:12:55 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:30:49 Contexto carregado de context.txt (2661 chars)
+18:30:50 Respostas prontas carregadas: 6
+18:30:50 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+18:30:51 Nao foi possivel ocultar da captura: cannot be converted to pointer
+18:31:08 HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+18:31:08 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+18:31:09 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+18:31:13 Provider ativado: claude
+18:33:12 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:38:17 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+19:11:40 Contexto carregado de context.txt (2661 chars)
+19:11:40 Respostas prontas carregadas: 6
+19:11:40 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+19:11:42 Nao foi possivel ocultar da captura: cannot be converted to pointer
+19:11:54 HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+19:11:54 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+19:11:55 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+19:11:57 Provider ativado: claude
+08:14:50 Contexto carregado de context.txt (2661 chars)
+08:14:50 Respostas prontas carregadas: 6
+08:14:50 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+08:14:51 Nao foi possivel ocultar da captura: cannot be converted to pointer
+08:15:02 HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+08:15:03 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+08:15:04 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+08:15:13 Provider ativado: claude
+08:30:47 Contexto carregado de context.txt (2661 chars)
+08:30:47 Respostas prontas carregadas: 6
+08:30:47 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+08:30:47 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+08:30:47 Opacidade aplicada: 0.85
+08:30:47 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=264148).
+08:30:47 Guard de captura ativo (intervalo 2.0s).
+08:30:51 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+08:30:52 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+08:30:55 Provider ativado: claude
+08:30:59 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=264148).
+08:30:59 Opacidade: 0.95
+08:31:00 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=264148).
+08:31:00 Opacidade: 0.85
+08:54:34 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:06:11 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:06:31 Idioma forcado: pt
+09:06:37 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:10:46 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:14:53 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:18:02 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:22:07 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:26:21 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+16:57:18 Contexto carregado de context.txt (2661 chars)
+16:57:18 Respostas prontas carregadas: 6
+16:57:18 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+16:57:19 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+16:57:19 Opacidade aplicada: 0.85
+16:57:19 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=15860622).
+16:57:19 Guard de captura ativo (intervalo 2.0s).
+16:57:25 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+16:57:26 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+16:57:34 Provider ativado: claude
+16:59:49 Processing audio with duration 02:01.500
+16:59:49 VAD filter removed 02:01.500 of audio
+09:58:51 Contexto carregado de context.txt (2661 chars)
+09:58:51 Respostas prontas carregadas: 6
+09:58:51 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+09:58:53 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+09:58:53 Opacidade aplicada: 0.85
+09:58:53 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=6750384).
+09:58:53 Guard de captura ativo (intervalo 2.0s).
+09:59:01 Idioma forcado: pt
+09:59:32 Idioma forcado: en
+09:59:34 Idioma forcado: pt
+09:59:35 Idioma forcado: en
+09:59:39 HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+09:59:39 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+09:59:40 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+09:59:43 Provider ativado: claude
+09:59:44 Idioma forcado: pt
+10:00:10 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:03:29 Processing audio with duration 00:29.000
+10:03:29 VAD filter removed 00:01.740 of audio
+10:03:33 Idioma: pt | Texto: Bom dia pra você, boa tarde, boa noite. Se você seguiu esse podcast, siga. Tá ve
+10:03:35 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+10:38:38 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:06:03 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+11:06:50 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:03:26 Contexto carregado de context.txt (2661 chars)
+17:03:26 Respostas prontas carregadas: 6
+17:03:26 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+17:03:27 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+17:03:27 Opacidade aplicada: 0.85
+17:03:27 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1441928).
+17:03:27 Guard de captura ativo (intervalo 2.0s).
+17:03:32 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:03:33 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+17:03:36 Provider ativado: claude
+17:07:13 Idioma forcado: pt
+17:31:13 Processing audio with duration 00:36.000
+17:31:13 VAD filter removed 00:33.960 of audio
+17:31:14 Idioma: pt | Texto: Boa tarde, Herbert.
+17:31:17 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:31:20 Processing audio with duration 00:07.000
+17:31:20 VAD filter removed 00:05.760 of audio
+17:31:24 Idioma: pt | Texto: O que é isso?
+17:31:26 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:31:27 Processing audio with duration 00:07.500
+17:31:27 VAD filter removed 00:05.620 of audio
+17:31:29 Idioma: pt | Texto: Opa, tá me ouvindo.
+17:31:30 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:33:07 Idioma forcado: en
+17:33:36 Contexto carregado de context.txt (2661 chars)
+17:33:36 Respostas prontas carregadas: 6
+17:33:36 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+17:33:37 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+17:33:37 Opacidade aplicada: 0.85
+17:33:37 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=525386).
+17:33:37 Guard de captura ativo (intervalo 2.0s).
+17:33:40 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:33:41 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+17:33:47 Provider ativado: claude
+17:33:50 Processing audio with duration 00:03.000
+17:33:50 VAD filter removed 00:01.580 of audio
+17:33:52 Idioma: en | Texto: Thank you.
+17:33:53 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:33:57 Processing audio with duration 00:06.500
+17:33:57 VAD filter removed 00:05.548 of audio
+17:33:58 Idioma: en | Texto: Mm-hmm
+17:33:59 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:34:00 Processing audio with duration 00:03.500
+17:34:00 VAD filter removed 00:02.420 of audio
+17:34:02 Idioma: en | Texto: It's the same.
+17:34:03 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:34:08 Idioma forcado: pt
+17:34:10 Processing audio with duration 00:09.500
+17:34:10 VAD filter removed 00:02.332 of audio
+17:34:12 Idioma: pt | Texto: Maravilha! Eu vou te falar um pouquinho da MJV então tá nós somos uma...
+17:34:14 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:34:18 Processing audio with duration 00:04.000
+17:34:18 VAD filter removed 00:00.000 of audio
+17:34:20 Idioma: pt | Texto: empresa sólida no mercado e tem 30 anos de atuar.
+17:34:21 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:34:50 Processing audio with duration 00:27.000
+17:34:50 VAD filter removed 00:01.756 of audio
+17:34:54 Idioma: pt | Texto: na Europa, nos Estados Unidos, um cliente bem exponencial que a gente atende for
+17:34:56 Processing audio with duration 00:06.000
+17:34:56 VAD filter removed 00:03.040 of audio
+17:34:56 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:34:57 Idioma: pt | Texto: É próximo? Regiometro Politana?
+17:34:59 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:35:50 Processing audio with duration 00:53.500
+17:35:50 VAD filter removed 00:01.124 of audio
+17:35:56 Idioma: pt | Texto: Ah, legal. Então como você está aí na região de fortaleza, a gente contrataria a
+17:35:58 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:36:51 Processing audio with duration 00:40.500
+17:36:51 VAD filter removed 00:02.320 of audio
+17:36:56 Idioma: pt | Texto: acabar, nesse cliente isso não vai acontecer porque é um projeto por tempo indet
+17:36:57 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:37:17 Processing audio with duration 00:19.000
+17:37:17 VAD filter removed 00:02.620 of audio
+17:37:19 Idioma: pt | Texto: e fazendo sua vitrine profissional, digamos assim, e isso vai abrindo caminhos p
+17:37:20 Processing audio with duration 00:03.000
+17:37:20 VAD filter removed 00:02.144 of audio
+17:37:21 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:38:59 Processing audio with duration 01:38.500
+17:38:59 VAD filter removed 00:02.560 of audio
+17:39:10 Idioma: pt | Texto: Isso, isso. Tem os bancos, os grandes bancos tradicionais aí, geralmente é ao re
+17:39:12 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:39:21 Processing audio with duration 00:02.000
+17:39:21 VAD filter removed 00:01.412 of audio
+17:39:23 Processing audio with duration 00:02.500
+17:39:23 VAD filter removed 00:01.868 of audio
+17:39:30 Processing audio with duration 00:06.500
+17:39:30 VAD filter removed 00:06.500 of audio
+17:39:34 Processing audio with duration 00:04.500
+17:39:34 VAD filter removed 00:03.516 of audio
+17:39:36 Idioma: pt | Texto: Uhum.
+17:39:37 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:39:39 Processing audio with duration 00:04.500
+17:39:39 VAD filter removed 00:03.548 of audio
+17:39:43 Idioma: pt | Texto: Um, dois, três!
+17:39:45 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:40:34 Processing audio with duration 00:54.500
+17:40:34 VAD filter removed 00:02.916 of audio
+17:40:39 Idioma: pt | Texto: Fazendo uma pergunta em paralelo aqui para você, antes da gente iniciar, eu esto
+17:40:41 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:41:47 Processing audio with duration 01:08.000
+17:41:47 VAD filter removed 00:01.564 of audio
+17:41:50 Processing audio with duration 00:02.500
+17:41:50 VAD filter removed 00:01.496 of audio
+17:41:58 Idioma: pt | Texto: e uma esteira nova com a com a com o Spring Boot, a AWS também e microserviços. 
+17:42:00 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:42:00 Idioma: pt | Texto: Tic-se-me!
+17:42:03 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:42:03 Processing audio with duration 00:13.000
+17:42:03 VAD filter removed 00:12.208 of audio
+17:42:07 Idioma: pt | Texto: Um, um.
+17:42:08 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:42:14 Processing audio with duration 00:11.000
+17:42:14 VAD filter removed 00:10.080 of audio
+17:42:18 Idioma: pt | Texto: Uma vez.
+17:42:20 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:42:22 Processing audio with duration 00:08.000
+17:42:22 VAD filter removed 00:07.240 of audio
+17:42:23 Idioma: pt | Texto: Uhum.
+17:42:25 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:42:46 Processing audio with duration 00:24.000
+17:42:46 VAD filter removed 00:03.312 of audio
+17:42:48 Idioma: pt | Texto: Legal, Albert, e essa questão do... Olhando mais para vulnerabilidades, para seg
+17:42:51 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:42:59 Processing audio with duration 00:13.000
+17:42:59 VAD filter removed 00:13.000 of audio
+17:43:07 Processing audio with duration 00:08.000
+17:43:07 VAD filter removed 00:07.080 of audio
+17:43:11 Idioma: pt | Texto: Eu não.
+17:43:13 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:43:25 Processing audio with duration 00:18.500
+17:43:25 VAD filter removed 00:17.708 of audio
+17:43:27 Idioma: pt | Texto: Uhum.
+17:43:28 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:43:33 Processing audio with duration 00:07.500
+17:43:33 VAD filter removed 00:06.484 of audio
+17:43:34 Idioma: pt | Texto: Uhum.
+17:43:35 Processing audio with duration 00:02.000
+17:43:35 VAD filter removed 00:01.380 of audio
+17:43:36 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:43:41 Processing audio with duration 00:06.000
+17:43:41 VAD filter removed 00:05.144 of audio
+17:43:43 Idioma: pt | Texto: Não, não.
+17:43:44 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:43:51 Processing audio with duration 00:10.000
+17:43:51 VAD filter removed 00:05.280 of audio
+17:43:52 Idioma: pt | Texto: Já vou falar do Fortify também, já vou falar desse ferramento.
+17:43:54 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:43:58 Processing audio with duration 00:07.000
+17:43:58 VAD filter removed 00:06.016 of audio
+17:43:59 Idioma: pt | Texto: Aham.
+17:44:00 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:44:11 Processing audio with duration 00:13.500
+17:44:11 VAD filter removed 00:02.616 of audio
+17:44:13 Idioma: pt | Texto: e hoje você tá num perfil mais foi tech você trabalha com engordamento também tá
+17:44:15 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:44:27 Processing audio with duration 00:15.500
+17:44:27 VAD filter removed 00:04.500 of audio
+17:44:28 Idioma: pt | Texto: a NGRX e a RSTDTS. Parte de observa, observa, operadores, pai, filho, criança.
+17:44:30 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:44:36 Processing audio with duration 00:09.500
+17:44:36 VAD filter removed 00:09.500 of audio
+17:44:49 Processing audio with duration 00:12.500
+17:44:49 VAD filter removed 00:11.740 of audio
+17:44:53 Processing audio with duration 00:04.500
+17:44:53 VAD filter removed 00:03.740 of audio
+17:45:02 Processing audio with duration 00:08.500
+17:45:02 VAD filter removed 00:06.212 of audio
+17:45:08 Idioma: pt | Texto: Aham, se lente.
+17:45:09 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:45:11 Processing audio with duration 00:09.000
+17:45:11 VAD filter removed 00:06.456 of audio
+17:45:15 Idioma: pt | Texto: Um... desculpe.
+17:45:17 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:45:20 Processing audio with duration 00:09.000
+17:45:20 VAD filter removed 00:09.000 of audio
+17:45:23 Processing audio with duration 00:03.000
+17:45:23 VAD filter removed 00:02.176 of audio
+17:45:39 Processing audio with duration 00:16.000
+17:45:39 VAD filter removed 00:05.408 of audio
+17:45:40 Idioma: pt | Texto: Legal. E hoje você está trabalhando com microserviços? Ou não, lá também vai ser
+17:45:42 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:45:44 Processing audio with duration 00:05.500
+17:45:44 VAD filter removed 00:04.516 of audio
+17:45:47 Processing audio with duration 00:03.000
+17:45:47 VAD filter removed 00:02.080 of audio
+17:45:49 Idioma: pt | Texto: Vamos.
+17:45:49 Idioma: pt | Texto: Valeu.
+17:45:51 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:45:51 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:45:52 Processing audio with duration 00:05.000
+17:45:52 VAD filter removed 00:04.176 of audio
+17:45:56 Idioma: pt | Texto: Vamos lá.
+17:45:58 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:46:08 Processing audio with duration 00:16.000
+17:46:08 VAD filter removed 00:05.008 of audio
+17:46:10 Idioma: pt | Texto: Certo. Você já chegou a estudar alguma coisa de AWS? Ali, a parte de serviços, m
+17:46:12 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:46:17 Processing audio with duration 00:09.000
+17:46:17 VAD filter removed 00:09.000 of audio
+17:46:22 Processing audio with duration 00:05.000
+17:46:22 VAD filter removed 00:03.984 of audio
+17:46:26 Idioma: pt | Texto: Cascar?
+17:46:28 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:46:29 Processing audio with duration 00:06.500
+17:46:29 VAD filter removed 00:05.676 of audio
+17:46:31 Processing audio with duration 00:02.500
+17:46:31 VAD filter removed 00:01.548 of audio
+17:46:34 Idioma: pt | Texto: Uhum.
+17:46:35 Idioma: pt | Texto: Muito obrigado.
+17:46:36 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:46:36 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:46:42 Processing audio with duration 00:10.500
+17:46:42 VAD filter removed 00:06.572 of audio
+17:46:48 Processing audio with duration 00:06.000
+17:46:48 VAD filter removed 00:04.312 of audio
+17:46:48 Idioma: pt | Texto: Ah, não, do carstáx, com príncipe, não sei o que dizer.
+17:46:50 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:46:55 Processing audio with duration 00:07.500
+17:46:55 VAD filter removed 00:06.548 of audio
+17:46:58 Idioma: pt | Texto: Valeu.
+17:46:58 Idioma: pt | Texto: O que? Não é?
+17:46:59 Processing audio with duration 00:03.500
+17:46:59 VAD filter removed 00:02.324 of audio
+17:46:59 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:47:00 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:47:00 Idioma: pt | Texto: Nossa!
+17:47:01 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:47:06 Processing audio with duration 00:07.000
+17:47:06 VAD filter removed 00:05.984 of audio
+17:47:09 Processing audio with duration 00:03.500
+17:47:09 VAD filter removed 00:02.420 of audio
+17:47:16 Idioma: pt | Texto: Muito obrigado.
+17:47:16 Processing audio with duration 00:07.000
+17:47:16 VAD filter removed 00:01.612 of audio
+17:47:18 Idioma: pt | Texto: Legal, se você é uma parte de saúde aí, de sistemas de saúde, você conhece bem, 
+17:47:18 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:47:19 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:47:25 Processing audio with duration 00:09.000
+17:47:25 VAD filter removed 00:08.272 of audio
+17:47:29 Idioma: pt | Texto: Peace.
+17:47:30 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:47:43 Processing audio with duration 00:17.000
+17:47:43 VAD filter removed 00:02.468 of audio
+17:47:45 Idioma: pt | Texto: E se esse trabalho com sistemas concorrentes da MV ou sempre a MV e como pano de
+17:47:47 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:47:49 Processing audio with duration 00:05.500
+17:47:49 VAD filter removed 00:01.584 of audio
+17:47:51 Idioma: pt | Texto: mas a customização de um serviço da MV para o cliente final.
+17:47:52 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:47:57 Processing audio with duration 00:07.500
+17:47:57 VAD filter removed 00:06.644 of audio
+17:48:01 Idioma: pt | Texto: Valeu.
+17:48:02 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:48:40 Processing audio with duration 00:43.500
+17:48:40 VAD filter removed 00:18.868 of audio
+17:48:43 Idioma: pt | Texto: E esse cliente geralmente é diretamente um hospital, uma secretaria, por exemplo
+17:48:45 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:49:02 Processing audio with duration 00:21.500
+17:49:02 VAD filter removed 00:20.708 of audio
+17:49:03 Idioma: pt | Texto: Uhum.
+17:49:05 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:49:19 Processing audio with duration 00:17.000
+17:49:19 VAD filter removed 00:17.000 of audio
+17:49:38 Processing audio with duration 00:19.500
+17:49:38 VAD filter removed 00:05.124 of audio
+17:49:40 Idioma: pt | Texto: certo mas aí quem faz essa interface é uma pessoa representante do pulsate por e
+17:49:42 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:49:43 Processing audio with duration 00:04.500
+17:49:43 VAD filter removed 00:03.612 of audio
+17:49:53 Processing audio with duration 00:10.500
+17:49:53 VAD filter removed 00:09.772 of audio
+17:49:55 Idioma: pt | Texto: Uhum.
+17:49:56 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:49:59 Processing audio with duration 00:06.000
+17:49:59 VAD filter removed 00:05.176 of audio
+17:50:14 Processing audio with duration 00:14.500
+17:50:14 VAD filter removed 00:13.516 of audio
+17:50:15 Idioma: pt | Texto: Uhum.
+17:50:17 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:50:28 Processing audio with duration 00:14.000
+17:50:28 VAD filter removed 00:01.580 of audio
+17:50:29 Idioma: pt | Texto: e hoje então você fica mais customizando e corrigindo ali a fazendo melhoria daq
+17:50:31 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:50:37 Processing audio with duration 00:09.500
+17:50:37 VAD filter removed 00:03.436 of audio
+17:50:39 Idioma: pt | Texto: e isso vai do que Java 7, 8, 11 até 11?
+17:50:40 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:50:41 Processing audio with duration 00:04.000
+17:50:41 VAD filter removed 00:03.016 of audio
+17:50:43 Idioma: pt | Texto: Uhum.
+17:50:44 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:50:51 Processing audio with duration 00:09.500
+17:50:51 VAD filter removed 00:08.676 of audio
+17:50:54 Idioma: pt | Texto: Aham.
+17:50:56 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:50:58 Processing audio with duration 00:07.500
+17:50:58 VAD filter removed 00:06.548 of audio
+17:51:32 Processing audio with duration 00:33.500
+17:51:32 VAD filter removed 00:18.500 of audio
+17:51:34 Idioma: pt | Texto: O Robert hoje no teu time ele tem tem mais pessoas você toca as coisas meio que 
+17:51:35 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:51:49 Processing audio with duration 00:17.500
+17:51:49 VAD filter removed 00:15.780 of audio
+17:51:57 Idioma: pt | Texto: Sim, isso é uma grau de DNA.
+17:52:00 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:52:11 Processing audio with duration 00:22.000
+17:52:11 VAD filter removed 00:22.000 of audio
+17:52:16 Processing audio with duration 00:05.000
+17:52:16 VAD filter removed 00:03.984 of audio
+17:52:18 Idioma: pt | Texto: Uhum.
+17:52:19 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:52:24 Processing audio with duration 00:08.000
+17:52:24 VAD filter removed 00:03.800 of audio
+17:52:26 Idioma: pt | Texto: Caramba! Meu Deus do Cimão!
+17:52:28 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:52:34 Processing audio with duration 00:09.500
+17:52:34 VAD filter removed 00:08.484 of audio
+17:52:35 Idioma: pt | Texto: Uhum.
+17:52:37 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:52:38 Processing audio with duration 00:04.000
+17:52:38 VAD filter removed 00:03.112 of audio
+17:52:40 Idioma: pt | Texto: Tchau.
+17:52:42 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:52:47 Processing audio with duration 00:09.500
+17:52:47 VAD filter removed 00:09.500 of audio
+17:52:59 Processing audio with duration 00:12.000
+17:52:59 VAD filter removed 00:03.544 of audio
+17:53:01 Idioma: pt | Texto: e você está como operado lá desde 2022 isso?
+17:53:02 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:53:19 Processing audio with duration 00:20.000
+17:53:19 VAD filter removed 00:03.408 of audio
+17:53:21 Idioma: pt | Texto: Tá. E você está observando agora que a demanda está baixa, eles falaram que vai 
+17:53:23 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:53:27 Processing audio with duration 00:08.000
+17:53:27 VAD filter removed 00:07.016 of audio
+17:53:30 Idioma: pt | Texto: Um, um, um.
+17:53:31 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:53:36 Processing audio with duration 00:09.000
+17:53:36 VAD filter removed 00:07.952 of audio
+17:53:38 Idioma: pt | Texto: Uhum.
+17:53:46 Processing audio with duration 00:09.500
+17:53:46 VAD filter removed 00:05.732 of audio
+17:53:47 Idioma: pt | Texto: E daí quando fica sem demanda, fica sem receber?
+17:53:49 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:53:49 Processing audio with duration 00:03.000
+17:53:49 VAD filter removed 00:02.112 of audio
+17:53:49 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:53:55 Processing audio with duration 00:06.000
+17:53:55 VAD filter removed 00:05.016 of audio
+17:53:56 Idioma: pt | Texto: Muito bom.
+17:53:59 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:53:59 Processing audio with duration 00:04.000
+17:53:59 VAD filter removed 00:02.984 of audio
+17:54:00 Idioma: pt | Texto: Uhum.
+17:54:02 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:54:04 Processing audio with duration 00:05.000
+17:54:04 VAD filter removed 00:04.048 of audio
+17:54:06 Idioma: pt | Texto: Uhum.
+17:54:07 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:54:14 Processing audio with duration 00:10.500
+17:54:14 VAD filter removed 00:03.676 of audio
+17:54:16 Idioma: pt | Texto: E sempre está a home office lá, você nunca precisa ir presencial?
+17:54:17 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:54:28 Processing audio with duration 00:14.000
+17:54:28 VAD filter removed 00:02.676 of audio
+17:54:30 Idioma: pt | Texto: onde que é a sede da Pulsat? Ah, em Recife. E eles são do grupo da IMV, uma outr
+17:54:32 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:54:33 Processing audio with duration 00:05.000
+17:54:33 VAD filter removed 00:04.016 of audio
+17:54:38 Processing audio with duration 00:05.000
+17:54:38 VAD filter removed 00:02.800 of audio
+17:54:40 Idioma: pt | Texto: Ah, postagem de vergonha.
+17:54:42 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:54:51 Processing audio with duration 00:12.500
+17:54:51 VAD filter removed 00:03.500 of audio
+17:54:52 Idioma: pt | Texto: a pulsante ela revende, me vê isso, ela revende para o cliente final e customiza
+17:54:54 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:55:00 Processing audio with duration 00:09.000
+17:55:00 VAD filter removed 00:07.664 of audio
+17:55:03 Processing audio with duration 00:03.500
+17:55:03 VAD filter removed 00:02.580 of audio
+17:55:04 Idioma: pt | Texto: Muito obrigado.
+17:55:05 Idioma: pt | Texto: Obrigado.
+17:55:05 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:55:07 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:55:20 Processing audio with duration 00:16.500
+17:55:20 VAD filter removed 00:03.444 of audio
+17:55:22 Idioma: pt | Texto: mas então durante todo esse tempo que você esteve lá você sempre trabalhou para 
+17:55:24 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:55:28 Processing audio with duration 00:08.000
+17:55:28 VAD filter removed 00:06.952 of audio
+17:55:29 Idioma: pt | Texto: Uhum.
+17:55:30 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:55:31 Processing audio with duration 00:03.500
+17:55:31 VAD filter removed 00:02.644 of audio
+17:55:34 Idioma: pt | Texto: Tchau!
+17:55:35 Processing audio with duration 00:03.500
+17:55:35 VAD filter removed 00:01.280 of audio
+17:55:36 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:55:36 Idioma: pt | Texto: e hoje vocês usam Gira lá
+17:55:38 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:55:39 Processing audio with duration 00:04.500
+17:55:39 VAD filter removed 00:03.228 of audio
+17:55:43 Processing audio with duration 00:03.500
+17:55:43 VAD filter removed 00:02.676 of audio
+17:55:43 Idioma: pt | Texto: Todo mundo chega.
+17:55:45 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:55:47 Processing audio with duration 00:04.500
+17:55:47 VAD filter removed 00:03.676 of audio
+17:55:59 Processing audio with duration 00:12.000
+17:55:59 VAD filter removed 00:03.128 of audio
+17:56:01 Idioma: pt | Texto: Ah, que legal. O Herbert me fala sobre você, como é a tua vida e o que você curt
+17:56:01 Resposta pronta acionada (PT direto, sem AI)
+17:56:09 Processing audio with duration 00:09.500
+17:56:09 VAD filter removed 00:07.684 of audio
+17:56:12 Processing audio with duration 00:03.500
+17:56:12 VAD filter removed 00:02.484 of audio
+17:56:15 Idioma: pt | Texto: Uhum.
+17:56:16 Idioma: pt | Texto: Um, um, um. Legal.
+17:56:17 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:56:18 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:56:20 Processing audio with duration 00:08.000
+17:56:20 VAD filter removed 00:06.256 of audio
+17:56:25 Processing audio with duration 00:05.000
+17:56:25 VAD filter removed 00:01.936 of audio
+17:56:27 Idioma: pt | Texto: Legal, você faz o jeito que você faz tempo?
+17:56:29 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:56:33 Processing audio with duration 00:08.000
+17:56:33 VAD filter removed 00:05.008 of audio
+17:56:35 Idioma: pt | Texto: 3 anos, ela já trocou de faixa?
+17:56:36 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:56:39 Processing audio with duration 00:05.500
+17:56:39 VAD filter removed 00:03.276 of audio
+17:56:41 Idioma: pt | Texto: É, qual que é o tofasho?
+17:56:42 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:56:46 Processing audio with duration 00:07.500
+17:56:46 VAD filter removed 00:01.960 of audio
+17:56:48 Idioma: pt | Texto: Azul já está lutando bem já. Eu derrou bons caras aí, né?
+17:56:50 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:56:55 Processing audio with duration 00:09.000
+17:56:55 VAD filter removed 00:02.944 of audio
+17:56:57 Idioma: pt | Texto: Legal. E... Se tem filhos?
+17:56:58 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:57:20 Processing audio with duration 00:25.000
+17:57:20 VAD filter removed 00:03.544 of audio
+17:57:23 Idioma: pt | Texto: Eu quero te falar um pouco do benefícios, falar do plano de saúde, entrar nesta 
+17:57:24 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:57:34 Processing audio with duration 00:13.500
+17:57:34 VAD filter removed 00:11.852 of audio
+17:57:35 Idioma: pt | Texto: Hum hum. Tchau.
+17:57:37 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:57:43 Processing audio with duration 00:09.500
+17:57:43 VAD filter removed 00:02.388 of audio
+17:57:45 Idioma: pt | Texto: e hoje eu fixo mais a distribuição e está com uma média de quanto hoje
+17:57:47 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:57:51 Processing audio with duration 00:07.500
+17:57:51 VAD filter removed 00:04.948 of audio
+17:57:53 Processing audio with duration 00:02.500
+17:57:53 VAD filter removed 00:01.400 of audio
+17:57:56 Idioma: pt | Texto: Não tem mais nada.
+17:57:56 Processing audio with duration 00:03.000
+17:57:56 VAD filter removed 00:02.144 of audio
+17:57:57 Idioma: pt | Texto: Então, sete benefícios, também.
+17:57:58 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:57:59 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:58:48 Processing audio with duration 00:51.500
+17:58:48 VAD filter removed 00:05.748 of audio
+17:58:53 Idioma: pt | Texto: Deixa eu notar aqui. Então assim, nessa vaga de vulnerabilidades, que essa vaga 
+17:58:55 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:59:08 Processing audio with duration 00:20.000
+17:59:08 VAD filter removed 00:01.684 of audio
+17:59:10 Idioma: pt | Texto: da exterra legada e vai ter alguma coisa ali que vai aparecer de vez em quando d
+17:59:11 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:59:13 Processing audio with duration 00:05.000
+17:59:13 VAD filter removed 00:03.920 of audio
+17:59:15 Processing audio with duration 00:02.000
+17:59:15 VAD filter removed 00:02.000 of audio
+17:59:17 Idioma: pt | Texto: Quase.
+17:59:19 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:59:40 Processing audio with duration 00:25.500
+17:59:40 VAD filter removed 00:06.420 of audio
+17:59:42 Idioma: pt | Texto: É, vai ser uma oportunidade para se envolver aqui. Nós somos uma linha que seifi
+17:59:44 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:59:58 Processing audio with duration 00:18.000
+17:59:58 VAD filter removed 00:08.192 of audio
+18:00:00 Idioma: pt | Texto: O legado é java7, java8, j... j... j... j... j... j... f... j... sp... e...
+18:00:02 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:00:13 Processing audio with duration 00:14.500
+18:00:13 VAD filter removed 00:02.100 of audio
+18:00:15 Idioma: pt | Texto: é tipo isso, mas essa parte do JTF, JCP, Java 7, Java 8, Java 11, eu não sei se 
+18:00:16 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:00:17 Processing audio with duration 00:04.000
+18:00:17 VAD filter removed 00:02.824 of audio
+18:00:18 Idioma: pt | Texto: Tenha de acumir.
+18:00:20 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:00:21 Processing audio with duration 00:04.500
+18:00:21 VAD filter removed 00:03.580 of audio
+18:00:23 Idioma: pt | Texto: Valeu.
+18:00:24 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:00:26 Processing audio with duration 00:05.000
+18:00:26 VAD filter removed 00:02.928 of audio
+18:00:28 Processing audio with duration 00:02.000
+18:00:28 VAD filter removed 00:01.316 of audio
+18:00:33 Idioma: pt | Texto: explique-me, o que é isso? explique-me, explique-me
+18:00:34 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:02:33 Processing audio with duration 02:05.000
+18:02:33 VAD filter removed 00:06.456 of audio
+18:02:36 Processing audio with duration 00:03.000
+18:02:36 VAD filter removed 00:02.112 of audio
+18:02:40 Idioma: pt | Texto: Por quê?
+18:02:42 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:02:45 Processing audio with duration 00:08.500
+18:02:45 VAD filter removed 00:04.516 of audio
+18:02:48 Idioma: pt | Texto: Eles são concorrentes. É o hub.
+18:02:50 Idioma: pt | Texto: Entendi. Qual é a análise que eu queria que você fizesse aqui em relação a essa 
+18:02:51 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:02:52 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:04:03 Processing audio with duration 01:18.000
+18:04:03 VAD filter removed 00:05.240 of audio
+18:04:06 Processing audio with duration 00:03.000
+18:04:06 VAD filter removed 00:03.000 of audio
+18:04:11 Idioma: pt | Texto: É a mesma coisa, mas são concorrentes, entendeu? Digamos que tem academia que ac
+18:04:13 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:04:15 Processing audio with duration 00:09.500
+18:04:15 VAD filter removed 00:02.676 of audio
+18:04:17 Idioma: pt | Texto: Ah, esse é o líquido? Já descontando os impostos?
+18:04:18 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:04:48 Processing audio with duration 00:33.000
+18:04:48 VAD filter removed 00:04.832 of audio
+18:04:54 Processing audio with duration 00:05.500
+18:04:54 VAD filter removed 00:03.716 of audio
+18:05:14 Processing audio with duration 00:20.500
+18:05:14 VAD filter removed 00:02.444 of audio
+18:05:18 Processing audio with duration 00:04.000
+18:05:18 VAD filter removed 00:02.312 of audio
+18:05:19 Idioma: pt | Texto: tá porque o nosso o que eu tenho que pra você né de de oito ele vai ter os desco
+18:05:21 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:05:21 Idioma: pt | Texto: É, desse tem os ganhos ali de férias, décimo e terceiro, às vezes você baixa um 
+18:05:23 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:05:23 Idioma: pt | Texto: Eu fiz a testa na escola.
+18:05:23 Idioma: pt | Texto: Faz sentido pra você?
+18:05:24 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:05:26 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:05:41 Processing audio with duration 00:22.000
+18:05:41 VAD filter removed 00:05.716 of audio
+18:05:43 Idioma: pt | Texto: Qualquer coisa eu calculo para você depois, para você avaliar certinho. Então é 
+18:05:45 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:06:46 Guard de captura reaplicado em 1 janela(s).
+10:09:49 Contexto carregado de context.txt (2661 chars)
+10:09:50 Respostas prontas carregadas: 6
+10:09:50 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+10:09:51 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+10:09:51 Opacidade aplicada: 0.85
+10:09:51 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1049076).
+10:09:51 Guard de captura ativo (intervalo 2.0s).
+10:10:07 HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+10:10:08 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+10:10:09 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+10:10:15 Idioma forcado: pt
+10:10:17 Provider ativado: claude
+10:12:06 Processing audio with duration 00:07.500
+10:12:07 VAD filter removed 00:02.340 of audio
+10:12:09 Idioma: pt | Texto: a minha contadura a André está do antigo mano. Então eu tava agora eu tiro, tava
+10:12:10 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+20:27:31 Contexto carregado de context.txt (2661 chars)
+20:27:31 Respostas prontas carregadas: 6
+20:27:31 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+20:27:32 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+20:27:32 Opacidade aplicada: 0.85
+20:27:32 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=3081654).
+20:27:32 Guard de captura ativo (intervalo 2.0s).
+20:28:17 HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+20:28:17 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+20:28:18 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+20:31:59 Provider ativado: claude
+09:33:35 Contexto carregado de context.txt (2661 chars)
+09:33:35 Respostas prontas carregadas: 6
+09:33:35 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+09:33:36 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+09:33:36 Opacidade aplicada: 0.85
+09:33:36 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=787402).
+09:33:36 Guard de captura ativo (intervalo 2.0s).
+09:33:48 Provider ativado: claude
+09:33:51 HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+09:33:51 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+09:33:52 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+09:33:55 Provider ativado: claude
+09:33:58 Processing audio with duration 00:03.500
+09:33:59 VAD filter removed 00:00.000 of audio
+09:34:01 Idioma: en | Texto: a little bit of help. The good is this way, boss.
+09:34:03 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+09:35:23 Processing audio with duration 00:02.000
+09:35:23 VAD filter removed 00:00.000 of audio
+09:35:25 Idioma: en | Texto: Let's do it, Rodrigo!
+09:35:26 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:01:57 Contexto carregado de context.txt (2661 chars)
+18:01:57 Respostas prontas carregadas: 6
+18:01:57 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+18:01:57 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+18:01:57 Opacidade aplicada: 0.85
+18:01:57 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:01:57 Guard de captura ativo (intervalo 2.0s).
+18:02:03 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+18:02:04 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+18:02:11 Provider ativado: claude
+18:02:13 Processing audio with duration 00:02.000
+18:02:13 VAD filter removed 00:00.000 of audio
+18:02:15 Idioma: en | Texto: We don't give a damn about money.
+18:02:19 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+18:05:41 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:41 Opacidade: 0.75
+18:05:41 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:41 Opacidade: 0.65
+18:05:41 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:41 Opacidade: 0.55
+18:05:41 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:41 Opacidade: 0.45
+18:05:56 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:56 Opacidade: 0.55
+18:05:56 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:56 Opacidade: 0.65
+18:05:56 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:56 Opacidade: 0.75
+18:05:57 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:57 Opacidade: 0.85
+18:05:57 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:57 Opacidade: 0.95
+18:05:57 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:57 Opacidade: 1.00
+18:05:57 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:57 Opacidade: 1.00
+18:05:58 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:58 Opacidade: 0.90
+18:05:58 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=1050492).
+18:05:58 Opacidade: 0.80
+08:44:10 Respostas prontas carregadas: 8
+14:04:34 Contexto carregado de context.txt (2661 chars)
+14:04:34 Respostas prontas carregadas: 8
+14:04:34 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+14:04:35 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+14:04:35 Opacidade aplicada: 0.85
+14:04:35 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=198368).
+14:04:35 Guard de captura ativo (intervalo 2.0s).
+14:04:47 HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+14:04:47 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+14:04:48 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+14:04:51 Provider ativado: claude
+14:32:19 Contexto carregado de context.txt (2661 chars)
+14:32:19 Respostas prontas carregadas: 8
+14:32:19 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+14:32:20 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+14:32:20 Opacidade aplicada: 0.85
+14:32:20 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=262946).
+14:32:20 Guard de captura ativo (intervalo 2.0s).
+14:32:24 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+14:32:24 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+14:32:30 Provider ativado: claude
+14:32:39 VAD: fim de fala (6.5s de audio no buffer)
+14:32:40 Audio recebido: 7.0s — transcrevendo
+14:32:40 Processing audio with duration 00:07.000
+14:32:40 VAD filter removed 00:00.876 of audio
+14:32:41 Idioma: en | Texto: Moving ahead with the last question which is what is the difference between stat
+14:32:43 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:32:56 Turno concluido (2876 chars gerados)
+14:33:23 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=262946).
+14:33:23 Opacidade: 0.95
+14:36:25 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=262946).
+14:36:25 Opacidade: 1.00
+14:36:25 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=262946).
+14:36:25 Opacidade: 0.90
+14:36:25 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=262946).
+14:36:25 Opacidade: 0.80
+14:36:26 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=262946).
+14:36:26 Opacidade: 0.90
+14:36:26 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=262946).
+14:36:26 Opacidade: 1.00
+14:36:27 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=262946).
+14:36:27 Opacidade: 1.00
+14:36:27 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=262946).
+14:36:27 Opacidade: 1.00
+14:36:29 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=262946).
+14:36:29 Opacidade: 0.90
+14:51:40 VAD: fim de fala (1.0s de audio no buffer)
+14:51:52 VAD: fim de fala (13.5s de audio no buffer)
+14:51:53 Audio recebido: 14.5s — transcrevendo
+14:51:53 Processing audio with duration 00:14.500
+14:51:53 VAD filter removed 00:01.640 of audio
+14:51:56 Idioma: en | Texto: This interview is monitored and detects any cheating behaviors through our proct
+14:51:57 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:51:58 Turno concluido (172 chars gerados)
+14:52:02 VAD: fim de fala (8.5s de audio no buffer)
+14:52:04 VAD: fim de fala (11.0s de audio no buffer)
+14:52:06 VAD: fim de fala (13.0s de audio no buffer)
+14:52:07 Audio recebido: 14.0s — transcrevendo
+14:52:07 Processing audio with duration 00:14.000
+14:52:07 VAD filter removed 00:06.472 of audio
+14:52:09 Idioma: en | Texto: Hi, Herbeth. My name is Zahra. I'm an AI recruiter at MicroOne. Thank you for jo
+14:52:11 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:52:12 Turno concluido (325 chars gerados)
+14:52:20 VAD: fim de fala (12.5s de audio no buffer)
+14:52:25 VAD: fim de fala (18.0s de audio no buffer)
+14:52:26 Audio recebido: 19.0s — transcrevendo
+14:52:26 Processing audio with duration 00:19.000
+14:52:26 VAD filter removed 00:11.728 of audio
+14:52:29 Idioma: en | Texto: I'm glad to hear you're doing well, Herbeth. Please go ahead and introduce yours
+14:52:29 Resposta pronta acionada (traduzindo PT->EN via AI)
+14:52:32 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:52:51 VAD: fim de fala (25.0s de audio no buffer)
+14:53:06 VAD: fim de fala (40.0s de audio no buffer)
+14:53:07 Audio recebido: 41.0s — transcrevendo
+14:53:07 Processing audio with duration 00:41.000
+14:53:07 VAD filter removed 00:25.440 of audio
+14:53:10 Idioma: en | Texto: That's fine. Just keep it brief and focus on your recent Java work, key responsi
+14:53:11 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:53:25 Turno concluido (2921 chars gerados)
+14:55:51 VAD: fim de fala (164.0s de audio no buffer)
+14:56:04 VAD: fim de fala (176.5s de audio no buffer)
+14:56:13 VAD: fim de fala (185.5s de audio no buffer)
+14:56:14 Audio recebido: 186.5s — transcrevendo
+14:56:14 Processing audio with duration 03:06.500
+14:56:14 VAD filter removed 02:46.812 of audio
+14:56:18 Idioma: en | Texto: Your distinguishing reference equality equals sign equal sign from logical equal
+14:56:20 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+14:56:37 Turno concluido (3325 chars gerados)
+14:59:24 VAD: fim de fala (190.0s de audio no buffer)
+14:59:31 VAD: fim de fala (197.5s de audio no buffer)
+14:59:37 VAD: fim de fala (203.5s de audio no buffer)
+14:59:38 Audio recebido: 204.5s — transcrevendo
+14:59:38 Processing audio with duration 03:24.500
+14:59:39 VAD filter removed 03:01.620 of audio
+14:59:42 Idioma: en | Texto: You're on the right track. The key can become effectively lost in the wrong buck
+14:59:44 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:00:01 Turno concluido (3174 chars gerados)
+15:03:02 VAD: fim de fala (203.5s de audio no buffer)
+15:03:16 VAD: fim de fala (218.0s de audio no buffer)
+15:03:17 Audio recebido: 219.0s — transcrevendo
+15:03:17 Processing audio with duration 03:39.000
+15:03:18 VAD filter removed 03:24.016 of audio
+15:03:20 Idioma: en | Texto: That makes sense. You'd start from GC slash CPU signals, then correlate with pro
+15:03:22 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:03:40 Turno concluido (3131 chars gerados)
+15:06:47 VAD: fim de fala (209.5s de audio no buffer)
+15:06:57 VAD: fim de fala (220.0s de audio no buffer)
+15:07:07 VAD: fim de fala (230.0s de audio no buffer)
+15:07:08 Audio recebido: 231.0s — transcrevendo
+15:07:08 Processing audio with duration 03:51.000
+15:07:09 VAD filter removed 03:31.120 of audio
+15:07:12 Idioma: en | Texto: Good. Two thread dumps a few seconds apart and looking for many threads block it
+15:07:14 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:07:34 Turno concluido (4410 chars gerados)
+15:10:52 VAD: fim de fala (224.0s de audio no buffer)
+15:11:00 VAD: fim de fala (232.0s de audio no buffer)
+15:11:08 VAD: fim de fala (239.5s de audio no buffer)
+15:11:09 Audio recebido: 240.5s — transcrevendo
+15:11:09 Processing audio with duration 04:00.500
+15:11:09 VAD filter removed 03:43.948 of audio
+15:11:12 Idioma: en | Texto: That's a solid breakdown. Optimistic for load-of-conflict throughput, pessimisti
+15:11:14 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:11:37 Turno concluido (4767 chars gerados)
+15:15:13 VAD: fim de fala (244.0s de audio no buffer)
+15:15:14 Audio recebido: 245.0s — transcrevendo
+15:15:14 Processing audio with duration 04:05.000
+15:15:14 VAD filter removed 04:00.144 of audio
+15:15:16 Idioma: en | Texto: What is the difference between Java's string.internpool behavior and normal heap
+15:15:18 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:15:39 Turno concluido (4531 chars gerados)
+15:18:49 VAD: fim de fala (215.5s de audio no buffer)
+15:18:52 VAD: fim de fala (218.0s de audio no buffer)
+15:18:53 Audio recebido: 219.0s — transcrevendo
+15:18:53 Processing audio with duration 03:39.000
+15:18:53 VAD filter removed 03:35.816 of audio
+15:18:55 Idioma: en | Texto: Alright, give me a moment to see what's next for you, okay?
+15:18:57 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:18:58 Turno concluido (185 chars gerados)
+15:19:18 VAD: fim de fala (25.0s de audio no buffer)
+15:19:19 Audio recebido: 26.0s — transcrevendo
+15:19:19 Processing audio with duration 00:26.000
+15:19:19 VAD filter removed 00:20.056 of audio
+15:19:21 Idioma: en | Texto: Congrats! You just finished the verbal questions. Now the last step is a 25 minu
+15:19:22 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:19:24 Turno concluido (300 chars gerados)
+15:21:09 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:26:38 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:32:23 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:26:17 Contexto carregado de context.txt (2661 chars)
+17:26:17 Respostas prontas carregadas: 8
+17:26:17 QT cannot be loaded
+Traceback (most recent call last):
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\guilib.py", line 51, in import_qt
+    import webview.platforms.qt as guilib
+  File "C:\Projetos\escuta-ativa\venv312\Lib\site-packages\webview\platforms\qt.py", line 14, in <module>
+    from qtpy import PYQT6, PYSIDE6, QtCore
+ModuleNotFoundError: No module named 'qtpy'
+17:26:18 Janela removida da barra de tarefas (WS_EX_TOOLWINDOW).
+17:26:18 Opacidade aplicada: 0.85
+17:26:18 WDA_EXCLUDEFROMCAPTURE aplicado com sucesso (hwnd=264012).
+17:26:18 Guard de captura ativo (intervalo 2.0s).
+17:26:22 HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+17:26:23 Gatilho de print: 3x 'ctrl'=low, +1=medium, +2=high (settle 0.45s, janela 1.0s)
+17:26:28 Provider ativado: claude
+17:28:13 VAD: fim de fala (6.5s de audio no buffer)
+17:28:14 Audio recebido: 7.5s — transcrevendo
+17:28:14 Processing audio with duration 00:07.500
+17:28:14 VAD filter removed 00:02.260 of audio
+17:28:15 Idioma: en | Texto: Moving ahead with the last question which is what is the difference between stat
+17:28:18 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+17:28:29 Turno concluido (2367 chars gerados)

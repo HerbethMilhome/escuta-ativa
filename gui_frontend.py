@@ -175,7 +175,6 @@ def get_html():
     display: flex;
     flex-direction: column;
     gap: 16px;
-    scroll-behavior: smooth;
   }
 
   #chat::-webkit-scrollbar { width: 6px; }
@@ -275,6 +274,26 @@ def get_html():
     margin: 8px 0;
   }
 
+  /* Frase-ponte: o que falar em voz alta AGORA, enquanto a IA ainda gera a resposta */
+  .bridge {
+    align-self: flex-end;
+    background: #2b2416;
+    border: 1px solid #d29922;
+    border-right: 3px solid #d29922;
+    color: #f0e2c0;
+  }
+
+  .bridge .label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #d29922;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .bridge .content { font-size: 15px; }
+
   .cursor {
     display: inline-block;
     width: 2px;
@@ -356,6 +375,9 @@ def get_html():
   let currentAnswerContent = null;
   let tokenBuffer = '';
   let renderTimer = null;
+  let bridgeEl = null;  // frase-ponte ainda "aberta" (sem resposta embaixo)
+  let pinTarget = null; // inicio do turno atual, ancorado no topo da area de leitura
+  let pinActive = false;
 
   function setStatus(status, text) {
     statusDot.className = status;
@@ -366,6 +388,38 @@ def get_html():
     chat.scrollTop = chat.scrollHeight;
   }
 
+  // Ancoragem: leva o inicio do turno para o topo da area de leitura UMA vez e
+  // depois solta o scroll, para a resposta crescer por baixo sem puxar a tela
+  // enquanto o candidato le. pinScroll converge enquanto ainda nao ha conteudo
+  // suficiente abaixo e se desliga sozinho quando chega la.
+  function pinScroll() {
+    if (!pinTarget || !pinTarget.parentNode) {
+      pinActive = false;
+      return;
+    }
+    const delta = pinTarget.getBoundingClientRect().top - chat.getBoundingClientRect().top - 8;
+    if (Math.abs(delta) <= 2) {
+      pinActive = false;  // chegou no topo: nao mexe mais no scroll deste turno
+      return;
+    }
+    const before = chat.scrollTop;
+    chat.scrollTop = before + delta;
+    if (chat.scrollTop === before && delta < 0) {
+      pinActive = false;  // ja esta no limite de cima, nao da para subir mais
+    }
+  }
+
+  function pinTo(el) {
+    pinTarget = el;
+    pinActive = true;
+    pinScroll();
+  }
+
+  // Qualquer rolagem manual encerra a ancoragem: quem manda no scroll e o usuario
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function(evt) {
+    chat.addEventListener(evt, function() { pinActive = false; }, { passive: true });
+  });
+
   function addQuestion(text) {
     if (emptyState) {
       emptyState.remove();
@@ -375,11 +429,40 @@ def get_html():
     div.className = 'message question';
     div.innerHTML = '<div class="label">Pergunta #' + questionCount + '</div>' +
                     '<div class="content">' + escapeHtml(text) + '</div>';
-    chat.appendChild(div);
+    // A ponte pode ter aparecido antes da transcricao: mantem a leitura Pergunta -> Fale agora
+    if (bridgeEl && bridgeEl.parentNode === chat) {
+      chat.insertBefore(div, bridgeEl);
+    } else {
+      chat.appendChild(div);
+    }
     scrollToBottom();
   }
 
+  function showBridge(text) {
+    if (emptyState) {
+      emptyState.remove();
+    }
+    clearBridge();
+    const div = document.createElement('div');
+    div.className = 'message bridge';
+    div.innerHTML = '<div class="label">&#128172; Fale agora</div>' +
+                    '<div class="content">' + escapeHtml(text) + '</div>';
+    chat.appendChild(div);
+    bridgeEl = div;
+    scrollToBottom();
+  }
+
+  function clearBridge() {
+    // So remove enquanto a ponte estiver "aberta"; depois que a resposta comeca ela vira historico
+    if (bridgeEl && bridgeEl.parentNode) {
+      bridgeEl.parentNode.removeChild(bridgeEl);
+    }
+    bridgeEl = null;
+  }
+
   function startAnswer() {
+    const bridgeDoTurno = bridgeEl;  // ponte deste turno, antes de virar historico
+    bridgeEl = null;
     const div = document.createElement('div');
     div.className = 'message answer';
     div.innerHTML = '<div class="label">Resposta</div>' +
@@ -387,7 +470,10 @@ def get_html():
     chat.appendChild(div);
     currentAnswerContent = div.querySelector('.content');
     tokenBuffer = '';
-    scrollToBottom();
+    // Ancora no topo a ponte, se houver — ela e curta e ainda esta sendo lida em voz
+    // alta quando os primeiros tokens chegam. Sem ponte, ancora a propria resposta.
+    const alvo = (bridgeDoTurno && bridgeDoTurno.parentNode === chat) ? bridgeDoTurno : div;
+    pinTo(alvo);
   }
 
   function appendToken(token) {
@@ -401,7 +487,9 @@ def get_html():
     renderTimer = null;
     if (currentAnswerContent) {
       currentAnswerContent.innerHTML = marked.parse(tokenBuffer) + '<span class="cursor"></span>';
-      scrollToBottom();
+      if (pinActive) {
+        pinScroll();
+      }
     }
   }
 
@@ -421,7 +509,6 @@ def get_html():
       }
       currentAnswerContent = null;
       tokenBuffer = '';
-      scrollToBottom();
     }
   }
 
@@ -544,6 +631,8 @@ def get_html():
   window.appApi = {
     setStatus: setStatus,
     addQuestion: addQuestion,
+    showBridge: showBridge,
+    clearBridge: clearBridge,
     startAnswer: startAnswer,
     appendToken: appendToken,
     finishAnswer: finishAnswer,

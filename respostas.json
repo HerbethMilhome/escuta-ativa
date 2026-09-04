@@ -117,5 +117,48 @@
       "how do you debug in production"
     ],
     "resposta": "Primeiro, tento entender o impacto e a urgência do problema. Depois, analiso os logs, reproduzo o problema quando possível, identifico a causa raiz e aplico a solução mais segura com o mínimo impacto para os usuários. Após a correção, continuo monitorando o sistema para garantir a estabilidade."
+  },
+  {
+    "keywords": [
+      "code review",
+      "codereview",
+      "revisao de codigo",
+      "revisão de código",
+      "criterios de revisao",
+      "critérios de revisão",
+      "revisar codigo",
+      "revisar código",
+      "o que voce olha em um pr",
+      "o que você olha em um pr",
+      "pull request",
+      "what do you look for in a code review",
+      "how do you review code",
+      "code review criteria",
+      "reviewing a pull request",
+      "pr review",
+      "what do you check when reviewing"
+    ],
+    "resposta": "Sigo um checklist fixo por categoria, pra revisão não virar opinião pessoal. São seis pontos.\n\n1. Contrato e nomenclatura: o nome diz o que a função faz, a assinatura é honesta e não vaza detalhe de implementação.\n2. Estado e efeitos colaterais: onde o estado mora, se dá pra manter local em vez de global, e se os efeitos têm dependência declarada e cleanup.\n3. Acessibilidade: HTML semântico, foco visível, navegação por teclado e label em campo de formulário.\n4. Performance de render: re-render desnecessário, lista sem key estável e trabalho pesado dentro do render.\n5. Testes: se cobre o caso de borda e não só o caminho feliz, e se o teste quebraria caso a regra de negócio mudasse.\n6. Consistência visual: design token em vez de valor mágico de cor e espaçamento.\n\nE separo explicitamente o que é bloqueante — bug, risco de segurança, acessibilidade quebrada — do que é sugestão, pra não travar o PR por preferência de estilo.\n\nComo funciona o review de vocês hoje? É obrigatório por par ou por área de domínio?"
+  },
+  {
+    "keywords": [
+      "estrategia de ci",
+      "estratégia de ci",
+      "ci cd",
+      "ci/cd",
+      "integracao continua",
+      "integração contínua",
+      "pipeline de ci",
+      "pipeline de build",
+      "esteira de deploy",
+      "deploy pipeline",
+      "continuous integration",
+      "ci strategy",
+      "how do you set up ci",
+      "build pipeline",
+      "deployment pipeline",
+      "what does your pipeline look like"
+    ],
+    "resposta": "Penso em CI como estágios com um gate cada, ordenados do mais rápido pro mais lento, pra falhar cedo e barato.\n\n1. Lint e formatação: bloqueia automático, assim ninguém gasta review discutindo estilo.\n2. Build e checagem de tipo: se não compila, para aqui.\n3. Testes unitários — JUnit e Mockito no back, teste de componente no front. O gate de cobertura eu aplico no código novo, não na base inteira, senão vira número morto.\n4. Testes de integração nos fluxos críticos.\n5. Regressão visual, quando o projeto tem design system, porque quebra de layout teste unitário não pega.\n\nSó depois disso vai pro deploy, com o artefato versionado.\n\nA regra que eu mais defendo é que pipeline vermelho tem prioridade sobre feature nova. Se o vermelho vira paisagem, o time aprende a ignorar e a CI deixa de valer.\n\nComo está o tempo de pipeline de vocês hoje? Pergunto porque acima de uns dez minutos o pessoal começa a burlar o processo."
   }
 ]

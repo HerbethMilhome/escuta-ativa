@@ -5,15 +5,31 @@ import numpy as np
 from scipy.io.wavfile import write as wav_write
 from scipy.signal import resample_poly
 import io
+import logging
 import threading
 import time
+import traceback
 import wave
 
 import torch
 from silero_vad import load_silero_vad
 
+log = logging.getLogger("assistant")
+
 VAD_SAMPLE_RATE = 16000
 VAD_WINDOW_SIZE = 512  # samples @ 16kHz
+
+
+def _spawn(fn, *args):
+    """Roda um callback em thread daemon sem deixar erro dele derrubar a captura."""
+    def _run():
+        try:
+            fn(*args)
+        except Exception:
+            # sob pythonw nao existe stdout: erro tem que ir para o assistant.log
+            log.error("Callback da captura falhou: " + traceback.format_exc())
+
+    threading.Thread(target=_run, daemon=True).start()
 
 
 class AudioCapture:
@@ -93,8 +109,13 @@ class AudioCapture:
                     max_prob = prob
         return max_prob
 
-    def capture_until_silence(self, on_audio_ready):
-        """Captura áudio continuamente e envia chunks quando detecta silêncio após fala."""
+    def capture_until_silence(self, on_audio_ready, on_speech_end=None):
+        """Captura áudio continuamente e envia chunks quando detecta silêncio após fala.
+
+        on_speech_end(speech_seconds): opcional, disparado no INSTANTE em que a fala para
+        (antes de esperar silence_duration e antes de transcrever). É o ponto mais cedo
+        possível para reagir — usado para exibir a frase-ponte sem esperar a IA.
+        """
         self._running = True
         buffer = []
         silence_start = None
@@ -150,6 +171,9 @@ class AudioCapture:
                     buffer.append(audio_float)
                     if has_speech and silence_start is None:
                         silence_start = time.time()
+                        if on_speech_end is not None:
+                            speech_secs = sum(len(c) for c in buffer) / self.sample_rate
+                            _spawn(on_speech_end, speech_secs)
                     elif has_speech and silence_start and (time.time() - silence_start) >= self.silence_duration:
                         audio_data = np.concatenate(buffer)
                         duration = len(audio_data) / self.sample_rate
